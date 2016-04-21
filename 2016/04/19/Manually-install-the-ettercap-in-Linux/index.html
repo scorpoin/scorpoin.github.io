@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Manually install the ettercap in Linux | Hexo</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="Hexo">
+    <meta name="author" content="John Doe">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="https://www.baidu.com/" target="_BLANK" class="animsition-link">baidu</a></li>
+                    
+                        <li><a href="http://cn.bing.com/" target="_BLANK" class="animsition-link">biying</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(5)</small></a></li>
+				    
+				    <li><a href="/categories/talks/" class="animsition-link">talks<small>(1)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.sina.com.cn/dadongcom" class="animsition-link">my sina blog</a></li>
+                    
+                    <li><a href="http://www.jiadong.xin" class="animsition-link">my website</a></li>
+                    
+                    <li><a href="http://aixiaofeng.club/" class="animsition-link">小峰 の blog</a></li>
+                    
+                    <li><a href="http://leelie.lofter.com/post/1cba8407_95afe3f" class="animsition-link">伟伟 の blog</a></li>
+                    
+                    <li><a href="http://nouername.github.io/" class="animsition-link">帅飞 の blog</a></li>
+                    
+                    <li><a href="http://blog.sina.com.cn/u/2063577157" class="animsition-link">王卓 の blog</a></li>
+                    
+                    <li><a href="http://blog.sina.com.cn/u/5083154285" class="animsition-link">文炳 の blog</a></li>
+                    
+                    <li><a href="http://blog.sina.com.cn/leonistheone" class="animsition-link">金良 の blog</a></li>
+                    
+                    <li><a href="http://blog.sina.com.cn/u/5900719864" class="animsition-link">建磊 の blog</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">Hexo</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/1.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>THE QUITER YOU BECOME,THE <span>MORE</span> YOU ARE ABLE TO HEAR.</h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p>灵魂摆渡者</p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-04-19T01:24:18.000Z" itemprop="datePublished">
+          2016-04-19
+      </time>
+    
+    
+    | 
+    <a href='/tags/just-do-it/'>just do it</a>
+    
+    
+</span>
+                <h1>Manually install the ettercap in Linux</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>0x00介绍<br>Ettercap是一款强大的嗅探工具，可以进行ARP欺骗，DNS欺骗，跟上各种参数，实现各种功能！<br>这篇文章是介绍一下在centos操作系统上手动安装ettercap，举一反三，其他软件的安装就不是问题了！(详细演示过程请查看本人博客)</p>
+<p>0x01安装全过程<br>在安装ettercap之前需要创建环境yum groupinstall “development tools”:<br>通过xftp将下载的ettercap安装包传送到centos中，ls查看安装包是否上传：<br>解压压缩包tar -zxvf ettercao-0.8.2.tar.gz：<br>ls查看解压结果，多了一个ettercap的目录，切换到包里边查看信息cd ettercap-0.8.2<br>找到bundled_deps目录进入查看，依次安装四个依赖包：</p>
+<p>0x02安装四个包：<br>首先进入第一个目录中，发现check-0.9.14.tar.gz压缩包：<br>对check-0.9.14.tar.gz压缩包进行解压：<br>接下来查看一下解压后出现了一个check-0.9.14的目录，切换进目录查看，执行可编译文件configure：<br>执行之后会发现多了一个makefile的文件，用make命令对其进行编译：执行make install进行安装，调用makefile中的代码块，把编译出来的二进制文件，库，配置文件放到相应的目录下（注意需要在root权限下执行这一步）<br>执行make clean 清除编译结果：<br>然后对第二个依赖包：<br>安装过程和安装第一个一样，切换进curl,进行查看，tar -zxvf curl-7.41.0.tar.gz进行解压：<br>进行查看，发现解压后的目录，切换进去查看，找到可执行文件configure:<br>执行./configure之后，发现多了一个makefile文件，对其进行编译：<br>编译完成之后，执行make install进行安装，调用makefile中的代码块，将编译出来的二进制文件，库，配置文件放到相应的目录下（需要root权限）：<br>执行make clean清除编译结果：<br>第二个依赖包安装完成，安装第三个，切换回去，进入第三个目录查看，执行tar -zxvf libnet-1.1.6.tar.gz解压：<br>解压后查看，切换进解压后的目录，找到configure执行./configure；<br>执行完./configure之后发现多了一个makefile文件，对其进行编译：<br>执行make install，进行安装，调用makefile中的代码块，并将编译生成的二进制文件，库，配置文件放到相应的目录下（需要root权限下执行）：<br>执行make clean，清除编译结果：<br>返回，安装第四个依赖包，进入第四个目录下查看，对LuaJIT-2.0.3.tar.gz进行解压：<br>解压之后查看，切换进解压后的目录中查看发现没有configure文件但是有makefile文件，直接执行make对makefile进行编译：<br>执行make install，进行安装，调用makefile中的代码块，并将编译生成的二进制文件，库，配置文件放到相应的目录下（需要root权限下执行）：<br>执行make clean对编译结果进行清除：</p>
+<p>0x03执行INSTALL中的说明<br>好了，接下来返回查看一下接下来需要做什么，在INSTALL中查看安装说明：<br>按照安装说明进行执行，首先创建一个build目录，切换进去，执行cmake ../:<br>执行cmake ../的时候提示没找到，那么久搜索一下安装：<br>找到两种，我们安装第二年种：<br>安装之后执行cmake ../,又报错，提示未找到curses这个依赖包，搜索：<br>会发现找到很多版本的依赖包，我们安装后缀为devel的开发包：<br>安装完成之后，在build目录下生成一个目录，一个文件，为了对接下来安装的依赖包不产生影响，对其进行删除，再执行cmake ../<br>提示没有找到GTK2这个依赖包，对其进行查找yum search gtk2：<br>找到之后，进行安装yum install gtk2-devel：<br>安装完成，继续执行cmake ../<br>执行cmake ../发现有报错，提示没有安装openssh,对其进行查找：<br>找到之后，yum install openssh:<br>安装之后，同样先删除，在执行cmake ../；<br>发现有报错了，提示没有找到openssl这个依赖包，查找 yum search OpenSSL：<br>安装 yum install openssl-devel:<br>安装完成之后，删除文件rm -rf <em>在进行执行cmake ../<br>又报错，发现少了libpcap这个依赖包，怎么办？继续查找安装呗！<br>找到依赖包之后进行安装yum install libpcap-devel<br>安装完成之后执行以下rm -rf </em>（有时候可以不执行，只是为了避免不必要的麻烦），执行cmake ../<br>出现这个提示，终于装完了各种依赖包：<br>接下来查看一下，会发现多了一个makefile文件，执行make进行编译：<br>发现都变绿了，心情舒展了好多：<br>执行make install 进行安装，调用makefile中的代码块，把编译生成的二进制文件，库，配置文件放到对应的目录下（注意在root权限下）：<br>执行make clean 就哦了！<br>查看一下结果吧，ettercap -v，安装完成！</p>
+<p>0x04总结：<br>前边的四个包安装很顺利，关键是执行cmake的时候一定要一步一步来，依赖包很多，要耐得住性子，一个一个来（注意：安装完一个依赖包之后就执行一下rm -rf *将生成的文件删除，以免在执行cmake的时候会报已安装过的包未找到的错误）！</p>
+<p>0x05拓展<br>安装软件不只有yum 一种，是具体的环境而定：<br>wget：<br>    类似于迅雷，是一种下载工具，通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议下载，并可以使用HTTP代理名字是World Wide Web”与“get”的结合。</p>
+<p>yum:<br>    是redhat,centos 系统下的软件安装方式，基于Linux，全称为 Yellow dog Updater,Modified，是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依赖性关系，并且一次安装所有依赖的软件包。 </p>
+<p>rpm:<br>    软件管理;redhat的软件格式 rpm ：r=redhat  p=package   m=management用于安装 卸载 .rpm软件</p>
+<p>串联下：<br>   使用wget下载一个 rpm包, 然后用 rpm -ivh  xxx.rpm  安装这个软件，嫌麻烦的话，就可以直接用  yum  install  sqoop来自动下载和安装依赖的rpm软件。</p>
+<p>ap-get：<br>    ubuntu下的一个软件安装方式，它是基于debain。</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/04/19/手动安装软件/" style="float: left;">
+        ← Manually install the software in Linux
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/04/18/业精于勤/">
+        Diligence neglected in play; line into YU Si destroyed! →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/04/19/Manually-install-the-ettercap-in-Linux/" data-title="Manually install the ettercap in Linux" data-url="http://yoursite.com/2016/04/19/Manually-install-the-ettercap-in-Linux/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
