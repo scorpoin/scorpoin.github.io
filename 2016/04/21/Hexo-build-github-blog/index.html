@@ -17,20 +17,20 @@
 <!--<![endif]-->
 
 <head>
-  <title>Hexo build github blog | Hexo</title>
+  <title>Hexo build github blog | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content="Hexo">
-    <meta name="author" content="John Doe">
+    <meta name="generator" content="大棟哥の博客">
+    <meta name="author" content="JD">
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
     <!-- Favicon, (keep icon in root folder) -->
     <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
 
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="大棟哥の博客" type="application/atom+xml">
     <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
 	
     <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
@@ -118,7 +118,7 @@
 				  	
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(5)</small></a></li>
 				    
-				    <li><a href="/categories/talks/" class="animsition-link">talks<small>(1)</small></a></li>
+				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
 				    
 				</ul>
         	</li>
@@ -179,7 +179,7 @@
                     <!-- Info-bar -->
                     <nav>
                         <ul class="nav">
-                            <li><a href="/" class="animsition-link">Hexo</a></li>
+                            <li><a href="/" class="animsition-link">大棟哥の博客</a></li>
                             <li class="nolink"><span>Always </span>Creative.</li>
                             
                             <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
@@ -255,12 +255,36 @@
           2016-04-21
       </time>
     
+    
+    | 
+    <a href='/tags/just-do-it/'>just do it</a>
+    
+    
 </span>
                 <h1>Hexo build github blog</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>0x00前言：<br>感觉很有必要总结一下我在使用hexo搭建github博客的历程<br>纪念基于Github上搭建博客全过程遇到的所有的坑(图片演示请看本人新浪博客)</p>
+<p>0x01背景：<br>上周五晚上组长说让在github上搭建博客，懵逼了，从没没听说过，于是乎就在度娘上找各种教程，看了又看，看了又看，周六周日整了两天没有整成，仓库什么的都整好了，本地也可查看预览，就是推送不到github不上去，郁闷啊！茶不思饭不想、、、、、、<br>周一下午的时候换了一种方法没多久搞定了！（天无绝人之路）<br>0x02绘画：<br>一个对于菜鸟来说新生事物（从未接触过），从陌生到探索，还未到熟悉。总会经历一个漫长的过程，感叹度娘的伟大，多亏小伙伴的指点，开始说我所遇见的坑！！！<br>周六周日一直用的是生成key的哪种方法，一直没整好，后来换了用HTTPS协议的哪一种整好了，所以个人建议用这种吧，毕竟方便快捷！<br>可能有人要问为什么要在github上搭建博客？<br>个人看法,github不图谋利，相当于一个数据源库，提供了丰富的数据库自己在做项目的过程中可以借鉴他人的开源代码，使用很方便，可以通过git 实现代码的托管，最重要的是免费使用，速度快而且还稳定，毕竟逼格那么高，就凑合着用吧，一回生，二回熟！！！<br>前面说的废话有点多，进入正题：</p>
+<p>0x03 github上的准备：<br>首先把准备工作做好<a href="https://github.com/去注册一个账户，这是必须的，不然你怎么创建自己的项目，没有仓库，你如何推送你的内容；" target="_blank" rel="external">https://github.com/去注册一个账户，这是必须的，不然你怎么创建自己的项目，没有仓库，你如何推送你的内容；</a><br>进入主页面，点击右上角的sign up进去开始注册</p>
+<p>我只爱免费的，下边我没有选择创建一个组织（字面理解，毕竟看到英文网站就一脸懵逼了）</p>
+<p>接下来这个好像是调查问卷什么的，看着熟悉的填一下就行了，对后面的没啥影响：</p>
+<p>现在进去之后创建一个仓库：</p>
+<p>新建仓库：</p>
+<p>这个网址后边的一个配置文件需要用到，现在这里提示一下：</p>
+<p>然后进到你注册时候填写的邮箱里边确认登录一下，这一篇就先翻过去，这就相当于在服务端告一段落，接下来在客户端整！！！<br>0x04 本地的准备工作：<br>下载node.js，这个必须安装，是用来生成静态网页的<br><a href="https://nodejs.org/en/" target="_blank" rel="external">https://nodejs.org/en/</a></p>
+<p>下载git：<a href="https://git-scm.com/download/win" target="_blank" rel="external">https://git-scm.com/download/win</a> 这个也是必须安装的，是推送hexo的内容到github上的！</p>
+<p>我用的好像是以前的版本，估计都一样：</p>
+<p>安装完成之后桌面会有一个git bash的图标：</p>
+<p>打开是黑窗口这个样子的：</p>
+<p>接下来就是执行命令安装HEXO，前提在你喜欢的（D/E/F/G）盘里边创建一个hexo文件夹，之后再文件夹上右键点击：</p>
+<p>在窗口中输入命令npm install -g hexo</p>
+<p>初始化hexo<br>hexo init(这里有个小插曲，总结的时候，把我原来的页面初始化了，以致后来推送不上去了，解决办法：仓库删了，hexo文件夹删了，从来一次)</p>
+<p>生成静态的页面<br>hexo g<br>启动本地服务进行查看<br>hexo s<br>查看地址<br><a href="http://localhost：4000" target="_blank" rel="external">http://localhost：4000</a></p>
+<p>接下来与github建立关联<br>找到hexo中的_config.yml文件进行配置<br>Deploy：<br>Type： git<br>Repo: <a href="https://github.com/你的github地址" target="_blank" rel="external">https://github.com/你的github地址</a><br>Branch: master<br>注意每一个：后边是有空格的</p>
+<p>然后执行命令<br>npm install hexo-deployer-git–save<br>上边说的是https这种协议这种方法，这种方法每次推送的时候需要输入用户名和密码<br>也可以用sshkey这种协议方法，这种就不细说了，大家自行百度吧！<br>每次往github上推送部署需要执行以下命令：<br>git config –global user.name “Your Name”<br>git config –global user.email “email@example.com”<br>npm install hexo-deployer-git –save<br>hexo c<br>hexo g<br>hexo d<br>补充说明：<br>新建文章 hexo new “文章名”<br>新建页面 hexo new page“页面名”<br>0x04总结<br>整个过程中可能会遇到这样那样的问题，不要急一个一个解决，我前前后后试了不下十次，总结的可能不全面还请见谅！</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
@@ -298,7 +322,7 @@ var duoshuoQuery = {short_name:"duoshuo_name"};
     <div class="container">
             <div class="copy">
                 <p>
-                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By John Doe. All Rights Reserved.
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By JD. All Rights Reserved.
                 </p>
                 <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
             </div>
