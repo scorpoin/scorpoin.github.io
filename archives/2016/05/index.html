@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>The second weekly summary | 大棟哥の博客</title>
+  <title>Archives: 2016/5 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -246,92 +246,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-04-23T11:12:28.000Z" itemprop="datePublished">
-          2016-04-23
-      </time>
-    
-    
-    | 
-    <a href='/tags/just-do-it/'>just do it</a>
-    
-    
-</span>
-                <h1>The second weekly summary</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2016/05/06/zongjie/">zongjie</a></h4>
+                            
+                            <p><time datetime="2016-05-06T12:12:13.000Z"><a href="/2016/05/06/zongjie/">2016-05-06</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>0x00:The second weekly<br>学习第二周，总结一下！<br>0x01:2016.04.18 周一 晴</p>
-<p>wget 类似于迅雷，是一种下载工具，通过HTTP、HTTPS、FTP三个最常见的TCP/IP协议 下载，并可以使用HTTP代理名字是World Wide Web”与“get”的结<br>合。<br>yum: 是redhat, centos 系统下的软件安装方式，基于Linux，全称为 Yellow dog Updater,   Modified，是一个在Fedora和RedHat以及CentOS中的Shell前端软件包管理器基于RPM包管理，能够从指定的服务器自动下载RPM包并且安装，可以自动处理依  赖性关系，并且一次安装所有依赖的软件包。<br>rpm:软件管理;redhat的软件格式rpm r=redhat p=package m=management  用于安装 卸载 .rpm软件</p>
-<p>串联下：<br>   使用wget下载一个 rpm包, 然后用 rpm -ivh  xxx.rpm  安装这个软件，嫌麻烦的话，就可以直接用  yum  install  sqoop   来自动下载和安装依赖的rpm软件。<br>ap-get是ubuntu下的一个软件安装方式，它是基于debain。</p>
-<p>Linux基础教程：<br>软件安装：<br>yum（yellow dog updater）基于RPM包安装管理能够从指定的服务器自动下载RPM包并且进行安装,可以自动安装依赖软件，查找、安装<br>Yum源 在一个服务器上存放一个yum源<br>Vim centos-base.repo(centos yum源)<br>命令：<br>Yum  install  groupinstall “development tools”<br>Yum install gcc g++ 安装gcc 安装g++<br>Yum search wget  查找安装包<br>Yum deplist wget 列出安装包的依赖项<br>Yum remove wget 删除软件安装包<br>Yum list 显示所有可安装的软件包<br>Yum list installed 显示自己主机上已安装的软件包</p>
-<p>安装wget<br>yum search wget查找wget安装包<br>Yum deplist wget 列出wget的安装依赖包<br>Yum install wget 安装wget</p>
-<p>通过rpm安装<br>二进制包可以直接在计算机上安装<br> 源代码包 (.src  .rpm）后缀<br>rpm相当于Windows上边的.exe安装<br>-ivh 显示安装进度i安装 v查看进度<br>-Uvh 升级软件包 –update<br>-qpi 列出软件包的描述信息<br>-qf 文件 查找指定文件属于哪个RPM软件包<br>-va 校验所有的rpm软件包<br>-e 软件包 删除软件<br>例如 rpm -e wget<strong><em>**</em></strong>.rpm<br>rpm -qa 查看通过rpm安装的所有软件包<br>rpm -qpl 查看一个文件包里安装的所有文件<br>下载文件：<br>wget 网址 下载某个安装包</p>
-<p>curl 网址 访问网页<br>curl -o wget.rpm rpm包的网址 -o 后边跟上下载之后重命名的名字<br>wget rpm 网址</p>
-<p>手动安装软件：<br>./Configure 用来生成makefile 为下一步的编译做准备<br>make 编译 执行shell命令的  真正的不叫编译  大多数的源代码包经过这一步生成可编译的文件<br>make install 调用makefile中的代码块 这条命令就是进行安装的，配置环境变量            （需要root权限）<br>make clean 删除有make产生的垃圾文件<br>规则都在makefile中放置</p>
-<p>解压缩包：<br>tar     -c    创建新的档案文件<br>-t    查看档案文件的内容<br>-x    分解档案文件的内容<br>-v    显示过程信息（有进度）<br>-f    指定档案文件的名称(指定一个包)<br>-r    增加文件到指定的包中<br>-C    指定解压路径（压缩一个包）<br>-j    创建或解开包使用bzip2进行压缩或解压<br>-z    创建或解开包使用gzip进行压缩或解压<br>-Z    创建或解开包时，使用<br>tar -tf</p>
-<p>file  查看文件类型</p>
-<p>1.tar 仅仅打包<br>2.2.tar.gz压缩打包<br>3.Tar.bz2压缩打包</p>
-<p>tar -cfv 1.tar /home/ 只打包了未压缩 1.tar未写gz<br>tar -zxvf 1.tar<br>注意解压路径</p>
-<p>tar -tf etc<br>tar -zcvf /tmp/etc/etc.tar.gz(将文件压缩到指定的目录下)<br>tar -zxvf etc.tar.gz /etc/*(将/etc中的所有内容解压)</p>
-<p>Ettercap的安装：<br>前提安装集成开发环境：<br>yum groupinstall “development tools”<br>安装ettercap<br>下载ettercap安装包：<br>wget ettercap地址<br>解压安装包tart -zxvf ettercap.tar.gz<br>切换进解压后的目录中安装依赖文件；<br>可以查看INSTALL下的安装说明！<br>提示报错根据报错信息安装相应的依赖包！</p>
-<p>0x02:2016.04.19 周二 晴<br>Find、grep、sed、awk使用方法<br>find 用于查找文件系统中的指定文件<br>find . -name 1.txt  （.当前目录 ..上级目录）查找名字为1.txt（遍历查找）<br>-name “1.<em>”使用通配符需要加上双引号或者单引号</em>可以再任何位置<br>find /etc/ -name <em>.conf print 查找的文件输出出来<br>find /tmp -name ‘</em>.*’查找/tmp目录下的所有文件<br>find /bin/ -perm 4755 | xargs ls -al  把前一个命令的输出转化为后一条命的参数<br>find /bin/ -perm 4755 -exec ls -al {} \; ls -al命令放在find命令的-exec选项中</p>
-<p>grep文本搜索工具，使用正则表达式搜索文本并打印出来<br>-c：只显示匹配行的行数计数<br>-i：匹配时不区分大小写，默认情况下匹配时区分大小写<br>-h：在多个文件中查找时，输出行前不显示文件名<br>-n：在出前加上匹配串所在行的行号（文件首行行号为1）<br>-v：只显示不包含匹配串的行。<br>-f filename：从指定文件中获取搜索模式，每行一个搜索模式项<br>-A匹配行以及下面的3行grep -A 3 “root” /etc/passwd –color<br>-B匹配行以及上面的3行grep -B 3 “root” /etc/passwd –color<br>-C匹配行以及上下的3行grep -C 3 “root” /etc/passwd –color<br>grep 文件名 目录 在目录下查找文件<br>grep -nr “^root” /etc/ –color 以root开头的<br>ps -ef | grep ora通过ps显示正在活动的进程重定向输出（查找ps -ef 中有没有ora串）<br>Grep -n root /etc/passwd –color<br>Grep -vn root /etc/passwd<br>grep -vn root /etc/passwd | grep -v nologin</p>
-<p>sed 文本处理工具，本身是一个管道命令主要以行为单位进行处理，可以将数据进行增删改选：对文件的编辑！<br>-n:使用安静模式。<br>-e:直接在命令行模式运行sed的动作编辑（可以有多个动作）<br>-f:直接将sed的动作写在一个文件里边：写入一个新的文件（很少用）<br>-r:sed的动作支持的是延伸正规表示的语法<br>-i:覆盖（直接诶修改读取的文件类型）<br>动作说明：<br>a:增加<br>c:取代<br>d:删除<br>i插入<br>p:打印<br>s:取代<br>nl /etc/passwd | sed ‘2,$d’ nl输出到管道里边  操作的是缓存<br>nl /etc/passwd | sed ‘2a jiadong’ 新增向上<br>nl /etc/passwd | sed ‘2i aaaaaa’插入是向下插入<br>nl /etc/passwd | sed ‘2,5c aaaaa’将2-5行替换为aaaaa<br>nl /etc/passwd | sed -n ‘2,5p’安静输出2-5行<br>nl /etc/passwd | sed -n ‘/root/p’根据正则表达式列出输出的东西<br>nl /etc/passwd | sed ‘/root/d’匹配到root的那一行删除掉<br>nl /etc/passwd | sed -n ‘/root/p’<br>nl /etc/passwd | sed -n ‘/root/{s/root/abcd/g;p}’只在有/root的行里边替换root输出abcd                                         /g全局替换<br>nl /etc/passwd | sed -n ‘1,7{s/root/abcd/;p}’1-7行里边替换开头/root</p>
-<p>awk是一个强大的文本分析工具，相对于grep的查找，sed的编辑，awk在其对数据分析并生成报告时，显得尤为强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</p>
-<p>将每行切片：对文件的抽取！<br>每读文件一行就执行命令<br>last -n 5 | awk ‘{print $1}’输出前五行的第一列<br>last -n 5 | awk ‘{print”name:”$2}’<br> last -n 5 | awk ‘{print”name:”$2”\tip:”$3}’<br>cat /etc/passwd | awk -F ‘:’ ‘{print “usernaem: “$1}’<br>print “%-20s”美化格式</p>
-<p>0x04:2016.04.20 周三 晴</p>
-<p>服务与计划任务：<br>在后台运行的程序，开机自启动，开机不启动也叫服务<br>服务的本质是shell脚本<br>服务脚本里边的一些配置文件运行真正程序是加载配置文件</p>
-<p>service httpd start<br>/etc/init.d/httpd start 连接到/etc/rc.d/init.d调用服务！属于软连接<br>进入 显示各种服务：<br>显示使用方法：<br>添加服务 放脚本到：<br>/etc/init.d/目录下<br>Chkconfig 查看服务<br>chkconfig –list 列出服务列表<br>chkconfig –level 345 httpd on 将httpd开机运行级别设为345<br>cd /etc/rc.d<br>ls -al | grep httpd<br>chkconfig –level 345 httpd off 关闭httpd开机运行级别</p>
-<p>计划任务（crond 来实现定时任务的完成）<br> cron把命令行保存在/etc/crontab文件里，每个系统用户如果设置了自己的cron，那都会在/var/spool/cron下面有对应用户名的crontab。无论编写/var/spool/cron目录内的文件还是/etc/crontab文件，都能让cron准确无误地执行安排的任务，区别是/var/spool/cron下各系统用户的crontab文件是对应用户级别的的任务配置，而/var/crontab文件则是对应系统级别的任务配置。cron服务器每分钟读取一次/var/crontab/cron目录内的所有文件和/etc/crontab文件。<br>cron也是一个服务<br>每分钟醒来一次查看当前是否需要运行命令<br>运行周期一分钟<br>添加计划任务先去/var/spool/cron<br>两种添加计划任务<br>1、crontab -e<br><em>/1<strong>**/root/</strong></em>/<br>2、编辑/etc/crontab(必须要有root用户权限)<br><em>/1<strong>**/root/</strong></em>/</p>
-<p>用户计划任务的格式<br>添加计划任务<br>crontab -e编辑/1 <em> </em> <em> </em> run-parts /etc/cron.hourly</p>
-<p>PATH=/sbin:/bin:/usr/sbin:/usr/bin 环境变量<br>MAILTO=root 执行出错会发送邮件<br>HOME=/ 默认工作目录</p>
-<p>cat /var/spool/cron/root查看计划任务<br>删除计划任务<br>vim /etc/crontab<br>使用快捷命令dd</p>
-<p>0x05:2016.04.22 周五 晴<br>时间戳：系统时间<br>/sbin/hwclock用于同步硬件时钟<br>/sbin/hwclock –show<br>/sbin/hwclock –hctosys set the system time from the hardware clock<br>ntpdate time.nist.gov时间联网同步</p>
-<p>系统信息及运行状态的监控<br>/proc并非保存在磁盘上，而是内存中的一个映像<br>cat /proc/cpuinfo CPU信息<br>cat /proc/meminfo 内存信息<br>cat /proc/mounts 挂载信息<br>/proc 可以获得所有的系统信息及系统运行信息<br>df -a显示所有分区<br>df -k 显示以千字节显示分区大小</p>
-<p>文件夹的大小<br>du -b /home 显示文件夹的大小</p>
-<p>top动态查看进程信息<br>需啊哟是实现下载iostat：<br>iostat -c（cpu）<br>iostat -d (disk)<br>iostat -d 2(每两秒刷新一次)</p>
-<p>/dev/mamper 逻辑设备到物理设备的映射关系<br>dmsetup ls</p>
-<p>0x06:总结：<br>总的来说第二周的命令参数比较多，知识点零散！</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/05/06/zongjie/" style="float: left;">
-        ← zongjie
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/04/23/How-to-use-the-sed-command-in-Linux/">
-        How to use the sed command in Linux →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/04/23/The-second-weekly-summary/" data-title="The second weekly summary" data-url="http://www.jiadong.xin/2016/04/23/The-second-weekly-summary/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"duoshuo_name"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 
