@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2016/5 | 大棟哥の博客</title>
+  <title>Process Control | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -246,37 +246,132 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/10/PHP-LEARNING/">Process Control</a></h4>
-                            
-                            <p><time datetime="2016-05-10T12:27:20.000Z"><a href="/2016/05/10/PHP-LEARNING/">2016-05-10</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-05-10T12:27:20.000Z" itemprop="datePublished">
+          2016-05-10
+      </time>
+    
+</span>
+                <h1>Process Control</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>0x00前言</p>
+<p>   最近开始学习php，从基础的开始，一点一滴，慢慢积累。学习php要先了解一下html，css,要用到里面的标签！​</p>
+<p>0x01正文</p>
+<p>分支结构</p>
+<p>单一条件分支结构——&gt;if单一的条件语句</p>
+<p>例：</p>
+<p>if（$date&lt;20）{</p>
+<pre><code>echo &quot;have a good day!&quot;;
+</code></pre><p>}</p>
+<p>双向分支结构——&gt;if else语句</p>
+<p>例：</p>
+<p>if（$date&lt;20）{</p>
+<pre><code>echo &quot;have a good day!&quot;;
+</code></pre><p>}else {</p>
+<pre><code>echo &quot;have a good night!&quot;;
+</code></pre><p>}</p>
+<p>多向条件分支结构——&gt;if elseif else</p>
+<p>例：</p>
+<p>if（$date&lt;10）{</p>
+<pre><code>echo &quot;have a good morning!&quot;;
+</code></pre><p>}elseif（$date&lt;20） {</p>
+<pre><code>echo &quot;have a good day!&quot;;
+</code></pre><p>}else{</p>
+<pre><code>echo &quot;have a good night!&quot;;
+</code></pre><p>}</p>
+<pre><code>多个语句块switch case: break;
+</code></pre><p>   if else的嵌套！</p>
+<p>循环结构：</p>
+<p>while循环:</p>
+<p>例：while ( &lt;= 10) {</p>
+<pre><code># code...
+</code></pre><p>}</p>
+<p>do..while循环:最少执行一次代码块</p>
+<p>例：</p>
+<p>do {</p>
+<pre><code># code...
+</code></pre><p>} while ( &lt;= 10);</p>
+<p>$a=1;</p>
+<p>do {   </p>
+<pre><code>echo &quot;$a&quot;;
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+$a++;
+</code></pre><p>} while ( $a&lt;= 5);</p>
+<p>echo “<br>“;</p>
+<p>$a=1;</p>
+<p>do {   </p>
+<pre><code>$a++;
+
+echo &quot;$a&quot;;
+</code></pre><p>} while ( $a&lt;= 5);</p>
+<p>for 循环：</p>
+<p>例：</p>
+<p>for ($i=1; $i&lt;9 ; $i++) {</p>
+<pre><code>echo &quot;
+</code></pre><p>\n”;</p>
+<pre><code>for ($j=1; $j&lt;$i ; $j++) {
+
+echo &quot;$i*$j=&quot;.$i*$j.&quot; &quot;;
+</code></pre><p>}</p>
+<p>}</p>
+<p>foreach遍历数组：</p>
+<p>foreach ($variable as $key =&gt; $value) {</p>
+<pre><code># code...
+</code></pre><p>}</p>
+<p>例：9X9乘法表</p>
+<p>$arr = array(‘a’,’b’,’c’,’d’);</p>
+<p>foreach ($arr as $key =&gt; $value) {</p>
+<pre><code>echo &quot;$key : $value&quot;;
+
+echo &quot;
+</code></pre><p>“;</p>
+<p>}</p>
+<p>特殊的流程控制：</p>
+<p>break</p>
+<p>可以提前跳出for foreach while do..while循环</p>
+<p>continue</p>
+<p>在循环语句内部使用，跳出该次循环，继续执行下次循环！</p>
+<p>exit</p>
+<p>退出脚本，exit（）是一个函数，前面使用的die（）函数是exit（）函数的别名，可以带一个参数退出当前脚本！</p>
+<p>0x02总结</p>
+<pre><code>php是学习WEB安全的必备语言，看得懂代码，才能更深的理解引发WEB安全的原理！
+</code></pre>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/04/23/The-second-weekly-summary/">
+        The second weekly summary →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/05/10/PHP-LEARNING/" data-title="Process Control" data-url="http://www.jiadong.xin/2016/05/10/PHP-LEARNING/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
