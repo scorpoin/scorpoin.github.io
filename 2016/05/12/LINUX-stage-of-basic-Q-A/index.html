@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>PHP array data structure | 大棟哥の博客</title>
+  <title>LINUX stage of basic Q &amp; A | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -253,136 +253,34 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-05-29T12:59:54.000Z" itemprop="datePublished">
-          2016-05-29
+      <time datetime="2016-05-12T14:05:47.000Z" itemprop="datePublished">
+          2016-05-12
       </time>
     
 </span>
-                <h1>PHP array data structure</h1>
+                <h1>LINUX stage of basic Q & A</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00前言</p>
-<pre><code>数组是数据类型之一，是存放数据的容器，可以实现其他编程语言中的堆栈列队等数据结构的功能；批量处理数据！
-</code></pre><p>0x01正文</p>
-<p>数组的定义：</p>
-<p>直接赋值声明；</p>
-<p>使用$arr();声明二</p>
-<p>数组的分类：</p>
-<p>索引数组（枚举数组），关联数组，重载数组；</p>
-<p>数组的遍历：</p>
-<p>1、for语句遍历数组；</p>
-<p>2、foreach语句遍历数组；</p>
-<p>与定义数组：</p>
-<p>宝库来自于web服务，用户输入的数据；</p>
-<p>不用声明，在每个php脚本中已经默认存在，定义变量的时候尽量避免和预定的全局变量同名</p>
-<p>在全局范围内自动生效，在函数中直接就可以使用，</p>
-<p>$_SERVER web服务器设定或者直接与当前脚本环境相关联</p>
-<p>$_EVN    执行环境直接提交至脚本的变量</p>
-<p>$_GET     直接由URL请求提交至脚本的变量</p>
-<p>$_POST     由HTTP POST方法提交至脚本的变量</p>
-<p>$_REQUEST     由 GET POST COOKIE方式提交至脚本，不常用，信用等级低</p>
-<p>$_FILES     由HTTP POST文件上传提交至脚本的变量</p>
-<p>$_COOKIE     由HTTPcookies方法提交至脚本的变量</p>
-<p>$_SESSION     当前注册脚本会话的变量</p>
-<p>$GLOBALS 包含上述所有的有效变量，该数组的键名为全局变量的名称</p>
-<p>合并数组：</p>
-<p>用array_merge合并数组成为联合数组；可以重载数组</p>
-<p>连接数组：</p>
-<p>拆分数组：</p>
-<p>从offset偏移位置开始，到offset+length位置结束（下标位置）</p>
-<p>array array_slice（）</p>
-<p>接合数组：</p>
-<p>array_splice($a,4)</p>
-<p>数组的交集：</p>
-<p>array_intersect()</p>
-<p>关联数组的交集：</p>
-<p>键和值都相同才输出值</p>
-<p>数组的差集：</p>
-<p>array_diff</p>
-<p>关联数组中的差集：</p>
-<p>获取当前数组的键：</p>
-<p>使用while结合key($arr )遍历数组</p>
-<p>current（）获取当前指针指向的值</p>
-<p>array each（）配合list获取键值对</p>
-<p>查找、筛选、</p>
-<p>in_array():搜索特定值找到返回真，找不到返回假；</p>
-<p>array_key_exits()判断键是否存在，存在返回真，找不到返回假</p>
-<p>array_search():判断存不存在，还能找到下标</p>
-<p>array_keys():将返回一个数组，包括返回键和键值</p>
-<p>array_values():返回一个数组中的所有值，并自动为返回的数组提供索引的值</p>
-<p>列队有两种形式：先进先出（FIFO）,后进先出（LIFO）</p>
-<p>在数组头部添加元素</p>
-<p>array_unshift( )</p>
-<p>在数组末尾添加元素</p>
-<p>array_push( )</p>
-<p>从数组头部删除元素</p>
-<p>array_shift( )</p>
-<p>从数组尾删除元素</p>
-<p>array_pop()​</p>
-<p>附加​</p>
-<p>数组就是一组有序数据的集合，变量是单个数值的容器，数组就是多个数值得容器；</p>
-<p>JS中的数组创建：</p>
-<p>var arr=new Array(10,20,30);//JS里边必须有这一步</p>
-<p>arr[4]=40;</p>
-<p>arr[5]=50;//追加数组元素</p>
-<p>PHP中数组的创建：</p>
-<p>$arr=array(10,20,30);</p>
-<p>$arr[]=20;//如果没有指定下标就在最大下标下边+1</p>
-<p>数组的分类：枚举数组，关联数组，多维数组</p>
-<p>（1）枚举数组：和JS一样</p>
-<p>下标从零开始的正整数</p>
-<p>$arr[1]=10;</p>
-<p>$arr[2]=20;</p>
-<p>………</p>
-<p>（2）关联数组：</p>
-<p>下标是字符串</p>
-<p>$arr[“name”]=”张三”；</p>
-<p>$arr[“sex”]=”男”；</p>
-<p>$arr[“age”]=”15”;</p>
-<p>……………..</p>
-<p>数组的创建：</p>
-<p>1、使用[ ]创建</p>
-<p>$arr[0]=10;如果数组不存在，就创建一个数组！</p>
-<p>JS中的数组创建：</p>
-<p>var arr=new Array[10,20,30];//JS里边必须有这一步</p>
-<p>arr[4]=40;</p>
-<p>arr[5]=50;//追加数组元素</p>
-<p>PHP中数组的创建：</p>
-<p>$arr=array[10,20,30];</p>
-<p>$arr[]=20;//如果没有指定下标就在最大下标下边+1</p>
-<p>2、使用array创建数组</p>
-<p>JS中的数组创建：</p>
-<p>var arr=new Array(1,2,3,4,5,6,7);</p>
-<p>arr[4]=50;</p>
-<p>………</p>
-<p>PHP中创建数组：</p>
-<p>$arr=array(1,2,3,4,5,6,7);</p>
-<p>使用print_r（$arr）遍历数组</p>
-<p>重载数组下标：重载符号就是‘=&gt;’</p>
-<p>重新设置元素的下标使用“=&gt;”运算符；</p>
-<p>$arr = array(</p>
-<p>“name”=&gt;10,</p>
-<p>10=&gt;100,</p>
-<p>);</p>
-<p>在数组中键名就是指下标（数字或字符），键值就是数据；</p>
-<p>0x02总结</p>
-<pre><code>​上述是数组和数据结构的大致轮廓！
-</code></pre>
+      		
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
+    <a class="pull-left" href="/2016/05/29/PHP-array-data-structure/" style="float: left;">
+        ← PHP array data structure
+    </a>
     
-    <a class="pull-right" href="/2016/05/12/LINUX-stage-of-basic-Q-A/">
-        LINUX stage of basic Q & A →
+    
+    <a class="pull-right" href="/2016/05/10/PHP-LEARNING/">
+        Process Control →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/29/PHP-array-data-structure/" data-title="PHP array data structure" data-url="http://www.jiadong.xin/2016/05/29/PHP-array-data-structure/"></div>
+<div class="ds-thread" data-thread-key="2016/05/12/LINUX-stage-of-basic-Q-A/" data-title="LINUX stage of basic Q &amp; A" data-url="http://www.jiadong.xin/2016/05/12/LINUX-stage-of-basic-Q-A/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
