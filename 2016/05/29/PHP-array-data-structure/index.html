@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Manually install the software in Linux | 大棟哥の博客</title>
+  <title>PHP array data structure | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -253,47 +253,136 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-04-19T04:59:09.000Z" itemprop="datePublished">
-          2016-04-19
+      <time datetime="2016-05-29T12:59:54.000Z" itemprop="datePublished">
+          2016-05-29
       </time>
     
-    
-    | 
-    <a href='/tags/just-do-it/'>just do it</a>
-    
-    
 </span>
-                <h1>Manually install the software in Linux</h1>
+                <h1>PHP array data structure</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>./Configure 用来生成makefile 为下一步的编译做准备<br>Make 编译 执行shell命令的  真正的不叫编译  大多数的源代码包经过这一步生成可编译的文件<br>Make install 调用makefile中的代码块 这条命令就是进行安装的，配置环境变量            （需要root权限）<br>Make clean 删除有make产生的垃圾文件<br>规则都在makefile中放置</p>
-<p>yum安装 rpm安装（有包有地址） 提供源代码包<br>env环境变量</p>
-<p>tar -c    创建新的档案文件<br>-t    查看档案文件的内容<br>-x    分解档案文件的内容<br>-v    显示过程信息（有进度）<br>-f    指定档案文件的名称(指定一个包)<br>-r    增加文件到指定的包中<br>-C    指定解压路径（压缩一个包）</p>
-<p>-j    创建或解开包使用bzip2进行压缩或解压<br>-z    创建或解开包使用gzip进行压缩或解压<br>-Z    创建或解开包时，使用<br>Tar -tf</p>
-<p>file  查看文件类型</p>
-<p>1.tar 仅仅打包<br>2.2.tar.gz压缩打包<br>3.Tar.bz2压缩打包</p>
-<p>tar -cfv 1.tar /home/ 只打包了未压缩 1.tar未写gz<br>tar -zxvf 1.tar<br>注意解压路径</p>
-<p>tar -tf etc<br>tar -zcvf /tmp/etc/etc.tar.gz(将文件压缩到指定的目录下)<br>tar -zxvf etc.tar.gz /etc/*(将/etc中的所有内容解压)</p>
-
+      		<p>0x00前言</p>
+<pre><code>数组是数据类型之一，是存放数据的容器，可以实现其他编程语言中的堆栈列队等数据结构的功能；批量处理数据！
+</code></pre><p>0x01正文</p>
+<p>数组的定义：</p>
+<p>直接赋值声明；</p>
+<p>使用$arr();声明二</p>
+<p>数组的分类：</p>
+<p>索引数组（枚举数组），关联数组，重载数组；</p>
+<p>数组的遍历：</p>
+<p>1、for语句遍历数组；</p>
+<p>2、foreach语句遍历数组；</p>
+<p>与定义数组：</p>
+<p>宝库来自于web服务，用户输入的数据；</p>
+<p>不用声明，在每个php脚本中已经默认存在，定义变量的时候尽量避免和预定的全局变量同名</p>
+<p>在全局范围内自动生效，在函数中直接就可以使用，</p>
+<p>$_SERVER web服务器设定或者直接与当前脚本环境相关联</p>
+<p>$_EVN    执行环境直接提交至脚本的变量</p>
+<p>$_GET     直接由URL请求提交至脚本的变量</p>
+<p>$_POST     由HTTP POST方法提交至脚本的变量</p>
+<p>$_REQUEST     由 GET POST COOKIE方式提交至脚本，不常用，信用等级低</p>
+<p>$_FILES     由HTTP POST文件上传提交至脚本的变量</p>
+<p>$_COOKIE     由HTTPcookies方法提交至脚本的变量</p>
+<p>$_SESSION     当前注册脚本会话的变量</p>
+<p>$GLOBALS 包含上述所有的有效变量，该数组的键名为全局变量的名称</p>
+<p>合并数组：</p>
+<p>用array_merge合并数组成为联合数组；可以重载数组</p>
+<p>连接数组：</p>
+<p>拆分数组：</p>
+<p>从offset偏移位置开始，到offset+length位置结束（下标位置）</p>
+<p>array array_slice（）</p>
+<p>接合数组：</p>
+<p>array_splice($a,4)</p>
+<p>数组的交集：</p>
+<p>array_intersect()</p>
+<p>关联数组的交集：</p>
+<p>键和值都相同才输出值</p>
+<p>数组的差集：</p>
+<p>array_diff</p>
+<p>关联数组中的差集：</p>
+<p>获取当前数组的键：</p>
+<p>使用while结合key($arr )遍历数组</p>
+<p>current（）获取当前指针指向的值</p>
+<p>array each（）配合list获取键值对</p>
+<p>查找、筛选、</p>
+<p>in_array():搜索特定值找到返回真，找不到返回假；</p>
+<p>array_key_exits()判断键是否存在，存在返回真，找不到返回假</p>
+<p>array_search():判断存不存在，还能找到下标</p>
+<p>array_keys():将返回一个数组，包括返回键和键值</p>
+<p>array_values():返回一个数组中的所有值，并自动为返回的数组提供索引的值</p>
+<p>列队有两种形式：先进先出（FIFO）,后进先出（LIFO）</p>
+<p>在数组头部添加元素</p>
+<p>array_unshift( )</p>
+<p>在数组末尾添加元素</p>
+<p>array_push( )</p>
+<p>从数组头部删除元素</p>
+<p>array_shift( )</p>
+<p>从数组尾删除元素</p>
+<p>array_pop()​</p>
+<p>附加​</p>
+<p>数组就是一组有序数据的集合，变量是单个数值的容器，数组就是多个数值得容器；</p>
+<p>JS中的数组创建：</p>
+<p>var arr=new Array(10,20,30);//JS里边必须有这一步</p>
+<p>arr[4]=40;</p>
+<p>arr[5]=50;//追加数组元素</p>
+<p>PHP中数组的创建：</p>
+<p>$arr=array(10,20,30);</p>
+<p>$arr[]=20;//如果没有指定下标就在最大下标下边+1</p>
+<p>数组的分类：枚举数组，关联数组，多维数组</p>
+<p>（1）枚举数组：和JS一样</p>
+<p>下标从零开始的正整数</p>
+<p>$arr[1]=10;</p>
+<p>$arr[2]=20;</p>
+<p>………</p>
+<p>（2）关联数组：</p>
+<p>下标是字符串</p>
+<p>$arr[“name”]=”张三”；</p>
+<p>$arr[“sex”]=”男”；</p>
+<p>$arr[“age”]=”15”;</p>
+<p>……………..</p>
+<p>数组的创建：</p>
+<p>1、使用[ ]创建</p>
+<p>$arr[0]=10;如果数组不存在，就创建一个数组！</p>
+<p>JS中的数组创建：</p>
+<p>var arr=new Array[10,20,30];//JS里边必须有这一步</p>
+<p>arr[4]=40;</p>
+<p>arr[5]=50;//追加数组元素</p>
+<p>PHP中数组的创建：</p>
+<p>$arr=array[10,20,30];</p>
+<p>$arr[]=20;//如果没有指定下标就在最大下标下边+1</p>
+<p>2、使用array创建数组</p>
+<p>JS中的数组创建：</p>
+<p>var arr=new Array(1,2,3,4,5,6,7);</p>
+<p>arr[4]=50;</p>
+<p>………</p>
+<p>PHP中创建数组：</p>
+<p>$arr=array(1,2,3,4,5,6,7);</p>
+<p>使用print_r（$arr）遍历数组</p>
+<p>重载数组下标：重载符号就是‘=&gt;’</p>
+<p>重新设置元素的下标使用“=&gt;”运算符；</p>
+<p>$arr = array(</p>
+<p>“name”=&gt;10,</p>
+<p>10=&gt;100,</p>
+<p>);</p>
+<p>在数组中键名就是指下标（数字或字符），键值就是数据；</p>
+<p>0x02总结</p>
+<pre><code>​上述是数组和数据结构的大致轮廓！
+</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/04/20/How-to-use-the-find-command-in-Linux/" style="float: left;">
-        ← How to use the find command in Linux
-    </a>
     
-    
-    <a class="pull-right" href="/2016/04/19/Manually-install-the-ettercap-in-Linux/">
-        Manually install the ettercap in Linux →
+    <a class="pull-right" href="/2016/05/10/PHP-LEARNING/">
+        Process Control →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/04/19/手动安装软件/" data-title="Manually install the software in Linux" data-url="http://www.jiadong.xin/2016/04/19/手动安装软件/"></div>
+<div class="ds-thread" data-thread-key="2016/05/29/PHP-array-data-structure/" data-title="PHP array data structure" data-url="http://www.jiadong.xin/2016/05/29/PHP-array-data-structure/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
