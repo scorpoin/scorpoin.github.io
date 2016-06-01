@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>PHP LEARNING | 大棟哥の博客</title>
+  <title>MYSQL | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -117,6 +117,10 @@
             	<ul class="sb-submenu">
 				  	
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(7)</small></a></li>
+				    
+				    <li><a href="/categories/PHP/" class="animsition-link">PHP<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/TCP-IP/" class="animsition-link">TCP/IP<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
 				    
@@ -251,111 +255,47 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-05-23T12:27:20.000Z" itemprop="datePublished">
-          2016-05-23
+      <time datetime="2016-06-01T08:18:15.000Z" itemprop="datePublished">
+          2016-06-01
       </time>
     
 </span>
-                <h1>PHP LEARNING</h1>
+                <h1>MYSQL</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00前言</p>
-<p>   最近开始学习php，从基础的开始，一点一滴，慢慢积累。学习php要先了解一下html，css,要用到里面的标签！​</p>
-<p>0x01正文</p>
-<p>分支结构</p>
-<p>单一条件分支结构——&gt;if单一的条件语句</p>
-<p>例：</p>
-<p>if（$date&lt;20）{</p>
-<pre><code>echo &quot;have a good day!&quot;;
-</code></pre><p>}</p>
-<p>双向分支结构——&gt;if else语句</p>
-<p>例：</p>
-<p>if（$date&lt;20）{</p>
-<pre><code>echo &quot;have a good day!&quot;;
-</code></pre><p>}else {</p>
-<pre><code>echo &quot;have a good night!&quot;;
-</code></pre><p>}</p>
-<p>多向条件分支结构——&gt;if elseif else</p>
-<p>例：</p>
-<p>if（$date&lt;10）{</p>
-<pre><code>echo &quot;have a good morning!&quot;;
-</code></pre><p>}elseif（$date&lt;20） {</p>
-<pre><code>echo &quot;have a good day!&quot;;
-</code></pre><p>}else{</p>
-<pre><code>echo &quot;have a good night!&quot;;
-</code></pre><p>}</p>
-<pre><code>多个语句块switch case: break;
-</code></pre><p>   if else的嵌套！</p>
-<p>循环结构：</p>
-<p>while循环:</p>
-<p>例：while ( &lt;= 10) {</p>
-<pre><code># code...
-</code></pre><p>}</p>
-<p>do..while循环:最少执行一次代码块</p>
-<p>例：</p>
-<p>do {</p>
-<pre><code># code...
-</code></pre><p>} while ( &lt;= 10);</p>
-<p>$a=1;</p>
-<p>do {   </p>
-<pre><code>echo &quot;$a&quot;;
+      		<p>mysql中的键（转载）：<br>键和外键是把多个表组织为一个有效的关系数据库的粘合剂。主键和外键的设计对物理数据库的性能和可用性都有着决定性的影响。<br>必须将数据库模式从理论上的逻辑设计转换为实际的物理设计。而主键和外键的结构是这个设计过程的症结所在。一旦将所设计的数据库用于了生产环境，就很难对这些键进行修改，所以在开发阶段就设计好主键和外键就是非常必要和值得的。<br>首先来谈：主键。<br>关系数据库依赖于主键—它是数据库物理模式的基石。主键在物理层面上只有两个用途：</p>
+<ol>
+<li>惟一地标识一行。</li>
+<li>作为一个可以被外键有效引用的对象。</li>
+</ol>
+<p>基于以上这两个用途，下面给出了在物理层面的主键时所遵循的一些原则：</p>
+<ol>
+<li>主键应当是对用户没有意义的。如果用户看到了一个表示多对多关系的连接表中的数据，并抱怨它没有什么用处，那就证明它的主键设计地很好。</li>
+<li>主键应该是单列的，以便提高连接和筛选操作的效率。</li>
+</ol>
+<p>注：使用复合键的人通常有两个理由为自己开脱，而这两个理由都是错误的。其一是主键应当具有实际意义，然而，让主键具有意义只不过是给人为地破坏数 据库提供了方便。其二是利用这种方法可以在描述多对多关系的连接表中使用两个外部键来作为主键，我也反对这种做法，理由是：复合主键常常导致不良的外键， 即当连接表成为另一个从表的主表，而依据上面的第二种方法成为这个表主键的一部分，然，这个表又有可能再成为其它从表的主表，其主键又有可能成了其它从表 主键的一部分，如此传递下去，越靠后的从表，其主键将会包含越多的列了。</p>
+<ol>
+<li>永远也不要更新主键。实际上，因为主键除了惟一地标识一行之外，再没有其他的用途了，所以也就没有理由去对它更新。如果主键需要更新，则说明主键应对用户无意义的原则被违反了。<br>注：这项原则对于那些经常需要在数据转换或多数据库合并时进行数据整理的数据并不适用。</li>
+<li>主键不应包含动态变化的数据，如时间戳、创建时间列、修改时间列等。</li>
+<li>主键应当有计算机自动生成。如果由人来对主键的创建进行干预，就会使它带有除了惟一标识一行以外的意义。一旦越过这个界限，就可能产生认为修改主键的动机，这样，这种系统用来链接记录行、管理记录行的关键手段就会落入不了解数据库设计的人的手中。<br>外键是用来和其他表建立联系用的：这个表中的一列和另外一个表中的一列相同，为了让这两个表联系起来，就把其中一个表中的列设成外键，把另外一个表列设成主键，就实现了这两个表的关联。<br>ps：一个表可以有多个外键。但主键只能有一个。</li>
+</ol>
+<p>主键:<br>能够唯一表示数据表中的每个记录的【字段】或者【字段】的组合就称为主码(主键)。 一个主键是唯一识别一个表的每一记录，但这只是其作用的一部分，主键的主要作用是将记录和存放在其他表中的数据进行关联。在这一点上，主键是不同表中各记 录之间的简单指针。主键约束就是确定表中的每一条记录。主键不能是空值。唯一约束是用于指定一个或多个列的组合值具有惟一性，以防止在列中输入重复的值。 所以，主键的值对用户而言是没有什么意义，并且和它要赋予的值也没有什么特别的联系。<br>外键：<br>若有两个表A，B，C是A的主键，而B中也有C字段，则C就是表B的外键。外键约束主要用来维护两个表之间数据的一致性。<br>A为基本表，B为信息表！</p>
 
-$a++;
-</code></pre><p>} while ( $a&lt;= 5);</p>
-<p>echo “<br>“;</p>
-<p>$a=1;</p>
-<p>do {   </p>
-<pre><code>$a++;
-
-echo &quot;$a&quot;;
-</code></pre><p>} while ( $a&lt;= 5);</p>
-<p>for 循环：</p>
-<p>例：</p>
-<p>for ($i=1; $i&lt;9 ; $i++) {</p>
-<pre><code>echo &quot;
-</code></pre><p>\n”;</p>
-<pre><code>for ($j=1; $j&lt;$i ; $j++) {
-
-echo &quot;$i*$j=&quot;.$i*$j.&quot; &quot;;
-</code></pre><p>}</p>
-<p>}</p>
-<p>foreach遍历数组：</p>
-<p>foreach ($variable as $key =&gt; $value) {</p>
-<pre><code># code...
-</code></pre><p>}</p>
-<p>例：9X9乘法表</p>
-<p>$arr = array(‘a’,’b’,’c’,’d’);</p>
-<p>foreach ($arr as $key =&gt; $value) {</p>
-<pre><code>echo &quot;$key : $value&quot;;
-
-echo &quot;
-</code></pre><p>“;</p>
-<p>}</p>
-<p>特殊的流程控制：</p>
-<p>break</p>
-<p>可以提前跳出for foreach while do..while循环</p>
-<p>continue</p>
-<p>在循环语句内部使用，跳出该次循环，继续执行下次循环！</p>
-<p>exit</p>
-<p>退出脚本，exit（）是一个函数，前面使用的die（）函数是exit（）函数的别名，可以带一个参数退出当前脚本！</p>
-<p>0x02总结</p>
-<pre><code>php是学习WEB安全的必备语言，看得懂代码，才能更深的理解引发WEB安全的原理！
-</code></pre>
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
     
-    <a class="pull-right" href="/2016/04/23/The-second-weekly-summary/">
-        The second weekly summary →
+    <a class="pull-right" href="/2016/05/29/PHP-array-data-structure/">
+        PHP array data structure →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/23/PHP-LEARNING/" data-title="PHP LEARNING" data-url="http://www.jiadong.xin/2016/05/23/PHP-LEARNING/"></div>
+<div class="ds-thread" data-thread-key="2016/06/01/MYSQL/" data-title="MYSQL" data-url="http://jiadong.xin/2016/06/01/MYSQL/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
