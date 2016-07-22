@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>third weekend | 大棟哥の博客</title>
+  <title>php01 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -257,240 +257,48 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-04-29T08:21:48.000Z" itemprop="datePublished">
-          2016-04-29
+      <time datetime="2016-04-23T16:34:17.000Z" itemprop="datePublished">
+          2016-04-24
       </time>
     
+    
+    | 
+    <a href='/tags/basic/'>basic</a>
+    
+    
 </span>
-                <h1>third weekend</h1>
+                <h1>php01</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>学习第三周，小小的做一下总结，以便后来复习！​</p>
-<p>0x01​  2016.04.26 周二阴</p>
-<p>无线网卡一个，实验环境卡里虚拟机！</p>
-<p>首先查看网卡</p>
-<p> 激活无线网卡ifconfig wlan0 up:</p>
-<p> 进行查看ifconfig -a：</p>
-<p> 将无线网卡设为混杂模式airmon-ng start wlan0：</p>
-<p> 发现上述的问题：</p>
-<p>执行以下airmon-ng check kill,结束一些影响实验的进程;</p>
-<p> 然后再执行airmon-ng start wlan0将网卡设置为混杂模式;</p>
-<p> 然后查看一下当前环境下的无线网络airodump wlan0mon主要查看频道，ssid等信息：</p>
-<p> 指定具体的频道,bssid进行抓包airodump-ng -c 1 -w 2016.04.26 –bssid *wlan0mon;</p>
-<p>然后进行deauth攻击 -0是进行deauth攻击，10是十次 -a是APid -c 客户端id：</p>
-<p>进行跑包aircrack-ng -w 字典 包名；</p>
-<p>注意实验结束之后一定要将讲网卡的混杂模式关闭：</p>
-<p>Airmon-ng stop wlan0</p>
-<p>mdk3 mon0 b </p>
-<pre><code>-n         #自定义ESSID
-
--f         #读取ESSID列表文件
-
--v         #自定义ESSID和BSSID对应列表文件
-
--d         #自定义为Ad-Hoc模式
-
--w         #自定义为wep模式
-
--g         #54Mbit模式
-
--t         # WPA TKIP encryption
-
--a         #WPA AES encryption 
-
--m         #读取数据库的mac地址
-
--c         #自定义信道
-
--s         #发包速率
-</code></pre><p>mdk3 –help b  #查看详细内容</p>
-<p>0x02 2016.04.27 周三</p>
-<p>Tcp/ip协议族四层模型：</p>
-<p>应用层</p>
-<p>传输层</p>
-<p>网络层</p>
-<p>数据链路层</p>
-<p>数据包的封装与解封：</p>
-<p>封装：</p>
-<p>数据</p>
-<p>Tcp头+数据</p>
-<p>IP头+Tcp头+数据+尾</p>
-<p>比特流</p>
-<p>解封：</p>
-<p>逆过程！</p>
-<p>0x03 2016.04.27 周四阴</p>
-<p>物理层:数据流（stream）</p>
-<p>机械特性：接口的形状大小，引线的数目</p>
-<p>电气特性：电压的范围（+5v–5v）</p>
-<p>功能特性：+5v表示0 -5v表示1</p>
-<p>过程特性：工作步骤</p>
-<p>数据通信的基础知识：</p>
-<p>数字信号、模拟信号；调制解调器将数字信号转化为模拟信号！</p>
-<p>数据链路层:数据帧（frame）</p>
-<p>协议：</p>
-<p>ppp(点对点协议（Point to Point Protocol）</p>
-<p>fddi(光纤分布式数据接口(Fiber Distributed Data Interface,缩写</p>
-<p>FDDI))</p>
-<p>pdn (公用数据网(</p>
-<p>PDN) Public Data Network)</p>
-<p>slip(SLIP（Serial Line Internet Protocol，串行线路网际协议）</p>
-<p>网络层:数据包（datapram）</p>
-<p>协议：</p>
-<p>ip (网络之间互连的协议外文是Internet Protocol）</p>
-<p>icmp (ICMP是(Internet Control Message Protocol)Internet控制报文协议)</p>
-<p>arp (地址解析协议，即ARP（Address Resolution Protocol）)IP地址转换为mac地址</p>
-<p>rarp (反向地址转换协议(RARP:Reverse Address Resolution Protocol) )mac地址转换为IP地址</p>
-<p>uucp（Unix-to-Unix复制）</p>
-<p>传输层:数据段（segment）</p>
-<p>协议：</p>
-<p>tcp （TCP(Transmission Control Protocol 传输控制协议)）是一种面向连接的、可靠的、基于字节流的传输层通信协议</p>
-<p>udp（User Datagram Protocol用户数据报协议）</p>
-<p>ID卡与IC卡的区别：</p>
-<p>IC卡又叫集成线路卡，智能卡，具有可读可写，容量大，对数据可加密的功能，工作频率为13.56MHZ属于高频</p>
-<p>ID卡又叫身份识别卡，无法写，只能读取ID号，工作频率为125KHZ属于低频；</p>
-<p>以太网划分：</p>
-<p>(Mbps代表每秒传输1，000，000比特,8bit=1Bytes)</p>
-<p>标准以太网10Mbps</p>
-<p>快速以太网100Mbps</p>
-<p>千兆以太网有两个标准：IEEE802.3z,IEEE802.3ab</p>
-<p>路由协议：</p>
-<p>动态路由协议有：</p>
-<p>内部网关协议：</p>
-<p>RIP-路由信息协议，OSPF-开放最短路径优先协议，</p>
-<p>ISIS-中间系统到中间系统协议</p>
-<p>IGRP</p>
-<p>(Cisco私有协议)，</p>
-<p>EIGRP</p>
-<p>(Cisco私有协议)</p>
-<p>外部网关协议：</p>
-<p>BGP-边界网关协议</p>
-<p>交换机和路由器的区别：</p>
-<p>路由器是小邮局，就一个地址(IP)，负责一个地方的收发(个人电脑，某个服务器，所以你家上网要这个东西)，交换机是省里的大邮政中心，负责由一个地址给各个小地方的联系。路由器专管入网，交换机只管配送，路由路由就是给你找路让你上网的，交换机只负责开</p>
-<p>门，交换机上面要没有路由你是上不了网的。</p>
-<p>交换机的mac地址学习和老化机制：</p>
-<p>Mac地址的学习：刚开始的时候交换机中的mac地址表中是没有东西的，只有当某主机发送数据包的时候，交换机将接收到的数据包中的mac地址及端口保存到mac地址表中，然后将包转发出去，这个时候还不知道目标主机的MAC地址及端口的对应关系，于是乎就将数据包从所有的端口进行转发出去（泛洪），当数据包回来的时候交换机就将其mac与端口的对应关系保存下来，接收到的包就从对应的端口转发出去；</p>
-<p>当源主机向目的主机发送数据包的时候，交换机就会将每个数据包的源MAC地址取出来，找相应的位置，如果是新地址，就会创建地址表，填写相应的端口信息、生命周期时间，如果已经存在但是对用的端口号不同就会改写端口号，刷新生命周期时间</p>
-<p>老化机制：老化机制就是交换机在长时间没有收到某台主机发出的报文，这台主机对应的mac地址就会被删除，等下次报文来的时候再重新学习，同时交换机具有老化定时器，当该定时器超时时检测mac地址表中的所有动态mac，超过时间没有被更新这个表就老化了，就要进行删除；简单点说就是，交换机每收到一个数据包就要进行查看mac表，包得mac在mac表中就将其转发出去，如果不在就将mac添加到MAC地址表中</p>
-<p>二层交换机原理：</p>
-<p>1、接收网段上的所有数据帧；</p>
-<p>2、利用接收到的数据帧的源mac地址来建立mac地址表（源地址学习），使用更新和老化机制对地址表进行维护；</p>
-<p>3、在mac地址表中查找数据帧的目的地址，如果找到就将数据发送到相应的端口（不包括源端口），如果找不到就通过所有端口转发出去</p>
-<p>4、向所有端口转发广播报文和组播报文！</p>
-<p>功能：具有mac转发，VLAN划分</p>
-<p>单播：一对一目的端为单个主机；</p>
-<p>多播：一对多，目的端为同组内的多个主机；</p>
-<p>广播：面向的是给定网络上的主机的所有主机；</p>
-<p>数据链路层：</p>
-<p>二层交换机配置命令：</p>
-<p>Display current-configuration</p>
-<p>W命令显示当前用户；</p>
-<p>Tty终端设备；pty虚拟终端；pts与ptmx结合使用实现pty</p>
-<p>Save</p>
-<p>System view系统视图</p>
-<p>Quit退出或者curl+z</p>
-<p>Dis mac-address查看当前mac地址</p>
-<p>Dis ip int br 查看IP</p>
-<p>Dis cu int g0/0/1查看端口</p>
-<p>Dis int查看接口</p>
-<p>Dis vlan查看vlan</p>
-<p>Dis this查看所进入端口的信息</p>
-<p>Port link-type</p>
-<p>四个端口：</p>
-<p>Access</p>
-<p>qinq</p>
-<p>交换机和交换机之间的连线为trunk端口；</p>
-<p>Permt vlan all</p>
-<p>Hybrid在光纤存储的情况下会链接</p>
-<p>二层VPN pptp l2tp mpls-vpn靠标签来交换</p>
-<p>二层交换机是数据链路层的设备，它能够读取数据包中的MAC地址信息并根据MAC地址来进行交换。交换机内部有一个地址表，这个地址表标明了MAC地址和交换机端口的对应关系.二层交换机对广播包是不做限制的，把广播包复制到所有端口上。</p>
-<p>Dis vlan查看vlan</p>
-<p>Vlan 80 创建vlan</p>
-<p>Vlan视图</p>
-<p>Dis this 查看VLAN详细信息</p>
-<p>调试：</p>
-<p>T d </p>
-<p>T m</p>
-<p>Undo t m</p>
-<p>Undo debugging ip icmp</p>
-<p>思科叫cam表，华为叫fi表：</p>
-<p>防范mac地址泛洪：</p>
-<p>绑定mac地址，限制端口数，dhcp-snoopling</p>
-<p>网络层：</p>
-<p>Ip包结构：</p>
-<p>版本号（Version）</p>
-<p>：长度4比特。标识目前采用的IP协议的版本号。一般的值为0100（IPv4），0110（IPv6）</p>
-<p>IP包头长度（Header Length）</p>
-<p>：长度4比特。这个字段的作用是为了描述IP包头的长度，因为在IP包头中有变长的可选部分。该部分占4个bit位，单位为32bit（4个字节），即本区域值= IP头部长度（单位为bit）/(8<em>4)，因此，一个IP包头的长度最长为“1111”，即15</em>4＝60个字节。IP包头最小长度为20字节。</p>
-<p>服务类型：（Type of Service）</p>
-<p>：长度8比特。8位 按位被如下定义 PPP DTRC0</p>
-<p>PPP：定义包的优先级，取值越大数据越重要</p>
-<p>   000 普通 (Routine)</p>
-<p>   001 优先的 (Priority)</p>
-<p>   010 立即的发送 (Immediate)</p>
-<p>   011 闪电式的 (Flash)</p>
-<p>   100 比闪电还闪电式的 (Flash Override)</p>
-<p>   101 CRI/TIC/ECP(找不到这个词的翻译)   110 网间控制 (Internetwork Control)</p>
-<p>   111 网络控制 (Network Control)</p>
-<p>D 时延: 0:普通 1:延迟尽量小</p>
-<p>T 吞吐量: 0:普通 1:流量尽量大</p>
-<p>R 可靠性: 0:普通 1:可靠性尽量大</p>
-<p>M 传输成本: 0:普通 1:成本尽量小</p>
-<p>0 最后一位被保留，恒定为0</p>
-<p>IP包总长（Total Length）</p>
-<p>：长度16比特。以字节为单位计算的IP包的长度 (包括头部和数据)，所以IP包最大长度65535字节。</p>
-<p>标识符（Identifier）</p>
-<p>:长度16比特。该字段和Flags和Fragment Offest字段联合使用，对较大的上层数据包进行分段（fragment）操作。路由器将一个包拆分后，所有拆分开的小包被标记相同的值，以便目的端设备能够区分哪个包属于被拆分开的包的一部分。</p>
-<p>标记（Flags）</p>
-<p>：长度3比特。该字段第一位不使用。第二位是DF（Don’t Fragment）位，DF位设为1时表明路由器不能对该上层数据包分段。如果一个上层数据包无法在不分段的情况下进行转发，则路由器会丢弃该上层数据包并返回一个错误信息。第三位是MF（More Fragments）位，当路由器对一个上层数据包分段，则路由器会在除了最后一个分段的IP包的包头中将MF位设为1。</p>
-<p>片偏移（Fragment Offset）</p>
-<p>：长度13比特。表示该IP包在该组分片包中位置，接收端靠此来组装还原IP包。</p>
-<p>生存时间（TTL）</p>
-<p>：长度8比特。当IP包进行传送时，先会对该字段赋予某个特定的值。当IP包经过每一个沿途的路由器的时候，每个沿途的路由器会将IP包的TTL值减少1。如果TTL减少为0，则该IP包会被丢弃。这个字段可以防止由于路由环路而导致IP包在网络中不停被转发。</p>
-<p>协议（Protocol）</p>
-<p>：长度8比特。标识了上层所使用的协议。</p>
-<p>协议对应的协议号：    1    ICMP    2    IGMP    6    TCP   17   UDP   88   IGRP   89   OSPF</p>
-<p>  800  IP</p>
-<p>  806  ARP头部校验（Header Checksum）</p>
-<p>：长度16位。用来做IP头部的正确性检测，但不包含数据部分。因为每个路由器要改变TTL的值,所以路由器会为每个通过的数据包重新计算这个值。</p>
-<p>起源和目标地址（Source and Destination Addresses）</p>
-<p>：这两个地段都是32比特。标识了这个IP包的起源和目标地址。要注意除非使用NAT，否则整个传输的过程中，这两个地址不会改变。</p>
-<p>至此，IP包头基本的20字节已介绍完毕，此后部分属于可选项，不是必须的部分。</p>
-<p>可选项（Options）</p>
-<p>：这是一个可变长的字段。该字段属于可选项，主要用于测试，由起源设备根据需要改写。可选项目包含以下内容：    松散源路由（Loose source routing）：给出一连串路由器接口的IP地址。IP包必须沿着这些IP地址传送，但是允许在相继的两个IP地址之间跳过多个路由器。</p>
-<pre><code>严格源路由（Strict source routing）：给出一连串路由器接口的IP地址。IP包必须沿着这些IP地址传送，如果下一跳不在IP地址表中则表示发生错误。
-
-路由记录（Record route）：当IP包离开每个路由器的时候记录路由器的出站接口的IP地址。
-
-时间戳（Timestamps）：当IP包离开每个路由器的时候记录时间。
-</code></pre><p>填充（Padding）</p>
-<p>：因为IP包头长度（Header Length）部分的单位为32bit，所以IP包头的长度必须为32bit的整数倍。因此，在可选项后面，IP协议会填充若干个0，以达到32bit的整数倍</p>
-<p>IP地址分类：</p>
-<p>全0网络地址。全1广播地址！</p>
-<p>0x04 2016.04.28 周五</p>
-<p>DOS(拒绝服务)攻击：计算机或网络无法提供正常的服务。最常见的DoS攻击有计算机网络带宽攻击和连通性攻击。</p>
-<p>DDOS（分布式拒绝服务）攻击：通过很多“僵尸主机”（被攻击者入侵过或可间接利用的主机）向受害主机发送大量看似合法的网络包，从而造成网络阻塞或服务器资源耗尽而导致拒绝服务</p>
-<p>CC攻击防御方法：借助代理服务器 生成指向受害主机的合法请求，实现DDOS,和伪装就叫:cc(ChallengeCollapsar)。</p>
-<p>防御CC攻击：限制连接数量；将网站做成静态的网页；禁止代理服务器；虚服务器；代理缓存</p>
+      		<p>0x00前言<br>每天总结点php的知识点，不一定是多么的深奥，最重要的是在于掌握积累，便于自己在以后的某天忘记了使用，能有个地儿去回顾一下，好记性不如烂笔头，前人孔子曾说过：学习经常巩固之，不亦哈哈乎！</p>
+<p>0x01php简介<br>（what）什么是php？<br>PHP是超文本预处理语言，是一种弱类型的语言，什么是弱类型呢？一会儿说。PHP是一种服务器端的 HTML 脚本/编程语言,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于 Open Source（开放源代码）的尤其适合 Web 开发并可以嵌入 HTML 的多用途脚本语言。它的语法接近 C，Java 和 Perl，而且容易学习。该语言让 Web 开发人员快速的书写动态生成的网页。</p>
+<p>0x02语言类型<br>无类型： 汇编<br>弱类型、静态类型 ： C/C++<br>弱类型、动态类型检查： Perl/PHP<br>强类型、静态类型检查 ：Java/C#<br>强类型、动态类型检查 ：Python, Scheme<br>静态显式类型 ：Java/C<br>静态隐式类型 ：Ocaml, Haskell<br>接上边，解释一下什么是弱类型，弱类型就是例如在使用变量的时候，不用定义，赋不同类型的数据给这个变量都可以执行，不会出现编译错误，所以强类型就是，赋给一个变量类型之后，就不能给它另一种类型</p>
+<p>0x03服务器<br>什么是服务器？简单点说就是装有服务器转件的电脑，服务器软件有Apache，tomcat，iis,ftp,dns、、、很多</p>
+<p>0x04搭建服务器<br>搭建服务器可以使用现成的集成环境，如：phpStudy、appserver、wamp、、、还有一种方法就是，自己手动安装，如果为了省时间，建议使用集成环境，不然的话就单独安装（推荐，比较安全），不过</p>
+<p>0x05web工作原理<br>网站：多个网页组成的集合。<br>用户访问：<a href="http://www.itcast.cn/teacher.html（URL：互联网的绝对路径）" target="_blank" rel="external">http://www.itcast.cn/teacher.html（URL：互联网的绝对路径）</a><br>网站管理员：一个网站就是一个文件夹（本地的绝对路径）</p>
+<p>静态页的请求：<a href="http://localhost/index.html" target="_blank" rel="external">http://localhost/index.html</a><br>请求步骤：<br>1.用户在浏览器中输入需要访问的网站的域名以及具体要请求的网页文件<br>2.域名解析：先找本地hosts文件，再找互联网上的DNS（具体的dns流程 就是先找本机的dns，如果本地的dns显示的自动获取dns，那么本机就会去获取路由器的dns，如果在dns缓存里面没有，那么会进行递归查询，直到查出来为止<br>3.web服务器接收请求，获取请求文件index.html<br>4.web服务器返回index.html<br>5.浏览器解析html代码，显示数据<br>6.对于同源策略的东西，都是浏览器在搞的</p>
+<p>动态页的请求：<a href="http://localhost/index.php" target="_blank" rel="external">http://localhost/index.php</a><br>请求步骤：<br>1.用户在浏览器中输入需要访问的网站的域名以及具体要请求的网页文件<br>2.域名解析：先找本地hosts文件，再找互联网上的DNS<br>3.web服务器接收请求，获取请求文件index.php<br>4.将index.php文件交给php引擎处理<br>5.php引擎解析php代码，如果要连接数据库的话就调用mysql扩展，去操作数据库，最终解析完变成html文件<br>6.php引擎将生成的html文件交给Apache<br>7.web服务器返回index.php得到的最终html文件<br>8.浏览器解析html代码，显示数据</p>
+<p>0x06总结<br>对于安全学习者来说，php学习是很有必要的，php学会的话，可以从代码层面了解大多漏洞的原理，未完，待续、、、</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/05/10/PHP-LEARNING/" style="float: left;">
-        ← Process Control
+    <a class="pull-left" href="/2016/04/29/third-weekend-1/" style="float: left;">
+        ← third weekend
     </a>
     
     
-    <a class="pull-right" href="/2016/04/24/php01/">
-        php01 →
+    <a class="pull-right" href="/2016/04/23/The-second-weekly-summary/">
+        The second weekly summary →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/04/29/third-weekend-1/" data-title="third weekend" data-url="http://jiadong.xin/2016/04/29/third-weekend-1/"></div>
+<div class="ds-thread" data-thread-key="2016/04/24/php01/" data-title="php01" data-url="http://jiadong.xin/2016/04/24/php01/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
