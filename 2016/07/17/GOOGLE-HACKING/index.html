@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: hardware | 大棟哥の博客</title>
+  <title>GOOGLE HACKING | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -262,37 +262,68 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/07/24/lenovo-z510-ssd/">lenovo z510 ssd</a></h4>
-                            
-                            <p><time datetime="2016-07-24T10:30:29.000Z"><a href="/2016/07/24/lenovo-z510-ssd/">2016-07-24</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-17T13:21:59.000Z" itemprop="datePublished">
+          2016-07-17
+      </time>
+    
+    
+    | 
+    <a href='/tags/信息收集/'>信息收集</a>
+    
+    
+</span>
+                <h1>GOOGLE HACKING</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>0x000名词解释：<br>Google hacking：利用Google搜索引擎进行信息收集从而达到对目标的攻击和入侵的目的；<br>Google hacking按照关键字收集情报，可以找到敏感文件、网络漏洞、识别操作系统和网站<br>在天朝你必须使用代理翻墙才能使用！<br>0x01使用方法：<br>Google可以使用通配符：</p>
+<ul>
+<li>把google可能忽略的字列如查询范围<br>– 把某个字忽略，排除关键字<br>~ 同意词<br>. 单一的通配符</li>
+</ul>
+<ul>
+<li>通配符，可代表多个字母<br>“” 精确查询<br>*代表一个字或者一个词<br>双引号“关键字”<br>使用bool字符：+ – | 空格分割相当于加号  减号就是排除 减号后面跟上关键字就<br>intitle alltitle 在页面标题里查找关键字<br>filetype 查找指定文件类型  等同于ext  例如：filetype:.bak<br>site锁定站点，比如freebuf的搜索  例如：搜索二级域名可以使用 site:根域名；<br>还可以锁定二级域名<br>inurl allinurl 在URL中查找关键字<br>intext allintext网页内容查找关键字<br>link 搜索链接到某个网站的链接<br>numrange:999-1000数据范围</li>
+</ul>
+<p>0x02基本方法<br>操作符：关键字<br>带all的操作符貌似不能跟其他的关键字一起用<br>搜不出来看提示调整顺序<br>排除子域名 用-号<br>例：site:根域名 -site：ww<br>搜索具有SQL注入的网站<br>inurl:?id=1..1000000 filetype:php site:.hk<br>搜索phpmyadmin页面的网站<br>intitle：phpmyadmin intext:create new database<br>搜索管理员登录的页面<br>intitle：“后台登录” site:.tw(台湾)<br>site:xxx.com intext:管理<br>site:xxx.com inurl:login<br>site:xxx.com intitle:管理<br>搜索存在目录遍历<br>intitle：“index of”intext:”Parent Directory”<br>intitle：“index of”intext：“index of”<br>搜索用户名和密码的文件<br>filetype:txt intext:用户名and密码<br>intitle：”index of” etc<br>intitle:”index of” /etc/passwod<br>搜索电子邮件列表<br>intitle:“index of” intext:.eml<br>搜索指定端口的网站，精确搜索<br>inurl:8080 -intext：8443<br>查找指定站点的一些基本信息<br>info:.tw<br>搜索内容缓存<br>cache:<br>按照词语定义搜索<br>define：hacker<br>搜索敏感文件<br>site:.tw filetype:inc intext:mysql_connect<br>搜索特定网站<br>site:tw intitle:”Apache tomcat” inurl:8080 intext:”manager”<br>搜索政府军事的数据<br>site:gov.tw intext:”password” filetype:txt<br>0x03站点<br>用于信息收集，功能强大的站点！<br>shodan撒旦<br>zoomeye钟馗之眼</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/07/18/XSS总结/" style="float: left;">
+        ← XSS总结
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/07/11/SQL实例2/">
+        SQL实例2 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/07/17/GOOGLE-HACKING/" data-title="GOOGLE HACKING" data-url="http://www.jiadong.xin/2016/07/17/GOOGLE-HACKING/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
