@@ -116,6 +116,8 @@
         		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
             	<ul class="sb-submenu">
 				  	
+				    <li><a href="/categories/File-Upload/" class="animsition-link">File Upload<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(7)</small></a></li>
 				    
 				    <li><a href="/categories/PHP/" class="animsition-link">PHP<small>(4)</small></a></li>
@@ -263,6 +265,45 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2016/04/29/third-weekend-1/">third weekend</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2016-04-29T08:21:48.000Z" itemprop="datePublished">
+          2016-04-29
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        学习第三周，小小的做一下总结，以便后来复习！​
+0x01​  2016.04.26 周二阴
+无线网卡一个，实验环境卡里虚拟机！
+首先查看网卡
+ 激活无线网卡ifconfig wlan0 up:
+ 进行查看ifconfig -a：
+ 将无线网卡设为混杂模式airmon-ng start wlan0：
+ 发现上述的问题：
+执行以下airmon-ng check kill,结束一些影响实验的进程;
+ 然后再执行airmon-ng start 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2016/04/29/third-weekend-1/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -595,46 +636,9 @@ yum安装 rpm安装（有包有地址） 提供源代码包
             </div>
         </div>
         
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/04/17/The-first-weekly-summary/">The first weekly summary</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-04-17T12:46:19.000Z" itemprop="datePublished">
-          2016-04-17
-      </time>
-    
-    
-    | 
-    <a href='/tags/just-do-it/'>just do it</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        0x00 背景 centos学习有一周了,闲来无事总结一下这一周学到的，思绪满天飞，想到哪写到哪，任性😁！
-0x01.2016.04.10       上午学习了环境的搭建，整个环境分为五部分，用户、企业、公网、h3c交换机、实验客户机、整个网络环境在企业和实验客户机与交换机连接的出口处设置防火墙，这个地方应给上个图会更清晰，先大概了解一下吧；
-0x02.2016.04.11 在虚拟机中安装centos，进行了基础的配置，网络配置、m
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/04/17/The-first-weekly-summary/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
         <nav class="pagination" role="pagination">
           <a class="pull-left" href="/page/2/">← Newer Posts</a>
-          
+          <a class="pull-right" href="/page/4/">Older Posts →</a>
         </nav>
     </div>
 </section>
