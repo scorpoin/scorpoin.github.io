@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>TCP/IP data transport | 大棟哥の博客</title>
+  <title>文件上传实例2 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -267,59 +267,42 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-05-15T15:08:25.000Z" itemprop="datePublished">
-          2016-05-15
+      <time datetime="2016-07-24T15:06:31.000Z" itemprop="datePublished">
+          2016-07-24
       </time>
     
+    
+    | 
+    <a href='/tags/文件上传/'>文件上传</a>
+    
+    
 </span>
-                <h1>TCP/IP data transport</h1>
+                <h1>文件上传实例2</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00背景</p>
-<p>前一段时间学习了TCP/IP协议，今天把数据传输再理一下！</p>
-<p>0x01协议​</p>
-<p>首先要知道tcp/ip协议簇为五层协议</p>
-<p>应用层：协议有SMTP FTP  TFTP DNS  SNMP HTTP</p>
-<p>传输层：协议有TCP UDP SCTP</p>
-<p>网络层：协议有IP ICMP IGMP ARP RARP</p>
-<p>链路层：协议有SLIP PPP </p>
-<p>物理层：</p>
-<p>0x02传输过程</p>
-<p>数据从发送到接收所经过的详细过程为：</p>
-<p>发送方：</p>
-<p>首先数据从应用层发出，在应用层寻找相应的协议，比如发送一封邮件，首先会在应用层找到对应的协议SMTP协议，在应用层会为邮件数据添加一个头部，头部内容为（收信、发信的邮箱地址等信息）</p>
-<p>然后将数据传送到传输层，调用传输层的TCP协议，TCP在接收到数据之后会为数据增加一个头部，头部内容包括（源端口，目的端口）</p>
-<p>数据传输至网络层，网络层IP协议又会为数据增加一个头部（源IP和目的IP）</p>
-<p>数据传输至链路层，链路层为收到的数据增加一个源MAC和目的MAC，在数据的尾部增加一个尾部，保证数据完整性的数据校验和，</p>
-<p>接下来传送至物理层，将接收到的二进制数据转化为模拟信号发送出去​​</p>
-<p>接收方：</p>
-<p>接收方在通过传输介质接收到模拟信号之后将模拟信号转化为数字信号（二进制数字），接下来就是进行层层的解封</p>
-<p>首先数据到达物理层，紧接着是物理层会将数据提交到数据链路层</p>
-<p>数据链路层收到数据之后会提取尾部校验和，对数据的完整性进行校验，完整的话就提取头部的MAC地址和自己的MAC地址表进行比对，比对成功之后去掉MAC头和校验尾向上提交，比对不成功的话就丢弃</p>
-<p>数据到达网络层，网络层提取目的IP地址然后和自己的IP地址表进行比照，比照成功去掉IP头就进行向上提交，不成功就丢弃报文；</p>
-<p>接着数据到达传输层，传输层提取端口，然后就将剩余的数据传到应用层，接收方这时就接收到了一封完整的邮件​</p>
-<p>0x03总结</p>
-<pre><code>这只是简单的数据传输过程，数据的传输要经过层层的封装解封最终呈现出来​。
-</code></pre>
+      		<p>0x00【目标】<br>目标站点：<a href="http://www.lxxxx.com/upload.asp" target="_blank" rel="external">http://www.lxxxx.com/upload.asp</a><br>0x01【思路】<br>1、判断网站类型；<br>2、找上传点；<br>3、测试上传类型；<br>4、burpsuit抓包改包；<br>5、测试路径；<br>6、拿shell;<br>0x02【流程】<br>1、目标网站为asp类型；<br>2、本站直接可以上传，不用寻找上传点：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>3、先上传个 asp 小马测试一下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"><br>4、使用burpsuit抓一下包看一下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"><br>5、提示如下：所上传类型不正确　[ 重新上传 ]<br>类型不正确<br>接下来使用CMD制作一个图片马，上传试一下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"><br>6、上传抓包改路径：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"><br>路径,200 ok：<br>HTTP/1.1 200 OK<br>Cache-Control: private<br>Connection: close<br>Date: Sat, 23 Jul 2016 00:42:43 GMT<br>Content-Type: text/html<br>Server: Microsoft-IIS/6.0<br>X-Powered-By: ASP.NET<br>Vary: Accept-Encoding<br>Content-Length: 331</p>
+<p>‘&lt;’meta http-equiv=”Content-Type” content=”text/html; charset=gb2312”&gt;<br>‘&lt;’link href=”skin/skin/css.css” rel=”stylesheet” type=”text/css”&gt;<br>‘&lt;’script&gt;window.opener.document…value=’/a.asp;.20167238424327984.jpg’&lt;’/script&gt;&lt;’script language=”javascript”&gt;window.alert(“ÎÄ¼þÉÏ´«³É¹¦!Çë²»ÒªÐÞ¸ÄÉú³ÉµÄÁ´½ÓµØÖ·£¡”);window.close();&lt;’/script&gt;</p>
+<p>7、在浏览器中访问一下，貌似成功了,加载了图片的源文件：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"><br>8、拿一下shell试一下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"><br>0x03【总结】<br>一般上传文件漏洞的测试流程为：<br>查看上传功能是否调用开源编辑器（如果为第三方编辑器，查看编辑器漏洞，对其进行利用）<br>1、抓包<br>2、上传（如果没有上传成功，证明不是mime类型）<br>3、分析数据包<br>4、分析怎么验证<br>    1、上传一个JPG<br>    2、在上传一个jpg，burp改为php<br>    3、构造一个“图片木马”的jpg文件，burp改包，后缀修改为php<br>    4、后缀过滤（00截断）<br>5、绕过方法<br>    解析漏洞<br>    结合第三方功能</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/05/29/PHP-array-data-structure/" style="float: left;">
-        ← PHP array data structure
+    <a class="pull-left" href="/2016/07/25/任意代码执行/" style="float: left;">
+        ← 任意代码执行
     </a>
     
     
-    <a class="pull-right" href="/2016/05/10/PHP-LEARNING/">
-        Process Control →
+    <a class="pull-right" href="/2016/07/24/lenovo-z510-ssd/">
+        lenovo z510 ssd →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/05/15/TCP-IP-data-transport/" data-title="TCP/IP data transport" data-url="http://www.jiadong.xin/2016/05/15/TCP-IP-data-transport/"></div>
+<div class="ds-thread" data-thread-key="2016/07/24/文件上传实例2/" data-title="文件上传实例2" data-url="http://www.jiadong.xin/2016/07/24/文件上传实例2/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
