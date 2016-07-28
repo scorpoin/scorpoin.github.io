@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>php01 | 大棟哥の博客</title>
+  <title>Tag: Command | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -264,69 +264,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-04-23T16:34:17.000Z" itemprop="datePublished">
-          2016-04-24
-      </time>
-    
-    
-    | 
-    <a href='/tags/basic/'>basic</a>
-    
-    
-</span>
-                <h1>php01</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2016/07/27/命令执行实例/">命令执行实例</a></h4>
+                            
+                            <p><time datetime="2016-07-27T15:36:45.000Z"><a href="/2016/07/27/命令执行实例/">2016-07-27</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>0x00前言<br>每天总结点php的知识点，不一定是多么的深奥，最重要的是在于掌握积累，便于自己在以后的某天忘记了使用，能有个地儿去回顾一下，好记性不如烂笔头，前人孔子曾说过：学习经常巩固之，不亦哈哈乎！</p>
-<p>0x01php简介<br>（what）什么是php？<br>PHP是超文本预处理语言，是一种弱类型的语言，什么是弱类型呢？一会儿说。PHP是一种服务器端的 HTML 脚本/编程语言,是一种简单的、面向对象的、解释型的、健壮的、安全的、性能非常之高的、独立于架构的、可移植的、动态的脚本语言。是一种广泛用于 Open Source（开放源代码）的尤其适合 Web 开发并可以嵌入 HTML 的多用途脚本语言。它的语法接近 C，Java 和 Perl，而且容易学习。该语言让 Web 开发人员快速的书写动态生成的网页。</p>
-<p>0x02语言类型<br>无类型： 汇编<br>弱类型、静态类型 ： C/C++<br>弱类型、动态类型检查： Perl/PHP<br>强类型、静态类型检查 ：Java/C#<br>强类型、动态类型检查 ：Python, Scheme<br>静态显式类型 ：Java/C<br>静态隐式类型 ：Ocaml, Haskell<br>接上边，解释一下什么是弱类型，弱类型就是例如在使用变量的时候，不用定义，赋不同类型的数据给这个变量都可以执行，不会出现编译错误，所以强类型就是，赋给一个变量类型之后，就不能给它另一种类型</p>
-<p>0x03服务器<br>什么是服务器？简单点说就是装有服务器转件的电脑，服务器软件有Apache，tomcat，iis,ftp,dns、、、很多</p>
-<p>0x04搭建服务器<br>搭建服务器可以使用现成的集成环境，如：phpStudy、appserver、wamp、、、还有一种方法就是，自己手动安装，如果为了省时间，建议使用集成环境，不然的话就单独安装（推荐，比较安全），不过</p>
-<p>0x05web工作原理<br>网站：多个网页组成的集合。<br>用户访问：<a href="http://www.itcast.cn/teacher.html（URL：互联网的绝对路径）" target="_blank" rel="external">http://www.itcast.cn/teacher.html（URL：互联网的绝对路径）</a><br>网站管理员：一个网站就是一个文件夹（本地的绝对路径）</p>
-<p>静态页的请求：<a href="http://localhost/index.html" target="_blank" rel="external">http://localhost/index.html</a><br>请求步骤：<br>1.用户在浏览器中输入需要访问的网站的域名以及具体要请求的网页文件<br>2.域名解析：先找本地hosts文件，再找互联网上的DNS（具体的dns流程 就是先找本机的dns，如果本地的dns显示的自动获取dns，那么本机就会去获取路由器的dns，如果在dns缓存里面没有，那么会进行递归查询，直到查出来为止<br>3.web服务器接收请求，获取请求文件index.html<br>4.web服务器返回index.html<br>5.浏览器解析html代码，显示数据<br>6.对于同源策略的东西，都是浏览器在搞的</p>
-<p>动态页的请求：<a href="http://localhost/index.php" target="_blank" rel="external">http://localhost/index.php</a><br>请求步骤：<br>1.用户在浏览器中输入需要访问的网站的域名以及具体要请求的网页文件<br>2.域名解析：先找本地hosts文件，再找互联网上的DNS<br>3.web服务器接收请求，获取请求文件index.php<br>4.将index.php文件交给php引擎处理<br>5.php引擎解析php代码，如果要连接数据库的话就调用mysql扩展，去操作数据库，最终解析完变成html文件<br>6.php引擎将生成的html文件交给Apache<br>7.web服务器返回index.php得到的最终html文件<br>8.浏览器解析html代码，显示数据</p>
-<p>0x06总结<br>对于安全学习者来说，php学习是很有必要的，php学会的话，可以从代码层面了解大多漏洞的原理，未完，待续、、、</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/04/29/third-weekend-1/" style="float: left;">
-        ← third weekend
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/04/23/The-second-weekly-summary/">
-        The second weekly summary →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/04/24/php01/" data-title="php01" data-url="http://www.jiadong.xin/2016/04/24/php01/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"duoshuo_name"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 
