@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: tools | 大棟哥の博客</title>
+  <title>逻辑漏洞 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -268,37 +268,65 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/07/03/sqlmap参数详解/">Sqlmap参数详解</a></h4>
-                            
-                            <p><time datetime="2016-07-02T16:38:31.000Z"><a href="/2016/07/03/sqlmap参数详解/">2016-07-03</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-07-30T09:58:49.000Z" itemprop="datePublished">
+          2016-07-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/逻辑/'>逻辑</a>
+    
+    
+</span>
+                <h1>逻辑漏洞</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="0X00背景"><a href="#0X00背景" class="headerlink" title="0X00背景"></a>0X00背景</h2><p>SQL注入，文件上传，代码执行，我们在做网站渗透的的时候把重点放在了这些高危漏洞上，直接可以使用工具利用，在测试中直接使用工具测试即可，而现在大多数公司已经开始注重 用户的安全，而逻辑漏洞就是关注的对象！</p>
+<h2 id="0x01概述"><a href="#0x01概述" class="headerlink" title="0x01概述"></a>0x01概述</h2><p>越权操作和逻辑漏洞占比最多包括查询人以用户信息，任意删除等行为，最严重的出现在账号安全，重置任意用户密码，验证码暴力破解等</p>
+<h2 id="0x02类型"><a href="#0x02类型" class="headerlink" title="0x02类型"></a>0x02类型</h2><p>交易支付、密码修改、密码找回、越权查询、突破限制、</p>
+<p>1.支付逻辑漏洞<br>支付逻辑漏洞与金钱有关，一般是恶意转账，免费购物等，用户提交参数，如：购买的数量、商品价格、折扣、运费支付接口等参数存在支付逻辑漏洞</p>
+<p>2.密码重置漏洞<br>为了防止用户遗忘密码登陆不了网站，许多网站设计了找回密码的功能，常见的密码找回有：邮箱找回、手机短息找回、密保问题找回，这些方法都可以找回密码，只是我找回的方式不一样，无论哪种找回密码的方式在找回自己的密码同时还可以根据找回的流程找回其他人的密码，就存在密码重置的漏洞！<br>测试方法：</p>
+<blockquote>
+<p>一、熟悉找回密码的流程；<br>二、 对过程数据进行抓包分析；</p>
+</blockquote>
+<p>3.多线程条件竞争漏洞<br>     服务器端的漏洞<br>     文件上传案例；</p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/07/28/文件下载实例2/">
+        文件下载实例2 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/07/30/逻辑漏洞/" data-title="逻辑漏洞" data-url="http://www.jiadong.xin/2016/07/30/逻辑漏洞/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
