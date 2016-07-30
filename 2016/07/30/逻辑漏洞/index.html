@@ -287,13 +287,14 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<h2 id="0X00背景"><a href="#0X00背景" class="headerlink" title="0X00背景"></a>0X00背景</h2><p>SQL注入，文件上传，代码执行，我们在做网站渗透的的时候把重点放在了这些高危漏洞上，直接可以使用工具利用，在测试中直接使用工具测试即可，而现在大多数公司已经开始注重 用户的安全，而逻辑漏洞就是关注的对象！</p>
+      		<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E9%80%BB%E8%BE%91/0.png?raw=true" alt="image"></p>
+<h2 id="0X00背景"><a href="#0X00背景" class="headerlink" title="0X00背景"></a>0X00背景</h2><p>SQL注入，文件上传，代码执行，我们在做网站渗透的的时候把重点放在了这些高危漏洞上，直接可以使用工具利用，在测试中直接使用工具测试即可，而现在大多数公司已经开始注重 用户的安全，而逻辑漏洞就是关注的对象！</p>
 <h2 id="0x01概述"><a href="#0x01概述" class="headerlink" title="0x01概述"></a>0x01概述</h2><p>越权操作和逻辑漏洞占比最多包括查询人以用户信息，任意删除等行为，最严重的出现在账号安全，重置任意用户密码，验证码暴力破解等</p>
-<h2 id="0x02类型"><a href="#0x02类型" class="headerlink" title="0x02类型"></a>0x02类型</h2><p>交易支付、密码修改、密码找回、越权查询、突破限制、</p>
+<h2 id="0x02类型"><a href="#0x02类型" class="headerlink" title="0x02类型"></a>0x02类型</h2><p>交易支付、密码修改、密码找回、越权查询、突破限制、<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E9%80%BB%E8%BE%91/1.png?raw=true" alt="image"></p>
 <p>1.支付逻辑漏洞<br>支付逻辑漏洞与金钱有关，一般是恶意转账，免费购物等，用户提交参数，如：购买的数量、商品价格、折扣、运费支付接口等参数存在支付逻辑漏洞</p>
 <p>2.密码重置漏洞<br>为了防止用户遗忘密码登陆不了网站，许多网站设计了找回密码的功能，常见的密码找回有：邮箱找回、手机短息找回、密保问题找回，这些方法都可以找回密码，只是我找回的方式不一样，无论哪种找回密码的方式在找回自己的密码同时还可以根据找回的流程找回其他人的密码，就存在密码重置的漏洞！<br>测试方法：</p>
 <blockquote>
-<p>一、熟悉找回密码的流程；<br>二、 对过程数据进行抓包分析；</p>
+<p>一、熟悉找回密码的流程；<br>二、 对过程数据进行抓包分析；<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E9%80%BB%E8%BE%91/2.png?raw=true" alt="image"></p>
 </blockquote>
 <p>3.多线程条件竞争漏洞<br>     服务器端的漏洞<br>     文件上传案例；</p>
 
