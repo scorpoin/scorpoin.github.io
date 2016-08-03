@@ -284,7 +284,25 @@
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		
+      		<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/1.png?raw=true" alt="image"></p>
+<h3 id="0x00-redis简介"><a href="#0x00-redis简介" class="headerlink" title="0x00[redis简介]"></a>0x00[redis简介]</h3><pre><code>Redis是一个key-value存储系统和Memcached类似，redis支持各种不同方式的排序，为了斑疹高效率，数据缓存在内存中，Redis是一个高性能的key-value数据库，支持主从同步，数据可以从主服务器想任意从服务器上同步，从服务器可以是关联其他从服务器的主服务器。
+</code></pre><h3 id="0x01【1】redis-写-webshell"><a href="#0x01【1】redis-写-webshell" class="headerlink" title="0x01【1】redis 写 webshell"></a>0x01【1】<code>redis 写 webshell</code></h3><p>首先在centos上边搭建一下redies，搭建过程自行百度，今天主要说的是redis写webshell，写计划任务，反弹shell，在redis-stable/src下执行./redis-server ~/redis-stable/redis.conf出现下图图标表明redis已经搭建成功<br>注意一、要加载配置文件，不然会出错：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"></p>
+<p>1、首先在搭建好的redis上边开启redis服务，开启的过程中遇到了一些问题：<br>其一配置文件需要修改 bind 0.0.0.0不然客户端连接不上；<br>其二服务端开启的时候要加载配置文件，./redis-server ~/redis-stable/redis.conf,否则写入不了文件；<br>其三要关闭防火墙，否则客户端也是连接不上的，开启之后如下图:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
+<p>3、在另一centos上进行连接，需有redis环境：<br>连接命令：./redis-cli -h IP<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
+<p>4、进行webshell写入操作<br>config set dir 目录路径     指定redis的工作路径<br>config set dbfilename 文件名    设置写入的文件<br>set 变量 内容     写入内容<br>save    保存设置<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
+<p>5、保存之后，对其进行访问，可以访问到写入的webshell：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"></p>
+<p>7、可以对任意文件进行修改，或者上传一句话拿shell:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
+<h3 id="0x02【2】写ssh免密码登录"><a href="#0x02【2】写ssh免密码登录" class="headerlink" title="0x02【2】写ssh免密码登录"></a>0x02【2】<code>写ssh免密码登录</code></h3><p>1、首先在客户端生成一个公钥，如下：<br>命令：ssh-keygen -t rsa -P ‘’之后回车就行，会在/root/.ssh/下边生成公钥和私钥<br>生成的公钥内容格式如下：<br>ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA3IQRT0nScJN2JOSsS7uOxrnoJDJjQX3qvQZOhOo27Yeb2riNBsOMX6iUHbsKOklaXY1cB8zcmbfiCwjiI2rLg1iKAtGKbpenMiWINg7RAv90TNrdwlWiROACCsLcsLMznzDLCG4PGVr9+m2mJOldH4Nf5o7gby28bz28oIufT74K3CwPTrik8xSFuP2IAsxxxZNms5jWxmoWzptMmhVdEU+Cw8P2en/itVUHoFPkwF0ZolGtR0xPd5a6M0po4qHssPYUZYIrpMOBScAf6j4B1n0HhoEooaH8E1IyTGFw8R8tzgQ0rc1KpOVtecZgIAHDzfduDV5pr8xNB9nA5aSI8w== root@xxxx<br>2、将公钥写入到服务器下边的/root/.ssh/authorized_keys中，然后进行保存；<br>3、使用ssh免密码就可以进行连接，实验结果如下：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
+<p>4、需要注意的是在实验的过程中，写入内容的时候，内容的开始和末尾加上\n来进行换行，否则会破坏原始的内容结构，就拿ssh免密码登录来说，会造成连接不成功，对比结果如图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
+<h3 id="0x03【3】写计划任务"><a href="#0x03【3】写计划任务" class="headerlink" title="0x03【3】写计划任务"></a>0x03【3】<code>写计划任务</code></h3><p>1、写入一个简单的计划任务<br>计划任务解读：<br><em>/1 </em> <em> </em> * echo ‘hello word’ &gt;&gt; /tmp/1.txt<br>每一分钟执行一次计划任务，将“hello Word”写入到/tmp/目录下，若存在1.txt就写入，不存在的话会自动生成一个1.txt文件：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"></p>
+<p>2、在服务器端上查看添加的计划任务：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8710.png?raw=true" alt="image"></p>
+<p>3、添加计划任务成功，按照计划任务每分钟一执行：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8711.png?raw=true" alt="image"></p>
+<p><strong>【写入计划任务反弹shell】</strong>:<br>通过nc监听端口反弹shell，使用yum install nc -y安装nc<br>windows上监听4444端口，成功反弹shell结果:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8712.png?raw=true" alt="image"></p>
+<p>Linux上边反弹shell:<br>1、首先将计划任务写入服务器端相应的配置文件中：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8713.png?raw=true" alt="image"></p>
+<p>在服务端查看一下计划任务，成功添加计划任务：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8714.png?raw=true" alt="image"></p>
+<p>在客户端nc监听4444端口，可以成功进行反弹shell:<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/redis/%E5%9B%BE%E7%89%8715.png?raw=true" alt="image"></p>
+<p><strong>【防御】</strong><br>指定redis服务使用的网卡 （需要重启redis才能生效）<br>在 redis.conf 文件中找到 “# bind 127.0.0.1” ，把前面的#号去掉，然后保存。注：修改后只有本机才能访问Redis。<br>设置访问密码 （需要重启redis才能生效）<br>在 redis.conf 中找到“requirepass”字段，在后面填上你需要的密码，Redis客户端也需要使用此密码来访问Redis服务。<br>修改Redis服务运行账号 （需要重启redis才能生效）<br>请以较低权限账号运行Redis服务，且禁用该账号的登录权限。另外可以限制攻击者往敏感写入文件，但是Redis数据还是能被黑客访问到，或者被黑客恶意删除。<br>设置防火墙策略<br>如果正常业务中Redis服务需要被其他服务器来访问，可以设置iptables策略仅允许指定的IP来访    问Redis服务。</p>
+
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
