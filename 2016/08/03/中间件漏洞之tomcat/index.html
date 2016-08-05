@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Sqlmap参数详解 | 大棟哥の博客</title>
+  <title>中间件漏洞之Tomcat | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -265,41 +265,36 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-02T16:38:31.000Z" itemprop="datePublished">
-          2016-07-03
+      <time datetime="2016-08-03T00:23:20.000Z" itemprop="datePublished">
+          2016-08-03
       </time>
     
     
     | 
-    <a href='/tags/tools/'>tools</a>
+    <a href='/tags/tomcat/'>tomcat</a>
     
     
 </span>
-                <h1>Sqlmap参数详解</h1>
+                <h1>中间件漏洞之Tomcat</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>-u  #注入点<br>-f  #指纹判别数据库类型<br>-b  #获取数据库版本信息<br>-p  #指定可测试的参数(?page=1&amp;id=2 -p “page,id”)<br>-D “”  #指定数据库名<br>-T “”  #指定表名<br>-C “”  #指定字段<br>-s “”  #保存注入过程到一个文件,还可中断，下次恢复在注入(保存：-s “xx.log”  恢复:-s “xx.log” –resume)<br>–level=(1-5) #要执行的测试水平等级，默认为1<br>–risk=(0-3)  #测试执行的风险等级，默认为1<br>–time-sec=(2,5) #延迟响应，默认为5<br>–data #通过POST发送数据<br>–columns        #列出字段<br>–current-user   #获取当前用户名称<br>–current-db     #获取当前数据库名称<br>–users          #列数据库所有用户<br>–passwords      #数据库用户所有密码<br>–privileges     #查看用户权限(–privileges -U root)<br>-U               #指定数据库用户<br>–dbs            #列出所有数据库<br>–tables -D “”   #列出指定数据库中的表<br>–columns -T “user” -D “mysql”      #列出mysql数据库中的user表的所有字段<br>–dump-all            #列出所有数据库所有表<br>–exclude-sysdbs      #只列出用户自己新建的数据库和表<br>–dump -T “” -D “” -C “”   #列出指定数据库的表的字段的数据(–dump -T users -D master -C surname)<br>–dump -T “” -D “” –start 2 –top 4  # 列出指定数据库的表的2-4字段的数据<br>–dbms    #指定数据库(MySQL,Oracle,PostgreSQL,Microsoft SQL Server,Microsoft Access,SQLite,Firebird,Sybase,SAP MaxDB)<br>–os      #指定系统(Linux,Windows)<br>-v  #详细的等级(0-6)<br>    0：只显示Python的回溯，错误和关键消息。<br>    1：显示信息和警告消息。<br>    2：显示调试消息。<br>    3：有效载荷注入。<br>    4：显示HTTP请求。<br>    5：显示HTTP响应头。<br>    6：显示HTTP响应页面的内容<br>–privileges  #查看权限<br>–is-dba      #是否是数据库管理员<br>–roles       #枚举数据库用户角色<br>–udf-inject  #导入用户自定义函数（获取系统权限）<br>–union-check  #是否支持union 注入<br>–union-cols #union 查询表记录<br>–union-test #union 语句测试<br>–union-use  #采用union 注入<br>–union-tech orderby #union配合order by<br>–data “” #POST方式提交数据(–data “page=1&amp;id=2”)<br>–cookie “用;号分开”      #cookie注入(–cookies=”PHPSESSID=mvijocbglq6pi463rlgk1e4v52; security=low”)<br>–referer “”     #使用referer欺骗(–referer “<a href="http://www.baidu.com" target="_blank" rel="external">http://www.baidu.com</a>“)<br>–user-agent “”  #自定义user-agent<br>–proxy “<a href="http://127.0.0.1:8118" target="_blank" rel="external">http://127.0.0.1:8118</a>“ #代理注入<br>–string=””    #指定关键词,字符串匹配.<br>–threads     #采用多线程(–threads 3)<br>–sql-shell    #执行指定sql命令<br>–sql-query    #执行指定的sql语句(–sql-query “SELECT password FROM mysql.user WHERE user = ‘root’ LIMIT 0, 1” )<br>–file-read    #读取指定文件<br>–file-write   #写入本地文件(–file-write /test/test.txt –file-dest /var/www/html/1.txt;将本地的test.txt文件写入到目标的1.txt)<br>–file-dest    #要写入的文件绝对路径<br>–os-cmd=id    #执行系统命令<br>–os-shell     #系统交互shell<br>–os-pwn       #反弹shell(–os-pwn –msf-path=/opt/framework/msf3/)<br>–msf-path=    #matesploit绝对路径(–msf-path=/opt/framework/msf3/)<br>–os-smbrelay  #<br>–os-bof       #<br>–reg-read     #读取win系统注册表<br>–priv-esc     #<br>–time-sec=    #延迟设置 默认–time-sec=5 为5秒<br>-p “user-agent” –user-agent “sqlmap/0.7rc1 (<a href="http://sqlmap.sourceforge.net" target="_blank" rel="external">http://sqlmap.sourceforge.net</a>)”  #指定user-agent注入<br>–eta          #盲注 </p>
-<p>/pentest/database/sqlmap/txt/<br>common-columns.txt  字段字典<br>common-outputs.txt<br>common-tables.txt      表字典<br>keywords.txt<br>oracle-default-passwords.txt<br>user-agents.txt<br>wordlist.txt </p>
+      		<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/tomcat/1.png?raw=true" alt="image"><br>一只可爱的猫<br>这是一个故事，某一天<img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/tomcat/b18.gif?raw=true" alt="image">然后<img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/tomcat/b10.gif?raw=true" alt="image">结果就<img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/tomcat/b04.gif?raw=true" alt="image">人生处处是惊喜！</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/04/sqli-1/" style="float: left;">
-        ← Sqli-1
-    </a>
     
-    
-    <a class="pull-right" href="/2016/06/15/php文件包含漏洞/">
-        Php文件包含漏洞 →
+    <a class="pull-right" href="/2016/08/02/中间件漏-redis/">
+        中间件漏洞之Redis →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/03/sqlmap参数详解/" data-title="Sqlmap参数详解" data-url="http://www.jiadong.xin/2016/07/03/sqlmap参数详解/"></div>
+<div class="ds-thread" data-thread-key="2016/08/03/中间件漏洞之tomcat/" data-title="中间件漏洞之Tomcat" data-url="http://www.jiadong.xin/2016/08/03/中间件漏洞之tomcat/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"duoshuo_name"};
 (function() {
