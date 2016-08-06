@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>Windows提权 | 大棟哥の博客</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="大棟哥の博客">
+    <meta name="author" content="JD">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="大棟哥の博客" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.wooyun.org/whitehats/莫庫勒" target="_BLANK" class="animsition-link">WooYunID</a></li>
+                    
+                        <li><a href="http://www.freebuf.com/" target="_BLANK" class="animsition-link">FreeBuf</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(7)</small></a></li>
+				    
+				    <li><a href="/categories/PHP/" class="animsition-link">PHP<small>(4)</small></a></li>
+				    
+				    <li><a href="/categories/SQL-INJECTION/" class="animsition-link">SQL INJECTION<small>(10)</small></a></li>
+				    
+				    <li><a href="/categories/TCP-IP/" class="animsition-link">TCP/IP<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/WEB/" class="animsition-link">WEB<small>(10)</small></a></li>
+				    
+				    <li><a href="/categories/collect-message/" class="animsition-link">collect message<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/中间件/" class="animsition-link">中间件<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/提权/" class="animsition-link">提权<small>(1)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.sina.com.cn/dadongcom" class="animsition-link">my sina blog</a></li>
+                    
+                    <li><a href="http://www.jiadong.xin" class="animsition-link">my website</a></li>
+                    
+                    <li><a href="http://lovexiaofeng.cn/" class="animsition-link">小峰 の blog</a></li>
+                    
+                    <li><a href="http://leelie.github.io/" class="animsition-link">伟伟 の blog</a></li>
+                    
+                    <li><a href="http://nouername.github.io/" class="animsition-link">帅飞 の blog</a></li>
+                    
+                    <li><a href="http://liulangdemao.github.io/" class="animsition-link">王卓 の blog</a></li>
+                    
+                    <li><a href="http://chuntiandechun.github.io/" class="animsition-link">刘琦 の blog</a></li>
+                    
+                    <li><a href="http://leonchang.tk/" class="animsition-link">金良 の blog</a></li>
+                    
+                    <li><a href="http://rockpile.me/" class="animsition-link">建磊 の blog</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">大棟哥の博客</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/1.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>THE QUITER YOU BECOME,THE <span>MORE</span> YOU ARE ABLE TO HEAR.<br/></h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p><center>灵魂摆渡</center></p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-05T14:55:51.000Z" itemprop="datePublished">
+          2016-08-05
+      </time>
+    
+    
+    | 
+    <a href='/tags/windows/'>windows</a>
+    
+    
+</span>
+                <h1>Windows提权</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<p>权限提升</p>
+<h1 id="0x00【简介】"><a href="#0x00【简介】" class="headerlink" title="0x00【简介】"></a>0x00【简介】</h1><pre><code>服务器提权是在攻击者拿到webshell之后登录到后台，权限不为最高权限，仅仅有访问的权限，为了达到控制服务器或者获取重要敏感信息的权限，这时候攻击者会通过权限提升的方式来，提高自己的授权访问权限来达到自己的目的！权限提升的前提就是需要找到系统的漏洞，通过对系统漏洞的利用，达到提升自身普通权限，进而控制目标
+</code></pre><h1 id="0x01【方式】"><a href="#0x01【方式】" class="headerlink" title="0x01【方式】"></a>0x01【方式】</h1><h2 id="1、水平权限提升；"><a href="#1、水平权限提升；" class="headerlink" title="1、水平权限提升；"></a>1、水平权限提升；</h2><h2 id="2、垂直权限提升；"><a href="#2、垂直权限提升；" class="headerlink" title="2、垂直权限提升；"></a>2、垂直权限提升；</h2><h2 id="3、主机权限提升。"><a href="#3、主机权限提升。" class="headerlink" title="3、主机权限提升。"></a>3、主机权限提升。</h2><h1 id="0x02【种类】"><a href="#0x02【种类】" class="headerlink" title="0x02【种类】"></a>0x02【种类】</h1><h2 id="1、windows权限提升；"><a href="#1、windows权限提升；" class="headerlink" title="1、windows权限提升；"></a>1、windows权限提升；</h2><h2 id="2、Linux权限提升。"><a href="#2、Linux权限提升。" class="headerlink" title="2、Linux权限提升。"></a>2、Linux权限提升。</h2><h1 id="0x03【测试环境】"><a href="#0x03【测试环境】" class="headerlink" title="0x03【测试环境】"></a>0x03【测试环境】</h1><h2 id="1、windows-2003（靶机）"><a href="#1、windows-2003（靶机）" class="headerlink" title="1、windows 2003（靶机）"></a>1、windows 2003（靶机）</h2><h2 id="2、windows7"><a href="#2、windows7" class="headerlink" title="2、windows7"></a>2、windows7</h2><p>注：本次测试只针对windows主机的权限提升！</p>
+<h1 id="0x04【思路】"><a href="#0x04【思路】" class="headerlink" title="0x04【思路】"></a>0x04【思路】</h1><h2 id="1、拿到webshell首先查看当前权限；"><a href="#1、拿到webshell首先查看当前权限；" class="headerlink" title="1、拿到webshell首先查看当前权限；"></a>1、拿到webshell首先查看当前权限；</h2><h2 id="2、低权限的话接下来就是提权；"><a href="#2、低权限的话接下来就是提权；" class="headerlink" title="2、低权限的话接下来就是提权；"></a>2、低权限的话接下来就是提权；</h2><h2 id="3、通过命令执行获取未安装补丁编号，找对应的利用方式；"><a href="#3、通过命令执行获取未安装补丁编号，找对应的利用方式；" class="headerlink" title="3、通过命令执行获取未安装补丁编号，找对应的利用方式；"></a>3、通过命令执行获取未安装补丁编号，找对应的利用方式；</h2><h2 id="4、创建用户，添加本地组策略；"><a href="#4、创建用户，添加本地组策略；" class="headerlink" title="4、创建用户，添加本地组策略；"></a>4、创建用户，添加本地组策略；</h2><h1 id="0x05【流程】"><a href="#0x05【流程】" class="headerlink" title="0x05【流程】"></a>0x05【流程】</h1><h2 id="1、前提条件是已经获取了目标主机的webshell，但是仅仅只有访问的权限，首先通过上传的webshell路径登陆进系统。"><a href="#1、前提条件是已经获取了目标主机的webshell，但是仅仅只有访问的权限，首先通过上传的webshell路径登陆进系统。" class="headerlink" title="1、前提条件是已经获取了目标主机的webshell，但是仅仅只有访问的权限，首先通过上传的webshell路径登陆进系统。"></a>1、前提条件是已经获取了目标主机的webshell，但是仅仅只有访问的权限，首先通过上传的webshell路径登陆进系统。</h2><p>登录系统，全部看一遍，记录用用信息：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"></p>
+<h2 id="2、登陆之后我们首先要做的就是查看一下目标服务器的细信息，找到执行cmd命令的地方，通过命令交互，获取想要的信息，在执行cmd命令的时候发现没有可用的对象，现在我们要做的就是找到可以上传文件的位置，上传大马执行。"><a href="#2、登陆之后我们首先要做的就是查看一下目标服务器的细信息，找到执行cmd命令的地方，通过命令交互，获取想要的信息，在执行cmd命令的时候发现没有可用的对象，现在我们要做的就是找到可以上传文件的位置，上传大马执行。" class="headerlink" title="2、登陆之后我们首先要做的就是查看一下目标服务器的细信息，找到执行cmd命令的地方，通过命令交互，获取想要的信息，在执行cmd命令的时候发现没有可用的对象，现在我们要做的就是找到可以上传文件的位置，上传大马执行。"></a>2、登陆之后我们首先要做的就是查看一下目标服务器的细信息，找到执行cmd命令的地方，通过命令交互，获取想要的信息，在执行cmd命令的时候发现没有可用的对象，现在我们要做的就是找到可以上传文件的位置，上传大马执行。</h2><p>通过磁盘权限找到可读可写的目录：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
+<h2 id="3、在可读可写可执行的目录中新建文本，上传一个aspx的大马，然后点击保存，这里可能涉及一个问题就是为什么要上传一个aspx大马？首先通过测试目标主机可以上传aspx；其次上传大马获取的权限要把当前的高。"><a href="#3、在可读可写可执行的目录中新建文本，上传一个aspx的大马，然后点击保存，这里可能涉及一个问题就是为什么要上传一个aspx大马？首先通过测试目标主机可以上传aspx；其次上传大马获取的权限要把当前的高。" class="headerlink" title="3、在可读可写可执行的目录中新建文本，上传一个aspx的大马，然后点击保存，这里可能涉及一个问题就是为什么要上传一个aspx大马？首先通过测试目标主机可以上传aspx；其次上传大马获取的权限要把当前的高。"></a>3、在可读可写可执行的目录中新建文本，上传一个aspx的大马，然后点击保存，这里可能涉及一个问题就是为什么要上传一个aspx大马？首先通过测试目标主机可以上传aspx；其次上传大马获取的权限要把当前的高。</h2><p>上传aspx大马点击保存：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
+<h2 id="4、跳转之后提示文件保存成功："><a href="#4、跳转之后提示文件保存成功：" class="headerlink" title="4、跳转之后提示文件保存成功："></a>4、跳转之后提示文件保存成功：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
+<h2 id="5、点击返回，找到上传的路径，在浏览器中对其进行访问，输入密码之后登陆成功："><a href="#5、点击返回，找到上传的路径，在浏览器中对其进行访问，输入密码之后登陆成功：" class="headerlink" title="5、点击返回，找到上传的路径，在浏览器中对其进行访问，输入密码之后登陆成功："></a>5、点击返回，找到上传的路径，在浏览器中对其进行访问，输入密码之后登陆成功：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"></p>
+<h2 id="6、首先通过cmd命令执行查看一下设置信息："><a href="#6、首先通过cmd命令执行查看一下设置信息：" class="headerlink" title="6、首先通过cmd命令执行查看一下设置信息："></a>6、首先通过cmd命令执行查看一下设置信息：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
+<h2 id="7、由于上传aspx大马-之前，目标主机的cmd使用不了，所以上传到当前目录下一个cmd"><a href="#7、由于上传aspx大马-之前，目标主机的cmd使用不了，所以上传到当前目录下一个cmd" class="headerlink" title="7、由于上传aspx大马 之前，目标主机的cmd使用不了，所以上传到当前目录下一个cmd:"></a>7、由于上传aspx大马 之前，目标主机的cmd使用不了，所以上传到当前目录下一个cmd:</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
+<h2 id="8、返回到webshell中，将上传的cmd路径写入，然后执行命令，查看一下当前用户，发现是最高权限："><a href="#8、返回到webshell中，将上传的cmd路径写入，然后执行命令，查看一下当前用户，发现是最高权限：" class="headerlink" title="8、返回到webshell中，将上传的cmd路径写入，然后执行命令，查看一下当前用户，发现是最高权限："></a>8、返回到webshell中，将上传的cmd路径写入，然后执行命令，查看一下当前用户，发现是最高权限：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
+<h2 id="9、查看一下系统信息："><a href="#9、查看一下系统信息：" class="headerlink" title="9、查看一下系统信息："></a>9、查看一下系统信息：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"></p>
+<h2 id="10、通过cmd命令扫一下没有安装的补丁号，找对应的利用程序进行利用："><a href="#10、通过cmd命令扫一下没有安装的补丁号，找对应的利用程序进行利用：" class="headerlink" title="10、通过cmd命令扫一下没有安装的补丁号，找对应的利用程序进行利用："></a>10、通过cmd命令扫一下没有安装的补丁号，找对应的利用程序进行利用：</h2><figure class="highlight plain"><figcaption><span>systeminfo>C:\Windows\Temp\temp.txt&(for %i in (KB3124280 KB3143141 KB3134228 KB3079904 KB3077657 KB3124280 KB3045171 KB2829361 KB3000061 KB2850851 KB2707511 KB970483 KB2124261 KB2271195) do @type C:\Windows \Temp\temp.txt|@find</span><a href="/i">"%i"|| @echo %i Not Installed!)&del /f / q /a C:\Windows\Temp\temp.txt</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">未打的补丁号</span><br><span class="line">![image](https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8710.png?raw=true)</span><br><span class="line"></span><br><span class="line">## 11、搜索之后，上传一个iis6的利用程序:</span><br><span class="line">![image](https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8711.png?raw=true)</span><br><span class="line"></span><br><span class="line">## 12、返回到webshell中执行利用,查看当前用户：</span><br><span class="line">```payload:c:\inetpub\wwwroot\Newfile\iis6.exe &quot;whoami&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8712.png?raw=true" alt="image"></p>
+<h2 id="13、查看所有的用户："><a href="#13、查看所有的用户：" class="headerlink" title="13、查看所有的用户："></a>13、查看所有的用户：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8713.png?raw=true" alt="image"></p>
+<h2 id="14、接下来就是创建一个用户："><a href="#14、接下来就是创建一个用户：" class="headerlink" title="14、接下来就是创建一个用户："></a>14、接下来就是创建一个用户：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c:\inetpub\wwwroot\Newfile\iis6.exe &quot;net user lester qweASD123!@# /add&quot;</span><br></pre></td></tr></table></figure>
+<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8714.png?raw=true" alt="image"></p>
+<h2 id="15、再查看一下所有的用户会发现先添加的用户："><a href="#15、再查看一下所有的用户会发现先添加的用户：" class="headerlink" title="15、再查看一下所有的用户会发现先添加的用户："></a>15、再查看一下所有的用户会发现先添加的用户：</h2><p>添加用户成功：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8715.png?raw=true" alt="image"></p>
+<h2 id="16、启用新建的用户："><a href="#16、启用新建的用户：" class="headerlink" title="16、启用新建的用户："></a>16、启用新建的用户：</h2><p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8716.png?raw=true" alt="image"></p>
+<h2 id="17、查看一下，用户可用："><a href="#17、查看一下，用户可用：" class="headerlink" title="17、查看一下，用户可用："></a>17、查看一下，用户可用：</h2><figure class="highlight plain"><figcaption><span>"net user lester"</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">![image](https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8717.png?raw=true)</span><br><span class="line"></span><br><span class="line">## 18、提取管理员的用户密码：</span><br><span class="line">![image](https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8718.png?raw=true)</span><br><span class="line"></span><br><span class="line">## 19、上传获取密码的程序：</span><br><span class="line">![image](https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8719.png?raw=true)</span><br><span class="line"></span><br><span class="line">## 20、之后返回到webshell页面在cmd命令行中执行payload</span><br><span class="line">```payload:</span><br><span class="line">c:\inetpub\wwwroot\Newfile\iis6.exe “c:\inetpub\wwwroot\Newfile\GetPasswd_x32.exe”</span><br></pre></td></tr></table></figure>
+<p>主要目的就是获取用户密码，进行修改，就不再演示！</p>
+<h2 id="21、将刚才添加的用户添加到本地组策略中："><a href="#21、将刚才添加的用户添加到本地组策略中：" class="headerlink" title="21、将刚才添加的用户添加到本地组策略中："></a>21、将刚才添加的用户添加到本地组策略中：</h2><p>c:\inetpub\wwwroot\Newfile\iis6.exe “net localgroup administrators lester/add”<br>添加指定的组：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8720.png?raw=true" alt="image"></p>
+<h2 id="22、经过查看端口发现目标主机开放有3389端口，利用刚才添加的用户进行远程连接："><a href="#22、经过查看端口发现目标主机开放有3389端口，利用刚才添加的用户进行远程连接：" class="headerlink" title="22、经过查看端口发现目标主机开放有3389端口，利用刚才添加的用户进行远程连接："></a>22、经过查看端口发现目标主机开放有3389端口，利用刚才添加的用户进行远程连接：</h2><p>成功登陆目标主机：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/windows%E6%9D%83%E9%99%90%E6%8F%90%E5%8D%87/%E5%9B%BE%E7%89%8721.png?raw=true" alt="image"></p>
+<h1 id="0x06【防御】"><a href="#0x06【防御】" class="headerlink" title="0x06【防御】"></a>0x06【防御】</h1><h2 id="1、系统补丁及时更新；"><a href="#1、系统补丁及时更新；" class="headerlink" title="1、系统补丁及时更新；"></a>1、系统补丁及时更新；</h2><h2 id="2、关闭不需要的端口，开启防火墙；"><a href="#2、关闭不需要的端口，开启防火墙；" class="headerlink" title="2、关闭不需要的端口，开启防火墙；"></a>2、关闭不需要的端口，开启防火墙；</h2><h2 id="3、禁止一些不必要的服务，修改磁盘权限；"><a href="#3、禁止一些不必要的服务，修改磁盘权限；" class="headerlink" title="3、禁止一些不必要的服务，修改磁盘权限；"></a>3、禁止一些不必要的服务，修改磁盘权限；</h2><h2 id="4、在本地策略中，严格分配用户的权限，还可以修改注册表，是系统更加优化！"><a href="#4、在本地策略中，严格分配用户的权限，还可以修改注册表，是系统更加优化！" class="headerlink" title="4、在本地策略中，严格分配用户的权限，还可以修改注册表，是系统更加优化！"></a>4、在本地策略中，严格分配用户的权限，还可以修改注册表，是系统更加优化！</h2>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/08/03/中间件漏洞之tomcat/">
+        中间件漏洞之Tomcat →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/05/windows提权/" data-title="Windows提权" data-url="http://www.jiadong.xin/2016/08/05/windows提权/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By JD. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
