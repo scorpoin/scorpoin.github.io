@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--[if lte IE 8 ]>
+<html class="ie" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<!--
+***************  *      *     *
+      8          *    *       *
+      8          *  *         *
+      8          **           *
+      8          *  *         *
+      8          *    *       *
+      8          *      *     *
+      8          *        *   ***********    -----Theme By Kieran(http://go.kieran.top)
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+<!--<![endif]-->
+
+<head>
+  <title>VPS搭建Metasploit详细教程 | 大棟哥の博客</title>
+  <!-- Meta data -->
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content="大棟哥の博客">
+    <meta name="author" content="JD">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+
+    <!-- Favicon, (keep icon in root folder) -->
+    <link rel="Shortcut Icon" href="/img/favicon.ico" type="image/ico">
+
+    <link rel="alternate" href="/atom.xml" title="大棟哥の博客" type="application/atom+xml">
+    <link rel="stylesheet" href="/css/all.css" media="screen" type="text/css">
+	
+    <link rel="stylesheet" href="/highlightjs/vs.css" type="text/css">
+    
+    
+
+    <!-- Custom stylesheet, (add custom styles here, always load last) -->
+    <!-- Load our stylesheet for IE8 -->
+    <!--[if IE 8]>
+    <link rel="stylesheet" type="text/css" href="/css/ie8.css" />
+    <![endif]-->
+
+    <!-- Google Webfonts (Monserrat 400/700, Open Sans 400/600) -->
+    <link href='//fonts.useso.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='//fonts.useso.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+
+    <!-- Load our fonts individually if IE8+, to avoid faux bold & italic rendering -->
+    <!--[if IE]>
+    <link href='http://fonts.useso.com/css?family=Montserrat:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.useso.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
+    <![endif]-->
+
+    <!-- jQuery | Load our jQuery, with an alternative source fallback to a local version if request is unavailable -->
+    <script src="/js/jquery-1.11.1.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.1.min.js"><\/script>')</script>
+
+    <!-- Load these in the <head> for quicker IE8+ load times -->
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/js/html5shiv.min.js"></script>
+    <script src="/js/respond.min.js"></script>
+    <![endif]-->
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  <style>.col-md-8.col-md-offset-2.opening-statement img{display:none;}</style>
+</head>
+
+<!--
+<body class="post-template">
+-->
+<body id="index" class="lightnav animsition">
+
+      <!-- ============================ Off-canvas navigation =========================== -->
+
+    <div class="sb-slidebar sb-right sb-style-overlay sb-momentum-scrolling">
+        <div class="sb-close" aria-label="Close Menu" aria-hidden="true">
+            <img src="/img/close.png" alt="Close"/>
+        </div>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu">
+            <li><a href="/" class="animsition-link" title="Home">Home</a></li>
+            <li><a href="/archives" class="animsition-link" title="archive">archives</a></li>
+            <!-- Dropdown Menu -->
+			 
+            <li>
+                <a class="sb-toggle-submenu">Works<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                        <li><a href="http://www.wooyun.org/whitehats/莫庫勒" target="_BLANK" class="animsition-link">WooYunID</a></li>
+                    
+                        <li><a href="http://www.freebuf.com/" target="_BLANK" class="animsition-link">FreeBuf</a></li>
+                    
+                </ul>
+            </li>
+            
+            
+        	<li>
+        		<a class="sb-toggle-submenu">Categories<span class="sb-caret"></span></a>
+            	<ul class="sb-submenu">
+				  	
+				    <li><a href="/categories/Linux/" class="animsition-link">Linux<small>(8)</small></a></li>
+				    
+				    <li><a href="/categories/PHP/" class="animsition-link">PHP<small>(4)</small></a></li>
+				    
+				    <li><a href="/categories/SQL-INJECTION/" class="animsition-link">SQL INJECTION<small>(10)</small></a></li>
+				    
+				    <li><a href="/categories/TCP-IP/" class="animsition-link">TCP/IP<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/WEB/" class="animsition-link">WEB<small>(10)</small></a></li>
+				    
+				    <li><a href="/categories/collect-message/" class="animsition-link">collect message<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
+				    
+				    <li><a href="/categories/中间件/" class="animsition-link">中间件<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/提权/" class="animsition-link">提权<small>(2)</small></a></li>
+				    
+				</ul>
+        	</li>
+			
+            
+            <li>
+                <a class="sb-toggle-submenu">Links<span class="sb-caret"></span></a>
+                <ul class="sb-submenu">
+                    
+                    <li><a href="http://blog.sina.com.cn/dadongcom" class="animsition-link">my sina blog</a></li>
+                    
+                    <li><a href="http://www.jiadong.xin" class="animsition-link">my website</a></li>
+                    
+                    <li><a href="http://lovexiaofeng.cn/" class="animsition-link">小峰 の blog</a></li>
+                    
+                    <li><a href="http://leelie.github.io/" class="animsition-link">伟伟 の blog</a></li>
+                    
+                    <li><a href="http://nouername.github.io/" class="animsition-link">帅飞 の blog</a></li>
+                    
+                    <li><a href="http://liulangdemao.github.io/" class="animsition-link">王卓 の blog</a></li>
+                    
+                    <li><a href="http://chuntiandechun.github.io/" class="animsition-link">刘琦 の blog</a></li>
+                    
+                    <li><a href="http://leonchang.tk/" class="animsition-link">金良 の blog</a></li>
+                    
+                    <li><a href="http://rockpile.me/" class="animsition-link">建磊 の blog</a></li>
+                    
+                </ul>
+            </li>
+            
+        </ul>
+        <!-- Lists in Slidebars -->
+        <ul class="sb-menu secondary">
+            <li><a href="/about.html" class="animsition-link" title="about">About</a></li>
+            <li><a href="/atom.xml" class="animsition-link" title="rss">RSS</a></li>
+        </ul>
+    </div>
+    
+    <!-- ============================ END Off-canvas navigation =========================== -->
+
+    <!-- ============================ #sb-site Main Page Wrapper =========================== -->
+
+    <div id="sb-site">
+        <!-- #sb-site - All page content should be contained within this id, except the off-canvas navigation itself -->
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <div id="navigation" class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <!-- Nav logo -->
+                    <div class="logo">
+                        <a href="/" title="Logo" class="animsition-link">
+                         <img src="/img/logo.png" alt="Logo" width="35px;"/> 
+                        </a>
+                    </div>
+                    <!-- // Nav logo -->
+                    <!-- Info-bar -->
+                    <nav>
+                        <ul class="nav">
+                            <li><a href="/" class="animsition-link">大棟哥の博客</a></li>
+                            <li class="nolink"><span>Always </span>Creative.</li>
+                            
+                            <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a></li>
+                            
+                            
+                            <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a></li>
+                            
+                            
+                            <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a></li>
+                            
+                            
+                            <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a></li>
+                            
+                            
+                            <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a></li>
+                            
+                            <li class="nolink"><span>Welcome!</span></li>
+                        </ul>
+                    </nav>
+                    <!--// Info-bar -->
+                </div>
+                <!-- // .container -->
+                <div class="learnmore sb-toggle-right">More</div>
+                <button type="button" class="navbar-toggle menu-icon sb-toggle-right" title="More">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar before"></span>
+                <span class="icon-bar main"></span>
+                <span class="icon-bar after"></span>
+                </button>
+            </div>
+            <!-- // .navbar-inner -->
+        </div>
+
+        <!-- ============================ Header & Logo bar =========================== -->
+
+        <!-- ============================ Hero Image =========================== -->
+
+        <section id="hero" class="scrollme">
+            <div class="container-fluid element-img" style="background: url(/img/1.jpg) no-repeat center center fixed;background-size: cover">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 vertical-align cover boost text-center">
+                        <div class="center-me animateme" data-when="exit" data-from="0" data-to="0.6" data-opacity="0" data-translatey="100">
+                            <div>
+                            	
+                                <h2>THE QUITER YOU BECOME,THE <span>MORE</span> YOU ARE ABLE TO HEAR.<br/></h2>
+                                <p></p>
+				    			
+                                <h2></h2>
+                                <p><center>灵魂摆渡</center></p>
+				    			
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // .col-md-12 -->
+                </div>
+                <div class="herofade beige-dk"></div>
+            </div>
+        </section>
+
+        <!-- Height spacing helper -->
+        <div class="heightblock"></div>
+        <!-- // End height spacing helper -->
+
+        <!-- ============================ END Hero Image =========================== -->
+      
+<section id="intro">
+    <div class="container">
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-10T02:06:41.000Z" itemprop="datePublished">
+          2016-08-10
+      </time>
+    
+    
+    | 
+    <a href='/tags/tools/'>tools</a>
+    
+    
+</span>
+                <h1>VPS搭建Metasploit详细教程</h1>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+      		<h2 id="一篇详细的vps安装metasploit实例"><a href="#一篇详细的vps安装metasploit实例" class="headerlink" title="一篇详细的vps安装metasploit实例"></a>一篇详细的vps安装metasploit实例</h2><p>Metasploit是一款强大的开源安全漏洞检测工具，攻击渗透功能十分强大，具有丰富的exp以及payload,在kali以及更早版本的bt系列的系统上已经集成了metasploit，工作人员常用 Metasploit 工具来检测系统的安全性。Metasploit Framework (MSF) 在 2003 年以开放源码方式发布，是可以自由获取的开发框架。它是一个强大的开源平台，供开发，测试和使用恶意代码，这个环境为渗透测试、shellcode 编写和漏洞研究提供了一个可靠平台。今天在一台外网vps上边安装一下，以便日后方便使用，安装过程会详细记录，按照下述步骤保证你成功安装，安装步骤已经过多次测试。<br>安装环境：<br>     外网的一台vps，系统版本信息如下：<br>[root@VM_9_220_centos ~]#<code>uname -a</code><br>     Linux VM_9_220_centos 2.6.32-504.30.3.el6.x86_64 #1 SMP Wed Jul 15 10:13:09 UTC 2015 x86_64 x86_64 x86_64 GNU/Linux<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%871.jpg?raw=true" alt="image"></p>
+<p>###【详细安装流程】<br>一、必要开发环境<br>1、更新yum源，安装metasploit需要安装一系列的依赖包，更新yum源是很有必要的！<br>[root@VM_9_220_centos ~]#<code>yum update</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%872.jpg?raw=true" alt="image"></p>
+<p>2、安装开发环境依赖包，理由同上：<br>[root@VM_9_220_centos ~]#<code>yum groupinstall &#39;development tools&#39;</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%873.jpg?raw=true" alt="image"></p>
+<p>3、安装msf所需要的开发工具依赖包：<br>[root@VM_9_220_centos ~]#<code>yum install sqlite-devel libxslt-devel libxml2-devel java-1.7.0-openjdk libpcap-devel nano openssl-devel zlib-devel libffi-devel gdbm-devel readline-devel nano wget</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%874.jpg?raw=true" alt="image"></p>
+<pre><code>上述依赖包以及开发工具安装完成之后接下来就需要安装ruby环境，因为新版本的metasploit开发人员是用ruby写的，最开始的时候metasploit是用perl脚本语言写的，一直到2006年的2.7版本一直都还是使用perl语言编写的，后来开发人员发现perl存在一些缺陷，所以在2007年底使用ruby语言重写了metasploit的框架。
+</code></pre><h2 id="二、相关组件安装"><a href="#二、相关组件安装" class="headerlink" title="二、相关组件安装"></a>二、相关组件安装</h2><h3 id="1、RVM安装"><a href="#1、RVM安装" class="headerlink" title="1、RVM安装"></a>1、RVM安装</h3><p>5、安装ruby之前先安装一下ruby的管理工具RVM，个人推荐使用rvm安装ruby使用方便，使用curl下载rvm：<br>[root@VM_9_220_centos ~]#<code>curl -L get.rvm.io | bash -s stable</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%875.jpg?raw=true" alt="image"></p>
+<p>安装过程中会出现失败，不要慌，按照提示进行一步一步安装：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%876.jpg?raw=true" alt="image"></p>
+<p>需要下载一个验证码之类的东西，下载完成之后在执行安装rvm<br>[root@VM_9_220_centos ~]#<code>curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -</code><br>[root@VM_9_220_centos ~]#<code>curl -L get.rvm.io | bash -s stable</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%877.jpg?raw=true" alt="image"></p>
+<p>当出现Thank you for using RVM!证明安装完成了：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%878.jpg?raw=true" alt="image"></p>
+<p>找到rvm的配置文件，然使其生效：<br>[root@VM_9_220_centos ~]# <code>find / -name rvm.sh</code><br>/etc/profile.d/rvm.sh<br>[root@VM_9_220_centos ~]# <code>source /etc/profile.d/rvm.sh</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%879.jpg?raw=true" alt="image"></p>
+<p>其实到这里已经可以使用rvm进行ruby的安装及使用了，为了后续的完美使用，我们现在装一下rvm所需要的一些依赖：<br>[root@VM_9_220_centos ~]# <code>rvm requirements</code><br>Checking requirements for centos.<br>Installing requirements for centos.<br>Installing required packages: libyaml-devel……<br>Requirements installation successful.<br>下边检查一下看看少装依赖了没有：<br>[root@VM_9_220_centos ~]# <code>rvmsudo yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8710.jpg?raw=true" alt="image"></p>
+<p>上述rvm已经安装完成。</p>
+<h3 id="2、yaml安装"><a href="#2、yaml安装" class="headerlink" title="2、yaml安装"></a>2、yaml安装</h3><p>6、后续的一些组件在安装的时候需要源码安装，所以源码安装之前需要先安装yaml，yaml是 表达资料序列的编程语言<br>[root@VM_9_220_centos ~]#<code>cd /usr/src</code>   //切换到src目录下<br>[root@VM_9_220_centos src]#<code>wget http://pyyaml.org/download/libyaml/yaml-0.1.6.tar.gz</code>   //wget下载压缩包<br>[root@VM_9_220_centos src]#<code>tar -zxvfyaml-0.1.6.tar.gz</code>   //解压压缩包<br>[root@VM_9_220_centos src]# <code>rm -rf yaml-0.1.6.tar.gz</code>   //删除压缩包<br>[root@VM_9_220_centos src]#<code>cd yaml-0.1.6</code>     //切换到解压包中<br>[root@VM_9_220_centosyaml-0.1.6]#<code>./configure--prefix=/usr/local</code>               //将可执行脚本执行到指定目录中–prefix指定安装路径<br>[root@VM_9_220_centosyaml-0.1.6]#<code>make &amp;&amp; make install</code> //编译、安装<br>[root@VM_9_220_centos yaml-0.1.6]# <code>make clean</code>       //清除缓存文件<br>安装完成！<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8711.jpg?raw=true" alt="image"></p>
+<h2 id="三、安装namp"><a href="#三、安装namp" class="headerlink" title="三、安装namp"></a>三、安装namp</h2><p>7、据说metasploit中没有nmap那就安装一下吧，namp是一款强大的端口扫描工具，在渗透测试过程中，情报收集阶段利用非常方便：<br>会在当前目录下， 增加一个 nmap文件夹；  svn的namp文件的内容， 在nmap文件夹中<br>[root@VM_9_220_centos src]# <code>svn co https://svn.nmap.org/nmap</code><br>[root@VM_9_220_centos src]# <code>cd nmap</code><br>[root@VM_9_220_centos nmap]# <code>./configure</code><br>[root@VM_9_220_centos nmap]# <code>make</code><br>[root@VM_9_220_centos nmap]# <code>make install</code><br>[root@VM_9_220_centos nmap]# <code>make clean</code><br>安装完成：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8712.jpg?raw=true" alt="image"></p>
+<h2 id="四、安装ruby"><a href="#四、安装ruby" class="headerlink" title="四、安装ruby"></a>四、安装ruby</h2><p>8、Ruby 是一种面向对象、命令式、函数式、动态的通用编程语言<br>先查看一下安装的有没有ruby版本：<br>[root@VM_9_220_centos yaml-0.1.6]# <code>rvm list</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8713.jpg?raw=true" alt="image"></p>
+<p>安装最新版本的ruby,metasploit貌似对ruby版本还有要求，网上说的是不能低于1.9.2，不管这些，安装爱装最新版本的就对了：<br>[root@VM_9_220_centos src]# <code>rvm install ruby-2.3.1</code><br>[root@VM_9_220_centos src]# <code>rvm list</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8714.jpg?raw=true" alt="image"></p>
+<h2 id="五、安装postgresql"><a href="#五、安装postgresql" class="headerlink" title="五、安装postgresql"></a>五、安装postgresql</h2><p>9、msf使用的是postgrepsql server的数据管理库， PostgreSQL 是一个自由的对象-关系数据库服务器(数据库管理系统)<br>首先修改一下配置文件：<br>[root@VM_9_220_centos src]# <code>vim /etc/yum.repos.d/CentOS-Base.repo</code><br>增加的内容：exclude=postgresql*<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8715.jpg?raw=true" alt="image"></p>
+<p>接下来下载安装：<br>[root@VM_9_220_centos src]# <code>wget http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm</code><br>[root@VM_9_220_centos src]# <code>rpm -ivh pgdg-centos92-9.2-6.noarch.rpm</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8716.jpg?raw=true" alt="image"></p>
+<p>更新一下安装包文件：<br>[root@VM_9_220_centos src]# <code>yum update</code><br>[root@VM_9_220_centos src]# <code>yum install postgresql92-server postgresql92-devel postgresql92</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8717.jpg?raw=true" alt="image"><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8718.jpg?raw=true" alt="image"></p>
+<p>将安装好的postgresql数据库进行配置：</p>
+<p>[root@VM_9_220_centos src]#<code>service postgresql-9.2 initdb</code><br>Initializing database:                                     [  OK  ]<br>[root@VM_9_220_centos src]# <code>service postgresql-9.2 start</code><br>Starting postgresql-9.2 service:                           [  OK  ]<br>[root@VM_9_220_centos src]# <code>chkconfig postgresql-9.2 on</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8719.jpg?raw=true" alt="image"></p>
+<p>添加环境变量，使其生效：<br>[root@VM_9_220_centos src]# <code>echo export PATH=/usr/pgsql-9.2/bin:\$PATH &gt;&gt; /etc/bashrc</code><br>[root@VM_9_220_centos src]# <code>source ~/.bashrc</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8720.jpg?raw=true" alt="image"></p>
+<p>给postgresql数据库创建用户，设置密码：<br>[root@VM_9_220_centos src]# <code>su - postgres</code><br>-bash-4.1$ createuser msf -P -S -R -D<br>Enter password for new role:<br>Enter it again:<br>-bash-4.1$ createdb -O msf msf<br>-bash-4.1$ exit<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8721.jpg?raw=true" alt="image"></p>
+<p>管理数据库的配置文件：<br>[root@VM_9_220_centos src]# <code>vim /var/lib/pgsql/9.2/data/pg_hba.conf</code><br>local   msf             msf                 md5<br>host    msf             msf     127.0.0.1/8     md5<br>host    msf             msf     ::1/128        md5<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8722.jpg?raw=true" alt="image"></p>
+<p>修改完配置文件，重启一下服务：<br>[root@VM_9_220_centos src]# <code>service postgresql-9.2 start</code><br>Starting postgresql-9.2 service:                           [  OK  ]</p>
+<h2 id="六、安装metasploit"><a href="#六、安装metasploit" class="headerlink" title="六、安装metasploit"></a>六、安装metasploit</h2><p>首先安装msf所需要的ruby库<br>[root@VM_9_220_centos src]#<code>gem install wirble pg sqlite3 msgpack activerecord redcarpet rspec simplecov yard bundler</code><br>安装完成：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8723.jpg?raw=true" alt="image"></p>
+<p>下载metasploit框架，将其放到opt目录下：<br>[root@VM_9_220_centos opt]# <code>git clone https://github.com/rapid7/metasploit-framework.git</code><br>已经OK了：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8724.jpg?raw=true" alt="image"></p>
+<p>切换到metasploit-framework目录中安装gem,经过漫长的等待终于安装完成：<br>[root@VM_9_220_centos metasploit-framework]# <code>bundle install</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8725.jpg?raw=true" alt="image"></p>
+<p>编辑msf的数据库配置文件，使msf启动的时候能够加载数据库<br>[root@VM_9_220_centos metasploit-framework]# <code>nano /opt/metasploit-framework/database.yml</code><br>写入的内容：<br>production:<br>   adapter: postgresql<br>   database: msf<br>   username: msf<br>   password: 123456<br>   host: 127.0.0.1<br>   port: 5432<br>   pool: 75<br>   timeout: 5<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8726.jpg?raw=true" alt="image"></p>
+<p>添加环境变量使其生效：<br>[root@VM_9_220_centos metasploit-framework]# <code>echo export MSF_DATABASE_CONFIG=/opt/metasploit-framework/database.yml &gt;&gt; /etc/bashrc</code><br>[root@VM_9_220_centos metasploit-framework]# <code>source ~/.bashrc</code><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8727.jpg?raw=true" alt="image"></p>
+<p>接下来就是运行msfconle<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8728.jpg?raw=true" alt="image"></p>
+<p>成功安装，接下来连接数据库：<br>重启一下postgresql-9.2服务，成功连接数据库：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/metesploit/%E5%9B%BE%E7%89%8729.jpg?raw=true" alt="image"></p>
+<h3 id="【总结】"><a href="#【总结】" class="headerlink" title="【总结】"></a>【总结】</h3><pre><code>前前后后加上在本地虚拟机上测试安装不下五次，安装过程好多细节问题需要注意，写一篇总结为的是记录一下，其中需要注意的是：
+    1、ruby的版本问题，最好是安装最新的版本；
+    2、数据库的配置；
+    3、最后安装完成之后启动msf的时候直接输msfconle可能会提示找不到命令，那就试一下./msfconle，还不行的话就看一下文件的权限；
+    4、运行msfconcle时提示连接数据库失败，那就退出来启动一下postgresql-x.x服务就行了
+</code></pre><p>安装完成只是第一步，利用才是开始，未完待续、、、</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
+        </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/08/08/Linux提权/">
+        Linux提权 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/10/VPS搭建Metasploit详细教程/" data-title="VPS搭建Metasploit详细教程" data-url="http://www.jiadong.xin/2016/08/10/VPS搭建Metasploit详细教程/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"dadongge"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
+    </div>
+</section>
+
+
+      
+<!-- ============================ Footer =========================== -->
+
+<footer>
+    <div class="container">
+            <div class="copy">
+                <p>
+                    &copy; 2014<script>new Date().getFullYear()>2010&&document.write("-"+new Date().getFullYear());</script>, Content By JD. All Rights Reserved.
+                </p>
+                <p>Theme By <a href="//go.kieran.top" style="color: #767D84">Kieran</a></p>
+            </div>
+            <div class="social">
+                <ul>
+                    
+                    <li><a href="https://github.com/" title="Github" target="_blank"><i class="icon-github"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://twitter.com/" title="Twitter" target="_blank"><i class="icon-twitter"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://www.facebook.com/" title="Facebook" target="_blank"><i class="icon-facebook"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="https://google.com/" title="Google-Plus" target="_blank"><i class="icon-google-plus"></i></a>&nbsp;</li>
+                    
+                    
+                    <li><a href="http://weibo.com/5880136891/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Sina-Weibo" target="_blank"><i class="icon-sina-weibo"></i></a>&nbsp;</li>
+                    
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+</footer>
+
+<!-- ============================ END Footer =========================== -->
+      <!-- Load our scripts -->
+        
+<!-- Resizable 'on-demand' full-height hero -->
+<script type="text/javascript">
+    
+    var resizeHero = function () {
+        var hero = $(".cover,.heightblock"),
+            window1 = $(window);
+        hero.css({
+            "height": window1.height()
+        });
+    };
+    
+    resizeHero();
+    
+    $(window).resize(function () {
+        resizeHero();
+    });
+</script>
+<script src="/js/plugins.min.js"></script><!-- Bootstrap core and concatenated plugins always load here -->
+<script src="/js/jquery.flexslider-min.js"></script><!-- Flexslider plugin -->
+<script src="/js/scripts.js"></script><!-- Theme scripts -->
+
+<!-- Initiate flexslider plugin -->
+<script type="text/javascript">
+    $(document).ready(function($) {
+      $('.flexslider').flexslider({
+        animation: "fade",
+        prevText: "",
+        nextText: "",
+        directionNav: true
+      });
+    });
+</script>
+
+</body>
+</html>
