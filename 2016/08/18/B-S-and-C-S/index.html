@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Tag: XSS | 大棟哥の博客</title>
+  <title>B/S and C/S | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="home-template">
+<body class="post-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -264,37 +264,79 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-
-
-<section id="services">
+<section id="intro">
     <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="row boxes">
-                    
-                    
-                        
-                        
-                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
-                            
-                              <h4 class="title"><a href="/2016/07/18/XSS总结/">XSS总结</a></h4>
-                            
-                            <p><time datetime="2016-07-17T16:00:13.000Z"><a href="/2016/07/18/XSS总结/">2016-07-18</a></time></p>
-                        </div>
-                    
-                </div>
-            </div>    
+        <div class="row col-md-offset-2">
+            <div class="col-md-8">
+    			<span class="post-meta">
+      <time datetime="2016-08-18T09:35:50.000Z" itemprop="datePublished">
+          2016-08-18
+      </time>
+    
+    
+    | 
+    <a href='/tags/article/'>article</a>
+    
+    
+</span>
+                <h1>B/S and C/S</h1>
+            </div>
         </div>
-    </div>
-</section> 
+        <div class="col-md-8 col-md-offset-2">
+      		<h3 id="0x00前言"><a href="#0x00前言" class="headerlink" title="0x00前言"></a>0x00前言</h3><pre><code>最近读到一篇文章的时候提到了C/S（客户端/服务器）架构和B/S（浏览器/服务器）架构，由于不太熟悉于是就在网上找了篇文章看了一下，下边是看完之后进行的一些总结，不是很全面，后续会进行补足：
+</code></pre><h3 id="0x01硬件环境要求不同"><a href="#0x01硬件环境要求不同" class="headerlink" title="0x01硬件环境要求不同"></a>0x01硬件环境要求不同</h3><pre><code>C/S架构具有很长的时间了而且技术也很成熟只是适用的范围小，一般建立在小范围的网络环境上，局域网之间再通过专门的服务器提供链接和数据的交换，对网速的要求比较高，如果客户端的系统不同的话，需要针对不同的系统进行编程；
 
-<section id="statement">
-    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
-        <div class="row">
-            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
+ B/S架构是在C/S的基础之上派生出来的，使用范围广，建立在广域网之上，不必是专门的网络硬件环境
+</code></pre><h3 id="0x02安全方面要求不同"><a href="#0x02安全方面要求不同" class="headerlink" title="0x02安全方面要求不同"></a>0x02安全方面要求不同</h3><pre><code>C/S面向固定的用户人群，对信息安全的控制能力很强
+
+B/S因为是建立在广域网之上对信息安全的控制能力相对较弱，所面向的用户人群是未知的
+</code></pre><h3 id="0x03对于程序架构的不同"><a href="#0x03对于程序架构的不同" class="headerlink" title="0x03对于程序架构的不同"></a>0x03对于程序架构的不同</h3><pre><code>C/S程序更加注重流程，可以对权限进行多层次的校验，对系统的运行速度可以较少考虑
+
+B/S对安全以及访问速度的多重的考虑，建立在需要更加优化的基础之上
+</code></pre><h3 id="0x04对软件重用不同"><a href="#0x04对软件重用不同" class="headerlink" title="0x04对软件重用不同"></a>0x04对软件重用不同</h3><pre><code>C/S程序可以不可避免的整体性考虑，构件的重用性不如B/S的构件重用性好
+
+B/S要求构件相对独立的功能。能够相对较好的重用
+</code></pre><h3 id="0x05系统维护的不同"><a href="#0x05系统维护的不同" class="headerlink" title="0x05系统维护的不同"></a>0x05系统维护的不同</h3><pre><code>C/S由于整体性，必须整体考察，处理出现的问题已经系统升级
+
+B/S构件组成，方便构件个别的更换，实现系统的无缝升级，系统开销小用户从网上自己下载就可以实现升级
+</code></pre><h3 id="0x06处理问题不同"><a href="#0x06处理问题不同" class="headerlink" title="0x06处理问题不同"></a>0x06处理问题不同</h3><pre><code>C/S程序可以处理用户面固定，并且在相同的区域，安全要求高
+
+B/S建立在广域网之上，面向不同的用户群，面向的区域分散，与操作系统平台的关系最小
+</code></pre><h3 id="0x07用户接口不同"><a href="#0x07用户接口不同" class="headerlink" title="0x07用户接口不同"></a>0x07用户接口不同</h3><pre><code>C/S大多建立在WINDOWS平台上，表现方法有限，对程序员普遍要求高
+
+B/S建立在浏览器上有更加丰富和生动的表现形式与用户进行交流，并且大部分难度减低，开发成本低！
+</code></pre><h3 id="0x08-总结"><a href="#0x08-总结" class="headerlink" title="0x08 总结"></a>0x08 总结</h3><p>   综上，由于C/S架构模式决定了其运算是在客户端进行的，虽然运算效率有所提高，但是需要安装客户端，所以给系统维护以及软件升级增加了不小的难度；而B/S架构只要能上网就能进行软件的升级和维护</p>
+
+            <div class="clearfix"></div>
+            <hr class="nogutter">
         </div>
+        <nav class="pagination" role="pagination">
+    
+    
+    <a class="pull-right" href="/2016/08/14/端口转发/">
+        端口转发 →
+    </a>
+    
+</nav>
+
+        <div class="duoshuo">
+<div class="ds-thread" data-thread-key="2016/08/18/B-S-and-C-S/" data-title="B/S and C/S" data-url="http://www.jiadong.xin/2016/08/18/B-S-and-C-S/"></div>
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"dadongge"};
+(function() {
+	var ds = document.createElement('script');
+	ds.type = 'text/javascript';ds.async = true;
+	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+	ds.charset = 'UTF-8';
+	(document.getElementsByTagName('head')[0] 
+	 || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+</script>
+</div>
     </div>
 </section>
+
+
       
 <!-- ============================ Footer =========================== -->
 
