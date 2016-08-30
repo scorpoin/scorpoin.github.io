@@ -313,9 +313,9 @@ for i in company:
 
     # print name[1][:-3],&quot;\t&quot;,
     # print name[4][:-4]
-</code></pre><p><img src="&#39;/images/python-spider/1.png&#39;" alt="image"></p>
+</code></pre><p><img src="\images\python-spider\1.png" alt="image"></p>
 <p>2、爬取色彩值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#!usr/bin/env python</span><br><span class="line">#-*-utf-8-*-</span><br><span class="line">#author by dadongge</span><br><span class="line">import requests</span><br><span class="line"></span><br><span class="line">color=[]</span><br><span class="line">url = &quot;http://html-color-codes.info/color-names/&quot;</span><br><span class="line">r = requests.get(url)</span><br><span class="line"># r.encoding = r.apparent.encoding</span><br><span class="line">html = r.text.split(&apos;&lt;td class=&quot;whitename&quot;&gt;&apos;)[1:]</span><br><span class="line"># print html</span><br><span class="line">for i in html:</span><br><span class="line">    name = i.split(&apos;&lt;&apos;)</span><br><span class="line">    print &quot;color_name:&quot;,name[0],&quot;color_value:&quot;,name[2][-6:]</span><br><span class="line"></span><br><span class="line"># for x in name:</span><br><span class="line">#     print x</span><br></pre></td></tr></table></figure></p>
-<p><img src="&#39;/images/python-spider/2.png&#39;" alt="image"></p>
+<p><img src="\images\python-spider\2.png" alt="image"></p>
 <pre><code>学习python的练手之作。
 </code></pre>
             <div class="clearfix"></div>
