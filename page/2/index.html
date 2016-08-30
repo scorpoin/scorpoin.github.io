@@ -132,9 +132,13 @@
 				    
 				    <li><a href="/categories/life/" class="animsition-link">life<small>(1)</small></a></li>
 				    
+				    <li><a href="/categories/python/" class="animsition-link">python<small>(1)</small></a></li>
+				    
 				    <li><a href="/categories/read/" class="animsition-link">read<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/中间件/" class="animsition-link">中间件<small>(2)</small></a></li>
+				    
+				    <li><a href="/categories/代码审计/" class="animsition-link">代码审计<small>(1)</small></a></li>
 				    
 				    <li><a href="/categories/提权/" class="animsition-link">提权<small>(2)</small></a></li>
 				    
@@ -267,6 +271,80 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2016/07/30/逻辑漏洞/">逻辑漏洞</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2016-07-30T09:58:49.000Z" itemprop="datePublished">
+          2016-07-30
+      </time>
+    
+    
+    | 
+    <a href='/tags/逻辑/'>逻辑</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        
+0X00背景SQL注入，文件上传，代码执行，我们在做网站渗透的的时候把重点放在了这些高危漏洞上，直接可以使用工具利用，在测试中直接使用工具测试即可，而现在大多数公司已经开始注重 用户的安全，而逻辑漏洞就是关注的对象！
+0x01概述越权操作和逻辑漏洞占比最多包括查询人以用户信息，任意删除等行为，最严重的出现在账号安全，重置任意用户密码，验证码暴力破解等
+0x02类型交易支付、密码修改、密码找回、越权查询、突破限制、
+1.支付逻辑漏洞支付
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2016/07/30/逻辑漏洞/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2016/07/28/文件下载实例2/">文件下载实例2</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2016-07-27T16:22:14.000Z" itemprop="datePublished">
+          2016-07-28
+      </time>
+    
+    
+    | 
+    <a href='/tags/文件下载/'>文件下载</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        0x00【背景】网站为了满足业务上的需求，提供了文件查看及下载的功能，没有对用户进行限制限制，对于恶意用户就可能利用这种便利进行文件的下载，从而达到自己的目的。0x01【成因】1、代码中存在读文件的函数；2、读取文件的路径对于用户来啊说是可控的，而且没有进行严格的过滤；3、能够输出文件的内容。0x02【位置】一般网站存在你下载的功能，思路就是，使用动态的页面将想要下载的文件作为参数如：filename，实现的过程就是根据filename
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2016/07/28/文件下载实例2/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -622,76 +700,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/2016/07/17/GOOGLE-HACKING/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/07/11/SQL实例2/">SQL实例2</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-07-11T13:11:00.000Z" itemprop="datePublished">
-          2016-07-11
-      </time>
-    
-    
-    | 
-    <a href='/tags/SQL-inject/'>SQL inject</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        0x00.【原理】SQL（结果化查询语言）是一种用户和数据库交互的文本语言，SQL注入就是利用某些数据库某些外部接口把用户输入的数据插入到数据库中进行操作，从而达到入侵数据库的目的。产生的主要原因是没有对用户输入的数据进行过滤，导致非法数据的提交！0x01.【步骤】1、判断web环境是否可以SQL注入：如果URL仅仅对网页访问就不存在SQL注入；只有对数据库进行动态查询才有可能存在SQL注入；2、测试注入点：对于GET类型的，可以在UR
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/07/11/SQL实例2/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/07/10/SQL实例1/">SQL实例1</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-07-10T12:42:56.000Z" itemprop="datePublished">
-          2016-07-10
-      </time>
-    
-    
-    | 
-    <a href='/tags/SQL-inject/'>SQL inject</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        0x00.【原理】SQL（结果化查询语言）是一种用户和数据库交互的文本语言，SQL注入就是利用某些数据库某些外部接口把用户输入的数据插入到数据库中进行操作，从而达到入侵数据库的目的。产生的主要原因是没有对用户输入的数据进行过滤，导致非法数据的提交！0x01.【步骤】1.判断web环境是否可以SQL注入：如果URL仅仅对网页访问就不存在SQL注入；只有对数据库进行动态查询才有可能存在SQL注入；2.测试注入点：对于GET类型的，可以在UR
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/07/10/SQL实例1/">Read More...</a>
                     </p>
                     
                 </div>
