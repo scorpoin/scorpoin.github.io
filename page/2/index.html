@@ -134,7 +134,7 @@
 				    
 				    <li><a href="/categories/python/" class="animsition-link">python<small>(1)</small></a></li>
 				    
-				    <li><a href="/categories/read/" class="animsition-link">read<small>(2)</small></a></li>
+				    <li><a href="/categories/read/" class="animsition-link">read<small>(3)</small></a></li>
 				    
 				    <li><a href="/categories/中间件/" class="animsition-link">中间件<small>(2)</small></a></li>
 				    
@@ -271,6 +271,42 @@
 
 <section id="intro">
     <div class="container">
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
+                    <h3><a href="/2016/07/31/手工注入/">手工注入总结</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2016-07-31T03:45:12.000Z" itemprop="datePublished">
+          2016-07-31
+      </time>
+    
+    
+    | 
+    <a href='/tags/SQL-inject/'>SQL inject</a>
+    
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        #手工注入IE浏览器-工具-Internet选项-高级-显示友好HTTP错误信息前面的勾去掉，否则不论服务器返回什么错误，IE都只显示为HTTP 500服务器错误，不能获得更多的信息。手工注入时如果网站过滤了 and 1=1 and 1=2 ，可以用xor 1=1 xor 1=2 进行判断。
+ 第一步：找注入点（数字型）http://www.xxx.com/show.asp?id=7加* 程序报错加and 1=1 返回正常页面加and 
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2016/07/31/手工注入/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
         
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
@@ -660,46 +696,6 @@
                     
                     <p class="pull-right readMore">
                         <a href="/2016/07/18/XSS总结/">Read More...</a>
-                    </p>
-                    
-                </div>
-                <div class="clearfix"></div>
-                <hr class="nogutter">
-            </div>
-        </div>
-        
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 opening-statement">
-                <div class="col-md-4">
-                    <h3><a href="/2016/07/17/GOOGLE-HACKING/">GOOGLE HACKING</a></h3>
-                    <span>
-                        <span class="post-meta">
-      <time datetime="2016-07-17T13:21:59.000Z" itemprop="datePublished">
-          2016-07-17
-      </time>
-    
-    
-    | 
-    <a href='/tags/信息收集/'>信息收集</a>
-    
-    
-</span>
-                    </span>
-                </div>
-                <div class="col-md-8">
-                    <p>
-                      
-                        0x000名词解释：Google hacking：利用Google搜索引擎进行信息收集从而达到对目标的攻击和入侵的目的；Google hacking按照关键字收集情报，可以找到敏感文件、网络漏洞、识别操作系统和网站在天朝你必须使用代理翻墙才能使用！0x01使用方法：Google可以使用通配符：
-
-把google可能忽略的字列如查询范围– 把某个字忽略，排除关键字~ 同意词. 单一的通配符
-
-
-通配符，可代表多个字母“” 精确查询*代表一
-                      
-                    </p>
-                    
-                    <p class="pull-right readMore">
-                        <a href="/2016/07/17/GOOGLE-HACKING/">Read More...</a>
                     </p>
                     
                 </div>
