@@ -122,7 +122,7 @@
 				    
 				    <li><a href="/categories/SQL-INJECTION/" class="animsition-link">SQL INJECTION<small>(11)</small></a></li>
 				    
-				    <li><a href="/categories/TCP-IP/" class="animsition-link">TCP/IP<small>(1)</small></a></li>
+				    <li><a href="/categories/TCP-IP/" class="animsition-link">TCP/IP<small>(2)</small></a></li>
 				    
 				    <li><a href="/categories/Talks/" class="animsition-link">Talks<small>(2)</small></a></li>
 				    
@@ -273,6 +273,42 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 opening-statement">
                 <div class="col-md-4">
+                    <h3><a href="/2017/03/21/TCP-状态控制码（code-Control-Flag）/">TCP:状态控制码（code,Control Flag）</a></h3>
+                    <span>
+                        <span class="post-meta">
+      <time datetime="2017-03-21T05:13:13.000Z" itemprop="datePublished">
+          2017-03-21
+      </time>
+    
+</span>
+                    </span>
+                </div>
+                <div class="col-md-8">
+                    <p>
+                      
+                        标志位字段（U、A、P、R、S、F）：占6比特。各 比特的含义如下:
+
+URG：紧急比特（urgent）,当URG＝1时，表明紧急指针字段有效,代表该封包为紧急封包。它告诉系统此报文段中有紧急数据，应尽快传送(相当于高优先级的数据)， 且上图中的 Urgent Pointer 字段也会被启用。
+
+ACK：确认比特（Acknowledge）。只有当ACK＝1时确认号字段才有效,代表这个封包为确认封包。当ACK＝0时，确认号无效。
+
+PSH
+                      
+                    </p>
+                    
+                    <p class="pull-right readMore">
+                        <a href="/2017/03/21/TCP-状态控制码（code-Control-Flag）/">Read More...</a>
+                    </p>
+                    
+                </div>
+                <div class="clearfix"></div>
+                <hr class="nogutter">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 opening-statement">
+                <div class="col-md-4">
                     <h3><a href="/2016/12/04/SQL语句大全/">SQL语句大全</a></h3>
                     <span>
                         <span class="post-meta">
@@ -291,8 +327,7 @@
                 <div class="col-md-8">
                     <p>
                       
-                        一、基础
-1、说明：创建数据库CREATE DATABASE database-name2、说明：删除数据库drop database dbname3、说明：备份sql server— 创建 备份数据的 deviceUSE masterEXEC sp_addumpdevice &#39;disk&#39;, &#39;testBack&#39;, &#39;c:\mssql7backup\MyNwind_1.dat&#39;— 开始 备
+                        一、基础1、说明：创建数据库CREATE DATABASE database-name2、说明：删除数据库drop database dbname3、说明：备份sql server— 创建 备份数据的 deviceUSE masterEXEC sp_addumpdevice &#39;disk&#39;, &#39;testBack&#39;, &#39;c:\mssql7backup\MyNwind_1.dat&#39;— 开始 备份
                       
                     </p>
                     

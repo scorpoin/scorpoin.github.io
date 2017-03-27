@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>任意代码执行 | 大棟哥の博客</title>
+  <title>TCP:状态控制码（code,Control Flag） | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -271,43 +271,45 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-25T12:59:51.000Z" itemprop="datePublished">
-          2016-07-25
+      <time datetime="2017-03-21T05:13:13.000Z" itemprop="datePublished">
+          2017-03-21
       </time>
     
-    
-    | 
-    <a href='/tags/code-execution/'>code-execution</a>
-    
-    
 </span>
-                <h1>任意代码执行</h1>
+                <h1>TCP:状态控制码（code,Control Flag）</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>0x00查找方法：<br>thinkphp 框架可能存在代码执行漏洞的<br>搜索方式intext:thinkphp intext:”Fast &amp; Simple OOP PHP Framework” intext:”2.1”<br>0x01背景：<br>应用调用一些能将字符串转化为代码函数时，没有考虑用户是否能够控制这个字符串，将导致代码注入漏洞，狭义理解就是代码注入通常就是可执行代码注入到当前页面中<br>例如：eval函数，广义上可以覆盖大半个安全漏洞<br>0x02漏洞的分类:<br>执行代码的函数<br>1、callback函数<br>preg_replace(正则表达式，替换的内容，原始字符串)<br>最近服务器php版本升级到了 5.6  发现出了很多警告  </p>
-<ol>
-<li>preg_replace(): The /e modifier is deprecated, use preg_replace_callback instead<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/1.png?raw=true" alt="image"><br>一开始没注意，后来发现 很多这样的警告，于是网上查了下 发现 php5.5版本以上 就废弃了  preg_replace   函数中 /e 这个修饰符  /e 这个修饰符的意思 就是让 正则替换的 时候 替换规则 支持 php 代码<br>2、反序列化<br>反序列化函数（ php函数unserialize）<br>序列化就是：将数据结构或对象转换成二进制串的过程；<br>反序列化就是：将在序列化过程中所生成的二进制串转化为数据结构或者对象的过程；<br>serialize()把变量和它们的值编码成文本形式；<br>unserialize()回复原先变量<br>0x03危害：<br>1、执行任意代码；<br>2、拿webshelll<br>3、控制服务器<br>0x04利用：<br>主要存在问题的函数<br>eval()<br>assert()<br>preg_replace() /e模式<br>unserialize()反序列化函数<br>0x05简单测试：<br>eval函数<br>1、&lt;?php<br>$data=$_GET[‘data’];<br>eval(“\$ret=$data;”)<br>echo $ret;<br>?&gt;<br>三种触发:<br>/?data=phpinfo()<br>/?data=1;phpinfo()<br>/?data=${phpinfo()}<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/2.png?raw=true" alt="image"><br>2、&lt;?php<br>$data=$_GET[‘data’];<br>echo”\$ret=’$data’;”;<br>evalc(“\$ret=strtolower(\’$data\’);”);<br>echo $ret;<br>?&gt;<br>利用：?data=’);phpinfo();//<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/3.png?raw=true" alt="image"><br>3、<br>&lt;?php<br>$data=$_GET[‘data’];<br>echo”\$ret=’$data’;”;<br>evalc(“\$ret=strtolower(\”$data\”);”);<br>echo $ret;<br>?&gt;<br>利用：?data=”);phpinfo();//<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/4.png?raw=true" alt="image"><br>4.<img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/5.png?raw=true" alt="image"><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/%E4%BB%BB%E6%84%8F%E4%BB%A3%E7%A0%81/6.png?raw=true" alt="image"><br>0x06修复方案：<br>1、使用josn保存数组，对象使用josn，不将对象保存成字符串；<br>2、若使用eval保证用户不能随意接触到eval的参数或者使用正则严格判断输入格式；<br>3、使用addslashe进行转义</li>
-</ol>
+      		<p>标志位字段（U、A、P、R、S、F）：占6比特。各 比特的含义如下:</p>
+<ul>
+<li><p>URG：紧急比特（urgent）,当URG＝1时，表明紧急指针字段有效,代表该封包为紧急封包。它告诉系统此报文段中有紧急数据，应尽快传送(相当于高优先级的数据)， 且上图中的 Urgent Pointer 字段也会被启用。</p>
+</li>
+<li><p>ACK：确认比特（Acknowledge）。只有当ACK＝1时确认号字段才有效,代表这个封包为确认封包。当ACK＝0时，确认号无效。</p>
+</li>
+<li><p>PSH：（Push function）若为1时，代表要求对方立即传送缓冲区内的其他对应封包，而无需等缓冲满了才送。</p>
+</li>
+<li><p>RST：复位比特(Reset) ,当RST＝1时，表明TCP连接中出现严重差错（如由于主机崩溃或其他原因），必须释放连接，然后再重新建立运输连接。</p>
+</li>
+<li><p>SYN：同步比特(Synchronous)，SYN置为1，就表示这是一个连接请求或连接接受报文,通常带有 SYN 标志的封包表示『主动』要连接到对方的意思。。</p>
+</li>
+<li><p>FIN：终止比特(Final)，用来释放一个连接。当FIN＝1时，表明此报文段的发送端的数据已发送完毕，并要求释放运输连接。</p>
+</li>
+</ul>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/26/任意代码执行漏洞实例1/" style="float: left;">
-        ← 任意代码执行漏洞实例1
-    </a>
     
-    
-    <a class="pull-right" href="/2016/07/24/文件上传实例2/">
-        文件上传实例2 →
+    <a class="pull-right" href="/2016/12/04/SQL语句大全/">
+        SQL语句大全 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/25/任意代码执行/" data-title="任意代码执行" data-url="http://www.jiadong.xin/2016/07/25/任意代码执行/"></div>
+<div class="ds-thread" data-thread-key="2017/03/21/TCP-状态控制码（code-Control-Flag）/" data-title="TCP:状态控制码（code,Control Flag）" data-url="http://www.jiadong.xin/2017/03/21/TCP-状态控制码（code-Control-Flag）/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"dadongge"};
 (function() {
