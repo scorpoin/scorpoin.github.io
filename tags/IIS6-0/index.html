@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>MYSQL | 大棟哥の博客</title>
+  <title>Tag: IIS6.0 | 大棟哥の博客</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -84,7 +84,7 @@
 </head>
 
 <!--
-<body class="post-template">
+<body class="home-template">
 -->
 <body id="index" class="lightnav animsition">
 
@@ -266,72 +266,37 @@
 
         <!-- ============================ END Hero Image =========================== -->
       
-<section id="intro">
+
+
+<section id="services">
     <div class="container">
-        <div class="row col-md-offset-2">
-            <div class="col-md-8">
-    			<span class="post-meta">
-      <time datetime="2016-06-01T08:18:15.000Z" itemprop="datePublished">
-          2016-06-01
-      </time>
-    
-</span>
-                <h1>MYSQL</h1>
-            </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="row boxes">
+                    
+                    
+                        
+                        
+                        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 wow fadeInUp" data-wow-delay="0.3s">
+                            
+                              <h4 class="title"><a href="/2017/03/28/II6-0远程代码执行漏洞CVE-2017-7269/">II6.0远程代码执行漏洞CVE-2017-7269</a></h4>
+                            
+                            <p><time datetime="2017-03-28T03:25:23.000Z"><a href="/2017/03/28/II6-0远程代码执行漏洞CVE-2017-7269/">2017-03-28</a></time></p>
+                        </div>
+                    
+                </div>
+            </div>    
         </div>
-        <div class="col-md-8 col-md-offset-2">
-      		<p>mysql中的键（转载）：<br>键和外键是把多个表组织为一个有效的关系数据库的粘合剂。主键和外键的设计对物理数据库的性能和可用性都有着决定性的影响。<br>必须将数据库模式从理论上的逻辑设计转换为实际的物理设计。而主键和外键的结构是这个设计过程的症结所在。一旦将所设计的数据库用于了生产环境，就很难对这些键进行修改，所以在开发阶段就设计好主键和外键就是非常必要和值得的。<br>首先来谈：主键。<br>关系数据库依赖于主键—它是数据库物理模式的基石。主键在物理层面上只有两个用途：</p>
-<ol>
-<li>惟一地标识一行。</li>
-<li>作为一个可以被外键有效引用的对象。</li>
-</ol>
-<p>基于以上这两个用途，下面给出了在物理层面的主键时所遵循的一些原则：</p>
-<ol>
-<li>主键应当是对用户没有意义的。如果用户看到了一个表示多对多关系的连接表中的数据，并抱怨它没有什么用处，那就证明它的主键设计地很好。</li>
-<li>主键应该是单列的，以便提高连接和筛选操作的效率。</li>
-</ol>
-<p>注：使用复合键的人通常有两个理由为自己开脱，而这两个理由都是错误的。其一是主键应当具有实际意义，然而，让主键具有意义只不过是给人为地破坏数 据库提供了方便。其二是利用这种方法可以在描述多对多关系的连接表中使用两个外部键来作为主键，我也反对这种做法，理由是：复合主键常常导致不良的外键， 即当连接表成为另一个从表的主表，而依据上面的第二种方法成为这个表主键的一部分，然，这个表又有可能再成为其它从表的主表，其主键又有可能成了其它从表 主键的一部分，如此传递下去，越靠后的从表，其主键将会包含越多的列了。</p>
-<ol>
-<li>永远也不要更新主键。实际上，因为主键除了惟一地标识一行之外，再没有其他的用途了，所以也就没有理由去对它更新。如果主键需要更新，则说明主键应对用户无意义的原则被违反了。<br>注：这项原则对于那些经常需要在数据转换或多数据库合并时进行数据整理的数据并不适用。</li>
-<li>主键不应包含动态变化的数据，如时间戳、创建时间列、修改时间列等。</li>
-<li>主键应当有计算机自动生成。如果由人来对主键的创建进行干预，就会使它带有除了惟一标识一行以外的意义。一旦越过这个界限，就可能产生认为修改主键的动机，这样，这种系统用来链接记录行、管理记录行的关键手段就会落入不了解数据库设计的人的手中。<br>外键是用来和其他表建立联系用的：这个表中的一列和另外一个表中的一列相同，为了让这两个表联系起来，就把其中一个表中的列设成外键，把另外一个表列设成主键，就实现了这两个表的关联。<br>ps：一个表可以有多个外键。但主键只能有一个。</li>
-</ol>
-<p>主键:<br>能够唯一表示数据表中的每个记录的【字段】或者【字段】的组合就称为主码(主键)。 一个主键是唯一识别一个表的每一记录，但这只是其作用的一部分，主键的主要作用是将记录和存放在其他表中的数据进行关联。在这一点上，主键是不同表中各记 录之间的简单指针。主键约束就是确定表中的每一条记录。主键不能是空值。唯一约束是用于指定一个或多个列的组合值具有惟一性，以防止在列中输入重复的值。 所以，主键的值对用户而言是没有什么意义，并且和它要赋予的值也没有什么特别的联系。<br>外键：<br>若有两个表A，B，C是A的主键，而B中也有C字段，则C就是表B的外键。外键约束主要用来维护两个表之间数据的一致性。<br>A为基本表，B为信息表！</p>
+    </div>
+</section> 
 
-            <div class="clearfix"></div>
-            <hr class="nogutter">
+<section id="statement">
+    <div class="container text-center wow fadeInUp" data-wow-delay="0.5s">
+        <div class="row">
+            <p>业精于勤，荒于嬉；行成于思，毁于随。</p>
         </div>
-        <nav class="pagination" role="pagination">
-    
-    <a class="pull-left" href="/2016/06/15/php文件包含漏洞/" style="float: left;">
-        ← Php文件包含漏洞
-    </a>
-    
-    
-    <a class="pull-right" href="/2016/05/29/PHP-array-data-structure/">
-        PHP Array Data Structure →
-    </a>
-    
-</nav>
-
-        <div class="duoshuo">
-<div class="ds-thread" data-thread-key="2016/06/01/MYSQL/" data-title="MYSQL" data-url="http://www.jiadong.xin/2016/06/01/MYSQL/"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"dadongge"};
-(function() {
-	var ds = document.createElement('script');
-	ds.type = 'text/javascript';ds.async = true;
-	ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-	ds.charset = 'UTF-8';
-	(document.getElementsByTagName('head')[0] 
-	 || document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-</div>
     </div>
 </section>
-
-
       
 <!-- ============================ Footer =========================== -->
 
